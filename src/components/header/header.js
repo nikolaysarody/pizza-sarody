@@ -8,7 +8,7 @@ import enterImg from './enter.svg';
 function Header(){
     return (
         <div className='header'>
-            <div className='header__inner'>
+            <div className='header__container'>
                 <div className='header__section'>
                     <div className='header__logo'>
                         <img src={logoImg} alt='Pizza Sarody' width='200' height='46'/>
@@ -25,7 +25,7 @@ function Header(){
                         <a href='#'>О нас</a>
                     </div>
                     <div className='header__promo'>
-                        <input type='text'/>
+                        <input type='text' placeholder='Промокод'/>
                         <button>
                             <img src={enterImg} alt='enter' width='13' height='13'/>
                         </button>

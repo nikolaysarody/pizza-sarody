@@ -2,9 +2,11 @@
     display: flex;
     justify-content: center;
     height: 85px;
+    width: 100%;
     border-bottom: 1px solid #B75615;
+    left: 0;
 
-    &__inner {
+    &__container {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -37,7 +39,7 @@
     }
 
     &__promo {
-        margin-right: 50px;
+        margin-right: 40px;
 
         input {
             width: 110px;
@@ -49,6 +51,7 @@
             border-top-left-radius: 10px;
             outline: none;
             padding-left: 10px;
+            font-size: 17px;
         }
 
         button {
@@ -60,6 +63,7 @@
             border-bottom-right-radius: 10px;
             border-top-right-radius: 10px;
             cursor: pointer;
+            font-size: 17px;
 
             &:hover {
                 background: rgba(0, 0, 0, .1);
