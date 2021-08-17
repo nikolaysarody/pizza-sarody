@@ -9,7 +9,12 @@ body{
     font-family: 'Montserrat', sans-serif;
 
     &__body{
-
+        width: 100vw;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        height: 100%;
     }
 
 }
