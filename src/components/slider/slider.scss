@@ -92,6 +92,8 @@
 
     &__dot{
         margin-right: 15px;
+        cursor: pointer;
+        z-index: 1;
 
         &:last-child{
             margin-right: 0;

@@ -18,31 +18,44 @@ function Slider(props) {
         {
             title: 'Новинка',
             description: 'Пицца Красный Тигр',
-            clickable: false,
+            clickable: true,
             img: '/images/Pizza/action_1.jpg',
             key: 'gegre'
+        },
+        {
+            title: 'Новинка',
+            description: 'Пицца Красный Тигр',
+            clickable: true,
+            img: '/images/Pizza/action_1.jpg',
+            key: 'jytjtyr'
         }
     ];
     const [modal, setModal] = useState(null);
-    const [selectedSlide, setSlide] = useState(0);
+    const [slideIndex, setSlide] = useState(0);
     const [offset, setOffset] = useState(0);
-    const [trasform, setTransform] = useState(null);
-    // const [slidesField, setSlidesField] = useState(null);
+    const slidesField = React.createRef();
+    const sliderWrapper = React.createRef();
+    const [width, setWidth] = useState('');
 
-    // useEffect(() => {
-    //     const slidesField = document.querySelector('.slider__inner');
-    // });
-    //
-    // slidesField.style.width = 100 * sliderItems.length + '%';
+    useEffect(() => {
+        slidesField.current.style.width = 100 * sliderItems.length + '%';
+    }, [slidesField, sliderItems]);
 
-    // const slideWidth = window.getComputedStyle(document.querySelector('.slider__wrapper')).width;
+    useEffect(() => {
+        setWidth(window.getComputedStyle(sliderWrapper.current).width);
+    }, [sliderWrapper]);
+
+    const setTransform = (offset) => {
+        slidesField.current.style.transform = `translateX(-${offset}px)`;
+    }
 
     const showModal = (title, description, text) => {
-        setModal(
-            <div className='slider__modal'>
-                <span>This is modal</span>
-            </div>
-        );
+        // setModal(
+        //     <div className='slider__modal'>
+        //         <span>This is modal</span>
+        //     </div>
+        // );
+        console.log(width, offset);
     };
 
     const sliderItem = ({title, description, text = '', clickable, img, key}) => {
@@ -68,41 +81,62 @@ function Slider(props) {
             <div className='slider__navigation'>
                 <img src={arrowLeft} alt='previous'
                      className='slider__arrow-left'
-                     // onClick={() => {
-                     //     if (offset === 0) {
-                     //         setOffset(+slideWidth.slice(0, slideWidth.length - 2) * (sliderItems.length - 1));
-                     //     } else {
-                     //         setOffset(offset - +slideWidth.slice(0, slideWidth.length - 2));
-                     //     }
-                     //
-                     //     slidesField.style.transform = `translateX(-${offset}px)`;
-                     // }}
+                     onClick={() => {
+                         if (offset === 0) {
+                             setOffset(+width.slice(0, width.length - 2) * (sliderItems.length - 1));
+                         } else {
+                             setOffset(offset - +width.slice(0, width.length - 2));
+                         }
+
+                         if (slideIndex === 1) {
+                             setSlide(sliderItems.length - 1);
+                         } else {
+                             setSlide(slideIndex - 1);
+                         }
+
+                         setTransform(offset);
+                     }}
                 />
                 <div className='slider__navigation-dot'>
                     {sliderItems.map((item, index) => {
-                        if (selectedSlide === index) {
+                        if (slideIndex === index) {
                             return <img src={navigationDotActive} alt='active-dot' key={item.key + index}
-                                        className='slider__dot'/>;
+                                        className='slider__dot'
+                                        onClick={() => {
+                                            setSlide(index);
+                                            setOffset(+width.slice(0, width.length - 2) * index);
+                                            slidesField.current.style.transform = `translateX(-${offset}px)`;
+                                        }}/>;
                         }
                         return <img src={navigationDotNotActive} alt='dot' key={item.key + index}
-                                    className='slider__dot'/>;
+                                    className='slider__dot'
+                                    onClick={() => {
+                                        setSlide(index);
+                                        setOffset(+width.slice(0, width.length - 2) * index);
+                                        slidesField.current.style.transform = `translateX(-${offset}px)`;
+                                    }}/>;
                     })}
                 </div>
                 <img src={arrowRight} alt='next'
                      className='slider__arrow-right'
-                     // onClick={() => {
-                     //     if (offset === +slideWidth.slice(0, slideWidth.length - 2) * (sliderItems.length - 1)) {
-                     //         setOffset(0);
-                     //     } else {
-                     //         setOffset(offset + +slideWidth.slice(0, slideWidth.length - 2));
-                     //     }
-                     //
-                     //     slidesField.style.transform = `translateX(-${offset}px)`;
-                     // }}
-                />
+                     onClick={() => {
+                         if (offset === +width.slice(0, width.length - 2) * (sliderItems.length - 1)) {
+                             setOffset(0);
+                         } else {
+                             setOffset(offset + +width.slice(0, width.length - 2));
+                         }
+
+                         if (slideIndex === sliderItems.length - 1) {
+                             setSlide(0);
+                         } else {
+                             setSlide(slideIndex + 1);
+                         }
+
+                         setTransform(offset);
+                     }}/>
             </div>
-            <div className='slider__wrapper'>
-                <div className='slider__inner'>
+            <div className='slider__wrapper' ref={sliderWrapper}>
+                <div className='slider__inner' ref={slidesField}>
                     {sliderItems.map((item) => {
                         return sliderItem(item);
                     })}
