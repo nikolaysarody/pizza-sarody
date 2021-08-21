@@ -3,9 +3,10 @@
     justify-content: center;
     height: 85px;
     width: 100%;
+    position: fixed;
     border-bottom: 1px solid #B75615;
-    left: 0;
     background-color: white;
+    z-index: 1000;
 
     &__container {
         display: flex;

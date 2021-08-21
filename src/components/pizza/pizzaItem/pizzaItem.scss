@@ -1,0 +1,87 @@
+.pizza {
+    &__item {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        width: 298px;
+        height: 372px;
+        background: #FFFFFF;
+        box-shadow: 5px 5px 12px 5px rgba(0, 0, 0, 0.1);
+        border-radius: 20px;
+
+        img {
+            width: 80%;
+        }
+    }
+
+    &__container {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 15px 33px 25px 33px;
+        height: 100%;
+    }
+
+    &__description {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        flex: 1;
+    }
+
+    &__order {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        justify-items: center;
+        width: 100%;
+    }
+
+    &__span {
+        font-size: 14px;
+        font-weight: 400;
+    }
+
+    &__title {
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 3px;
+    }
+
+    &__price {
+        font-size: 19px;
+        font-weight: 600;
+    }
+
+    &__btn-null, &__btn-not-null {
+        width: 93px;
+        height: 29px;
+        background: rgba(183, 86, 21, 0.2);
+        border-radius: 20px;
+        border: none;
+        font-weight: 500;
+        font-size: 14px;
+        font-family: 'Montserrat', sans-serif;
+        cursor: pointer;
+    }
+
+    &__btn-not-null {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    &__btn-dec, &__btn-inc {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        font-weight: 500;
+        font-size: 14px;
+        font-family: 'Montserrat', sans-serif;
+        height: 100%;
+        width: 46%;
+    }
+}

@@ -4,32 +4,11 @@ import arrowLeft from './arrow_left.svg';
 import arrowRight from './arrow_right.svg';
 import navigationDotActive from './active_dot.svg';
 import navigationDotNotActive from './not_active_dot.svg';
+import PizzaService from "../services/pizzaService";
 
-function Slider(props) {
-    const sliderItems = [
-        {
-            title: '2 по цене 1',
-            description: 'Пепперони x2',
-            text: 'Вводите промокод ПЕПЕ для выгодной покупки двух пепперони по цене одной.',
-            clickable: true,
-            img: '/images/Pizza/action_1.jpg',
-            key: 'dwqdqwd'
-        },
-        {
-            title: 'Новинка',
-            description: 'Пицца Красный Тигр',
-            clickable: true,
-            img: '/images/Pizza/action_1.jpg',
-            key: 'gegre'
-        },
-        {
-            title: 'Новинка',
-            description: 'Пицца Красный Тигр',
-            clickable: true,
-            img: '/images/Pizza/action_1.jpg',
-            key: 'jytjtyr'
-        }
-    ];
+function Slider() {
+    const pizzaService = new PizzaService();
+    const [sliderItems, setSliderItems] = useState([]);
     const [modal, setModal] = useState(null);
     const [slideIndex, setSlide] = useState(0);
     const [offset, setOffset] = useState(0);
@@ -38,12 +17,20 @@ function Slider(props) {
     const [width, setWidth] = useState('');
 
     useEffect(() => {
+        setSliderItems(pizzaService.getActions);
+    }, [pizzaService.getActions]);
+
+    useEffect(() => {
         slidesField.current.style.width = 100 * sliderItems.length + '%';
     }, [slidesField, sliderItems]);
 
     useEffect(() => {
         setWidth(window.getComputedStyle(sliderWrapper.current).width);
     }, [sliderWrapper]);
+
+    useEffect(() => {
+        setTransform(offset);
+    }, [offset]);
 
     const setTransform = (offset) => {
         slidesField.current.style.transform = `translateX(-${offset}px)`;
@@ -77,7 +64,7 @@ function Slider(props) {
     };
 
     return (
-        <div className={'slider ' + props.classNames}>
+        <div className={'slider'}>
             <div className='slider__navigation'>
                 <img src={arrowLeft} alt='previous'
                      className='slider__arrow-left'
@@ -88,13 +75,11 @@ function Slider(props) {
                              setOffset(offset - +width.slice(0, width.length - 2));
                          }
 
-                         if (slideIndex === 1) {
+                         if (slideIndex === 0) {
                              setSlide(sliderItems.length - 1);
                          } else {
                              setSlide(slideIndex - 1);
                          }
-
-                         setTransform(offset);
                      }}
                 />
                 <div className='slider__navigation-dot'>
@@ -131,8 +116,6 @@ function Slider(props) {
                          } else {
                              setSlide(slideIndex + 1);
                          }
-
-                         setTransform(offset);
                      }}/>
             </div>
             <div className='slider__wrapper' ref={sliderWrapper}>
