@@ -4,6 +4,7 @@ import logoImg from './logo.svg';
 import userImg from './user.svg';
 import cartImg from './cart.svg';
 import enterImg from './enter.svg';
+import {Link} from "react-router-dom";
 
 function Header(){
     return (
@@ -11,18 +12,20 @@ function Header(){
             <div className='header__container'>
                 <div className='header__section'>
                     <div className='header__logo'>
-                        <img src={logoImg} alt='Pizza Sarody' width='200' height='46'/>
+                        <Link to='/'>
+                            <img src={logoImg} alt='Pizza Sarody' width='200' height='46'/>
+                        </Link>
                     </div>
                 </div>
                 <div className='header__section'>
                     <div className='header__button'>
-                        <a href='#'>Пицца</a>
+                        <Link to='#'>Пицца</Link>
                     </div>
                     <div className='header__button'>
-                        <a href='#'>Акции</a>
+                        <Link to='#'>Акции</Link>
                     </div>
                     <div className='header__button'>
-                        <a href='#'>О нас</a>
+                        <Link to='/about'>О нас</Link>
                     </div>
                     <div className='header__promo'>
                         <input type='text' placeholder='Промокод'/>

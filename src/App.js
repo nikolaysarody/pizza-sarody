@@ -1,22 +1,23 @@
 import React from 'react';
 import './App.scss';
-import Header from "./components/header/header";
-import Footer from "./components/footer/footer";
-import Slider from "./components/slider/slider";
-import Pizza from "./components/pizza/pizza";
+import Header from './components/header/header';
+import Footer from './components/footer/footer';
+import MainPage from './components/pages/mainPage';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
+import AboutPage from "./components/pages/aboutPage";
 
 function App() {
     return (
-        <div className='app'>
-            <div className='app__body'>
-                <Header />
-                <div className='app__content'>
-                    <Slider />
-                    <Pizza />
+        <Router>
+            <div className='app'>
+                <div className='app__body'>
+                    <Header />
+                    <Route path='/' exact component={MainPage}/>
+                    <Route path='/about' component={AboutPage}/>
+                    <Footer />
                 </div>
-                <Footer />
             </div>
-        </div>
+        </Router>
     );
 }
 
