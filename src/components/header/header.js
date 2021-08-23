@@ -2,9 +2,10 @@ import React from 'react';
 import './header.scss';
 import logoImg from './logo.svg';
 import userImg from './user.svg';
-import cartImg from './cart.svg';
+import cartImg from '../cart/cart.svg';
 import enterImg from './enter.svg';
 import {Link} from "react-router-dom";
+import Cart from '../cart/cart';
 
 function Header(){
     return (
@@ -38,8 +39,7 @@ function Header(){
                         {/*<span>{user.name}</span>*/}
                     </div>
                     <div className='header__button'>
-                        <img src={cartImg} alt='cart' width='24' height='24'/>
-                        {/*<span>{user.name}</span>*/}
+                        <Cart />
                     </div>
                 </div>
             </div>

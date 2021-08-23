@@ -1,0 +1,31 @@
+.cart {
+    &__container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__counter {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        border: 2px solid #B75615;
+        border-radius: 15px;
+        box-sizing: border-box;
+        margin-left: 9px;
+
+        span {
+            font-weight: 600;
+            font-size: 17px;
+            line-height: 21px;
+            -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none;   /* Chrome/Safari/Opera */
+            -moz-user-select: none;      /* Firefox */
+            -ms-user-select: none;       /* Internet Explorer/Edge */
+            user-select: none;
+        }
+    }
+}
