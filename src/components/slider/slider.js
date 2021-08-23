@@ -42,16 +42,16 @@ function Slider() {
         //         <span>This is modal</span>
         //     </div>
         // );
-        console.log(width, offset);
+        // console.log(width, offset);
     };
 
-    const sliderItem = ({title, description, text = '', clickable, img, key}) => {
+    const sliderItem = ({title, description, text = '', clickable, img, id}) => {
         let className = 'slider__item';
         if (clickable) {
             className += ' clickable';
         }
         return (
-            <div className={className} key={key} onClick={clickable ? () => showModal(title, description, text) : null}>
+            <div className={className} key={id} onClick={clickable ? () => showModal(title, description, text) : null}>
                 <div className='slider__text'>
                     <span className='slider__title'>{title}</span>
                     <span className='slider__description'>{description}</span>
@@ -64,7 +64,7 @@ function Slider() {
     };
 
     return (
-        <div className={'slider'}>
+        <div className='slider' id='actions'>
             <div className='slider__navigation'>
                 <img src={arrowLeft} alt='previous'
                      className='slider__arrow-left'
@@ -85,7 +85,7 @@ function Slider() {
                 <div className='slider__navigation-dot'>
                     {sliderItems.map((item, index) => {
                         if (slideIndex === index) {
-                            return <img src={navigationDotActive} alt='active-dot' key={item.key + index}
+                            return <img src={navigationDotActive} alt='active-dot' key={item.id + index}
                                         className='slider__dot'
                                         onClick={() => {
                                             setSlide(index);
@@ -93,7 +93,7 @@ function Slider() {
                                             slidesField.current.style.transform = `translateX(-${offset}px)`;
                                         }}/>;
                         }
-                        return <img src={navigationDotNotActive} alt='dot' key={item.key + index}
+                        return <img src={navigationDotNotActive} alt='dot' key={item.id + index}
                                     className='slider__dot'
                                     onClick={() => {
                                         setSlide(index);

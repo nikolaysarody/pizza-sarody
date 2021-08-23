@@ -19,7 +19,7 @@ function Header(){
                 </div>
                 <div className='header__section'>
                     <div className='header__button'>
-                        <Link to='#'>Пицца</Link>
+                        <Link to={{pathname: '/', hash: 'pizza'}}>Пицца</Link>
                     </div>
                     <div className='header__button'>
                         <Link to='#'>Акции</Link>

@@ -1,15 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
 
-body{
+body {
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
 }
 
 .app {
     font-family: 'Montserrat', sans-serif;
 
-    &__body{
-        width: 100%;
+    &__body {
+        width: 100vw;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
