@@ -1,5 +1,5 @@
 Здравствуйте, вы находитесь на моем учебном проекте. Здесь я пробую и тестирую новые технологии и понемногу разрабатываю фейковую доставку пиццы.
 
-Макет, который сделал тоже я - https://www.figma.com/file/MDjwptyjFD4MlKpCFZd5G5/Pizza-Sarody?node-id=0%3A1
+Макет, сделанный мной - https://www.figma.com/file/MDjwptyjFD4MlKpCFZd5G5/Pizza-Sarody?node-id=0%3A1
 
 Почта для связи: sarody@ya.ru
