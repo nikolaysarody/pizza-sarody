@@ -1,0 +1,29 @@
+.cart {
+    &__menu {
+        display: flex;
+        justify-content: center;
+        position: absolute;
+        top: 68px;
+        right: 184px;
+        width: 368px;
+        height: 112px;
+        background: #FFFFFF;
+        box-shadow: 5px 5px 12px 5px rgba(0, 0, 0, 0.1);
+        border-radius: 20px;
+        cursor: auto;
+    }
+
+    &__item {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        span {
+            font-weight: 300;
+            font-size: 17px;
+            color: rgba(0, 0, 0, 0.5);
+            margin-left: 15px;
+        }
+    }
+}
