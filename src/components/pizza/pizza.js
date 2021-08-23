@@ -12,9 +12,9 @@ function Pizza() {
     }, [pizzaService.getPizza]);
 
     return (
-        <div className='pizza' id={'pizza'}>
-            {pizzaItems.map((item) => <PizzaItem {...item}/>)}
-        </div>
+        <ul className='pizza' id={'pizza'}>
+            {pizzaItems.map((item) => <PizzaItem {...item}  key={item.id}/>)}
+        </ul>
     );
 }
 

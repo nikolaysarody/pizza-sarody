@@ -36,7 +36,7 @@ function PizzaItem({title, description, price, img, id}) {
     };
 
     return (
-        <div className='pizza__item' key={id}>
+        <li className='pizza__item'>
             <div className='pizza__container'>
                 <img src={img} alt='pizza'/>
                 <div className='pizza__description'>
@@ -48,7 +48,7 @@ function PizzaItem({title, description, price, img, id}) {
                     {orderButton()}
                 </div>
             </div>
-        </div>
+        </li>
     );
 }
 

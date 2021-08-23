@@ -56,6 +56,14 @@
         font-weight: 600;
     }
 
+    &__count {
+        -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none;   /* Chrome/Safari/Opera */
+        -moz-user-select: none;      /* Firefox */
+        -ms-user-select: none;       /* Internet Explorer/Edge */
+        user-select: none;
+    }
+
     &__btn-null, &__btn-not-null {
         width: 93px;
         height: 29px;
