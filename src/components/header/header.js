@@ -6,6 +6,7 @@ import cartImg from '../cart/cart.svg';
 import enterImg from './enter.svg';
 import {Link} from "react-router-dom";
 import Cart from '../cart/cart';
+import CartMenu from '../cart/cartMenu/cartMenu';
 
 function Header(){
     return (
@@ -38,11 +39,14 @@ function Header(){
                         <img src={userImg} alt='user' width='22' height='22'/>
                         {/*<span>{user.name}</span>*/}
                     </div>
-                    <div className='header__button'>
+                    <div className='header__cart'>
+                        {/*<CartMenu/>*/}
                         <Cart />
+
                     </div>
                 </div>
             </div>
+
         </div>
     );
 }

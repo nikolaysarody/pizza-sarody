@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import './slider.scss';
 import arrowLeft from './arrow_left.svg';
 import arrowRight from './arrow_right.svg';
@@ -12,8 +12,8 @@ function Slider() {
     const [modal, setModal] = useState(null);
     const [slideIndex, setSlide] = useState(0);
     const [offset, setOffset] = useState(0);
-    const slidesField = React.createRef();
-    const sliderWrapper = React.createRef();
+    const slidesField = useRef(null);
+    const sliderWrapper = useRef(null);
     const [width, setWidth] = useState('');
 
     useEffect(() => {

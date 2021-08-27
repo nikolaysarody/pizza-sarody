@@ -1,4 +1,12 @@
 .cart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @media (max-width: 1700px) {
+        justify-content: end;
+    }
+
     &__container {
         display: flex;
         flex-direction: row;
