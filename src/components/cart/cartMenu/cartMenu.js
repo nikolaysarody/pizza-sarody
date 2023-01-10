@@ -38,7 +38,7 @@ function CartMenu({toggle, count}) {
                     );
                 }
                 return (
-                    <div className='cart__item'>
+                    <div className='cart__item-empty'>
                         <img src={cartImg} alt='cart' width='42' height='42'/>
                         <span>Корзина пустая</span>
                     </div>

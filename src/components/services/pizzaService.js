@@ -6,140 +6,140 @@ export default class PizzaService {
                 description: 'Сыр моцарелла, колбаса пепперони, перец чили, помидоры, орегано, базилик, чеснок',
                 price: 400,
                 img: '/images/Pizza/pizza_1.png',
-                id: Math.floor(Math.random() * 1000)
+                id: 'sdqdsfg'
             },
             {
                 title: 'Маргарита',
                 description: 'Томатный соус, моцарелла и орегано',
                 price: 400,
                 img: '/images/Pizza/pizza_1.png',
-                id: Math.floor(Math.random() * 1000)
+                id: 'gregerf'
             },
             {
                 title: 'Маринара',
                 description: 'Томатный соус, чеснок и базилик',
                 price: 400,
                 img: '/images/Pizza/pizza_1.png',
-                id: Math.floor(Math.random() * 1000)
+                id: 'hrthrf'
             },
             {
                 title: 'Четыре сезона',
                 description: 'Томатный соус, моцарелла, пармезан, яйца, бекон',
                 price: 400,
                 img: '/images/Pizza/pizza_1.png',
-                id: Math.floor(Math.random() * 1000)
+                id: 'fewgd'
             },
             {
                 title: 'Карбонара',
                 description: 'Томатный соус, моцарелла, пармезан, яйца, бекон',
                 price: 400,
                 img: '/images/Pizza/pizza_1.png',
-                id: Math.floor(Math.random() * 1000)
+                id: 'gefdwf'
             },
             {
                 title: 'Морепродукты',
                 description: 'Томатный соус и морепродукты',
                 price: 400,
                 img: '/images/Pizza/pizza_1.png',
-                id: Math.floor(Math.random() * 1000)
+                id: 'gegergfd'
             },
             {
                 title: 'Четыре сыра',
                 description: 'Томатный соус, моцарелла, пармезан, сыр горгонзола, артишоки и орегано',
                 price: 400,
                 img: '/images/Pizza/pizza_1.png',
-                id: Math.floor(Math.random() * 1000)
+                id: 'gregfdger'
             },
             {
                 title: 'Крудо',
                 description: 'Томатный соус, моцарелла и пармская ветчина',
                 price: 400,
                 img: '/images/Pizza/pizza_1.png',
-                id: Math.floor(Math.random() * 1000)
+                id: 'jytuhg'
             },
             {
                 title: 'Неаполетано',
                 description: 'Томатный соус, моцарелла, орегано, анчоусы',
                 price: 400,
                 img: '/images/Pizza/pizza_1.png',
-                id: Math.floor(Math.random() * 1000)
+                id: 'cgbedhtr'
             },
             {
                 title: 'По-апулийски',
                 description: 'Томатный соус, моцарелла, орегано, лук',
                 price: 400,
                 img: '/images/Pizza/pizza_1.png',
-                id: Math.floor(Math.random() * 1000)
+                id: 'kyuhgtyrhj'
             },
             {
                 title: 'Монтанара',
                 description: 'Томатный соус, моцарелла, грибы, пепперони и Страккино (мягкий сыр)',
                 price: 400,
                 img: '/images/Pizza/pizza_1.png',
-                id: Math.floor(Math.random() * 1000)
+                id: 'jngfjnthg'
             },
             {
                 title: 'Эмилиана',
                 description: 'Томатный соус, моцарелла, баклажаны, отварной картофель и колбаса',
                 price: 400,
                 img: '/images/Pizza/pizza_1.png',
-                id: Math.floor(Math.random() * 1000)
+                id: 'hgjthgjt'
             },
             {
                 title: 'Римская',
                 description: 'Томатный соус, моцарелла, анчоусы, каперсы и орегано',
                 price: 400,
                 img: '/images/Pizza/pizza_1.png',
-                id: Math.floor(Math.random() * 1000)
+                id: 'jhktghfrd'
             },
             {
                 title: 'Красный тигр',
                 description: 'Сыр моцарелла, колбаса пепперони, аукцион, сабнавтика и щепотка тупняка',
                 price: 400,
                 img: '/images/Pizza/pizza_1.png',
-                id: Math.floor(Math.random() * 1000)
+                id: 'jghdhgd'
             },
             {
                 title: 'Скьяччата',
                 description: 'Оливковое масло и розмарин',
                 price: 400,
                 img: '/images/Pizza/pizza_1.png',
-                id: Math.floor(Math.random() * 1000)
+                id: 'kjhgtdggh'
             },
             {
                 title: 'Прошутто',
                 description: 'Томатный соус, моцарелла, ветчина, орегано',
                 price: 400,
                 img: '/images/Pizza/pizza_1.png',
-                id: Math.floor(Math.random() * 1000)
+                id: 'hgfjtdhd'
             },
             {
                 title: 'Американо',
                 description: 'Томатный соус, моцарелла, колбаса и картофель фри',
                 price: 400,
                 img: '/images/Pizza/pizza_1.png',
-                id: Math.floor(Math.random() * 1000)
+                id: 'jryjhgkmk'
             },
             {
                 title: 'Прошутто и грибы',
                 description: 'Томатный соус, моцарелла, ветчина, грибы',
                 price: 400,
                 img: '/images/Pizza/pizza_1.png',
-                id: Math.floor(Math.random() * 1000)
+                id: 'jgfsertfgh'
             },
             {
                 title: 'Папайя',
                 description: 'Моцарелла, шпинат, сыр рикотта и пармезан',
                 price: 400,
                 img: '/images/Pizza/pizza_1.png',
-                id: Math.floor(Math.random() * 1000)
+                id: 'kljhgkjg'
             },
             {
                 title: 'Сардиния',
                 description: 'Томатный соус, моцарелла, сыр пекорино и острая салями',
                 price: 400,
                 img: '/images/Pizza/pizza_1.png',
-                id: Math.floor(Math.random() * 1000)
+                id: 'vcsfdghjghs'
             }
         ];
     }
