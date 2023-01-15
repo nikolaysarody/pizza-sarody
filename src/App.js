@@ -1,10 +1,12 @@
 import React from 'react';
-import './App.scss';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
+
 import Header from './components/header/header';
 import Footer from './components/footer/footer';
 import MainPage from './components/pages/mainPage';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
 import AboutPage from "./components/pages/aboutPage";
+
+import './App.scss';
 
 function App() {
     return (

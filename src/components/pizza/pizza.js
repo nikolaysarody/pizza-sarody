@@ -1,18 +1,24 @@
 import React, {useEffect, useState} from 'react';
-import './pizza.scss';
+import {useDispatch} from "react-redux";
+import {updatePizzas} from "../../store/pizzaSlice";
 import PizzaService from '../services/pizzaService';
 import PizzaItem from "./pizzaItem/pizzaItem";
 
+import './pizza.scss';
+
 function Pizza() {
     const [pizzaItems, setPizzaItems] = useState([]);
+    const dispatch = useDispatch();
+
     const pizzaService = new PizzaService();
 
     useEffect(() => {
-        setPizzaItems(pizzaService.getPizza);
-    }, [pizzaService.getPizza]);
+        dispatch(updatePizzas(pizzaService.getPizza()));
+        setPizzaItems(pizzaService.getPizza());
+    }, []);
 
     return (
-        <ul className='pizza' id={'pizza'}>
+        <ul className='pizza'>
             {pizzaItems.map((item) => <PizzaItem {...item}  key={item.id}/>)}
         </ul>
     );

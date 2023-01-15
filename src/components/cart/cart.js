@@ -5,7 +5,7 @@ import cartImg from './cart.svg';
 import CartMenu from './cartMenu/cartMenu';
 
 function Cart() {
-    const pizzaCount = useSelector(state => state.length);
+    const pizzaCount = useSelector(state => state.order.length);
     const [cartToggle, setCartToggle] = useState(false);
 
     const cartCounter = () => {

@@ -4,7 +4,8 @@
     align-items: center;
     width: 1320px;
     flex-wrap: wrap;
-    list-style-type: none;
+    list-style: none;
+    padding-left: 0;
 
     > * {
         margin-bottom: 50px
