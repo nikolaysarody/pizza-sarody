@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import {addItemInOrder, deleteItemInOrder} from "../../../store/orderSlice";
-// import {deleteStore, updateStore} from "../../../actions";
 import {useSelector, useDispatch} from 'react-redux';
 import Spinner from "../../spinner/spinner";
 
@@ -8,7 +7,7 @@ import './pizzaItem.scss';
 
 function PizzaItem({title, description, price, img, id}) {
     const [imageStatus, setImageStatus] = useState(false);
-    const pizzaCount = useSelector(state => state.order.filter((item) => item.id === id).length);
+    const pizzaCount = useSelector(state => state.order.pizzas.filter((item) => item.id === id).length);
     const dispatch = useDispatch();
 
     const load = () => {
@@ -27,7 +26,7 @@ function PizzaItem({title, description, price, img, id}) {
                            className='pizza__btn-dec'
                            value='-'
                            onClick={() => {
-                               dispatch(deleteItemInOrder(id))
+                               dispatch(deleteItemInOrder({id, price}))
                            }}/>
                     <span className='pizza__count'>{pizzaCount}</span>
                     <input type='button'

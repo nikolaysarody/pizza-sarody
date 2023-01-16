@@ -2,20 +2,20 @@ import {createSlice} from "@reduxjs/toolkit";
 
 const orderSlice = createSlice({
     name: 'order',
-    initialState: [],
+    initialState: {
+        pizzas: [],
+        price: 0
+    },
     reducers: {
         addItemInOrder(state, action){
-            state.push(action.payload);
-            state.forEach((item) => {console.log(item.title, 'state')})
-            console.log(action.payload, 'action');
+            state.pizzas.push(action.payload);
+            state.price = state.price + +action.payload.price;
         },
         deleteItemInOrder(state, action){
-            // state.filter();
-            state.some((item, index) => {
-                console.log(item.id, 'item');
-                console.log(action.payload);
-                if (item.id === action.payload) {
-                    state.splice(index, 1);
+            state.pizzas.some((item, index) => {
+                if (item.id === action.payload.id) {
+                    state.pizzas.splice(index, 1);
+                    state.price = state.price - +action.payload.price;
                     return true;
                 }
             });
