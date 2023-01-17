@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 import './cartMenu.scss';
 import cartImg from './cart.svg';
-import CartContent from '../cartContent/cartContent';
+import CartList from '../cartList/cartList';
 import {useSelector} from 'react-redux';
 
 function CartMenu({toggle}) {
@@ -23,14 +23,18 @@ function CartMenu({toggle}) {
                     <div className='cart__menu'>
                         <div className='cart__item'>
                             <div className='cart__top'>
-                                <span>Пицца</span>
-                                <input type='button' value='Очистить корзину'/>
+                                <span className='label'>Пицца</span>
+                                <input className='btn-clear' type='button' value='Очистить корзину'/>
                             </div>
                             <div className='cart__content'>
-                                <CartContent/>
+                                <CartList/>
                             </div>
                             <div className='cart__down'>
-                                <span>Сумма: {price} рублей</span>
+                                <div className='cart__down-wrapper'>
+                                    <span className='price'>Сумма:</span>
+                                    <span className='price-bold'>{price}</span>
+                                    <span className='price'>рублей</span>
+                                </div>
                                 <input type='button' value='Оформить заказ' className='cart__order'/>
                             </div>
                         </div>
@@ -38,7 +42,7 @@ function CartMenu({toggle}) {
                 );
             }
             return (
-                <div className='cart__menu'>
+                <div className='cart__menu empty'>
                     <div className='cart__item-empty'>
                         <img src={cartImg} alt='cart' width='42' height='42'/>
                         <span>Корзина пустая</span>
@@ -62,7 +66,7 @@ function CartMenu({toggle}) {
     //                             <input type='button' value='Очистить корзину'/>
     //                         </div>
     //                         <div className='cart__content'>
-    //                             <CartContent/>
+    //                             <CartList/>
     //                         </div>
     //                         <div className='cart__down'>
     //                             <span>Сумма: {console.log(pizzaTypesCount)} рублей</span>
