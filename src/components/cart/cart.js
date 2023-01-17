@@ -1,18 +1,27 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {useSelector} from 'react-redux';
 import './cart.scss';
 import cartImg from './cart.svg';
 import CartMenu from './cartMenu/cartMenu';
 
 function Cart() {
-    const pizzaCount = useSelector(state => state.order.pizzas.length);
+    const pizzas = useSelector(state => state.order.pizzas);
+    const [count, setCount] = useState(0);
     const [cartToggle, setCartToggle] = useState(false);
 
+    useEffect(() => {
+        let count = 0;
+        pizzas.forEach((item) => {
+            count += item.count;
+        });
+        setCount(count);
+    }, [pizzas]);
+
     const cartCounter = () => {
-        if (pizzaCount) {
+        if (count) {
             return (
                 <div className='cart__counter'>
-                    <span>{pizzaCount}</span>
+                    <span>{count}</span>
                 </div>
             );
         }

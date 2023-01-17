@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {addItemInOrder, deleteItemInOrder} from "../../../store/orderSlice";
 import {useSelector, useDispatch} from 'react-redux';
 import Spinner from "../../spinner/spinner";
@@ -7,11 +7,24 @@ import './pizzaItem.scss';
 
 function PizzaItem({title, description, price, img, id}) {
     const [imageStatus, setImageStatus] = useState(false);
-    const pizzaCount = useSelector(state => state.order.pizzas.filter((item) => item.id === id).length);
+    const [pizzaCount, setPizzaCount] = useState(0);
+    // const pizzas = useSelector(state => state.order.pizzas);
+    // const pizzaCount = () => {};
+    // console.log(pizzas);
     const dispatch = useDispatch();
 
+    // useEffect(() => {
+    //     setPizzaCount(() => {
+    //         pizzas.forEach(item => {
+    //             if (item.id === id) {
+    //                 return item.count;
+    //             };
+    //         });
+    //     });
+    // }, [pizzas]);
+
     const load = () => {
-        if(!imageStatus){
+        if (!imageStatus) {
             return (
                 <Spinner/>
             );
@@ -26,14 +39,16 @@ function PizzaItem({title, description, price, img, id}) {
                            className='pizza__btn-dec'
                            value='-'
                            onClick={() => {
-                               dispatch(deleteItemInOrder({id, price}))
+                               dispatch(deleteItemInOrder({id, price}));
+                               setPizzaCount((prev) => prev - 1);
                            }}/>
                     <span className='pizza__count'>{pizzaCount}</span>
                     <input type='button'
                            className='pizza__btn-inc'
                            value='+'
                            onClick={() => {
-                               dispatch(addItemInOrder({title, description, price, img, id}))
+                               dispatch(addItemInOrder({title, description, price, img, id}));
+                               setPizzaCount((prev) => prev + 1);
                            }}/>
                 </div>
             );
@@ -43,6 +58,7 @@ function PizzaItem({title, description, price, img, id}) {
                       value='Выбрать'
                       onClick={() => {
                           dispatch(addItemInOrder({title, description, price, img, id}));
+                          setPizzaCount((prev) => prev + 1);
                       }}/>;
     };
 
