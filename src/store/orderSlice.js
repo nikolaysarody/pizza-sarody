@@ -3,15 +3,15 @@ import {createSlice} from "@reduxjs/toolkit";
 const orderSlice = createSlice({
     name: 'order',
     initialState: {
-        pizzas: [],
+        pizza: [],
         price: 0
     },
     reducers: {
         addItemInOrder(state, action) {
-            if (!state.pizzas.some(item => item.id === action.payload.id)) {
-                state.pizzas.push({...action.payload, count: 1});
+            if (!state.pizza.some(item => item.id === action.payload.id)) {
+                state.pizza.push({...action.payload, count: 1});
             } else {
-                state.pizzas.forEach(item => {
+                state.pizza.forEach(item => {
                     if (item.id === action.payload.id) {
                         item.count++;
                     }
@@ -20,22 +20,36 @@ const orderSlice = createSlice({
             state.price = state.price + +action.payload.price;
         },
         deleteItemInOrder(state, action) {
-            if (state.pizzas.some(item => item.id === action.payload.id)) {
-                state.pizzas.forEach((item, index) => {
+            if (state.pizza.some(item => item.id === action.payload.id)) {
+                state.pizza.forEach((item, index) => {
                     if (item.id === action.payload.id) {
-                        if (item.count >= 2){
+                        if (item.count >= 2) {
                             item.count--;
                         } else {
-                            state.pizzas.splice(index, 1);
+                            state.pizza.splice(index, 1);
                         }
                     }
                 });
                 state.price = state.price - +action.payload.price;
             }
+        },
+        removeItemInOrder(state, action) {
+            if (state.pizza.some(item => item.id === action.payload.id)) {
+                state.pizza.forEach((item, index) => {
+                    if (item.id === action.payload.id) {
+                        state.pizza.splice(index, 1);
+                        state.price = state.price - item.price * item.count;
+                    }
+                });
+            }
+        },
+        clearAll(state){
+            state.pizza = [];
+            state.price = 0;
         }
     }
 });
 
-export const {addItemInOrder, deleteItemInOrder} = orderSlice.actions;
+export const {addItemInOrder, deleteItemInOrder, removeItemInOrder, clearAll} = orderSlice.actions;
 
 export default orderSlice.reducer;

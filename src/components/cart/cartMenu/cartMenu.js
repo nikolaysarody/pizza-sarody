@@ -2,11 +2,13 @@ import React, {useEffect, useRef, useState} from 'react';
 import './cartMenu.scss';
 import cartImg from './cart.svg';
 import CartList from '../cartList/cartList';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import {clearAll} from "../../../store/orderSlice";
 
 function CartMenu({toggle}) {
-    const pizzaInCart = useSelector(state => state.order.pizzas);
+    const pizzaInCart = useSelector(state => state.order.pizza);
     const price = useSelector(state => state.order.price);
+    const dispatch = useDispatch();
 
     // useEffect(() => {
     //     pizzaInCart.forEach((item) => {
@@ -24,7 +26,11 @@ function CartMenu({toggle}) {
                         <div className='cart__item'>
                             <div className='cart__top'>
                                 <span className='label'>Пицца</span>
-                                <input className='btn-clear' type='button' value='Очистить корзину'/>
+                                <input className='btn-clear'
+                                       type='button'
+                                       value='Очистить корзину'
+                                       onClick={() => dispatch(clearAll())}
+                                />
                             </div>
                             <div className='cart__content'>
                                 <CartList/>

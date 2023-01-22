@@ -4,13 +4,12 @@ import CartItem from "../cartItem/cartItem";
 import {useSelector} from "react-redux";
 
 function CartList() {
-    const pizza = useSelector(state => state.order.pizzas);
-    const pizzasCount = useSelector(state => state.order.pizzasCount);
+    const pizzas = useSelector(state => state.order.pizza);
 
 
     return (
-        <ul>
-            {/*{pizzasCount.map((item) => <CartItem {...item}  key={`${item.id}-cart`} />)}*/}
+        <ul className='cart-list'>
+            {pizzas.map((item) => <CartItem {...item}  key={`${item.id}-cart`} />)}
         </ul>
     );
 }

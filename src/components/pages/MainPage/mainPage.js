@@ -1,6 +1,6 @@
 import React from 'react';
-import Slider from "../slider/slider";
-import Pizza from "../pizza/pizza";
+import Slider from "../../slider/slider";
+import Pizza from "../../pizza/pizza";
 
 function MainPage() {
     return (

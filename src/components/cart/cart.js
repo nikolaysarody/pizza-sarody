@@ -1,11 +1,11 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useSelector} from 'react-redux';
 import './cart.scss';
 import cartImg from './cart.svg';
 import CartMenu from './cartMenu/cartMenu';
 
 function Cart() {
-    const pizzas = useSelector(state => state.order.pizzas);
+    const pizzas = useSelector(state => state.order.pizza);
     const [count, setCount] = useState(0);
     const [cartToggle, setCartToggle] = useState(false);
 

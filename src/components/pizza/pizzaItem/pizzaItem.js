@@ -1,27 +1,31 @@
 import React, {useEffect, useState} from "react";
 import {addItemInOrder, deleteItemInOrder} from "../../../store/orderSlice";
-import {useSelector, useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import Spinner from "../../spinner/spinner";
 
 import './pizzaItem.scss';
 
 function PizzaItem({title, description, price, img, id}) {
     const [imageStatus, setImageStatus] = useState(false);
-    const [pizzaCount, setPizzaCount] = useState(0);
-    // const pizzas = useSelector(state => state.order.pizzas);
-    // const pizzaCount = () => {};
-    // console.log(pizzas);
-    const dispatch = useDispatch();
+    const [pizzaCount, setPizzaCount] = useState(false);
+    const pizzaInOrder = useSelector(state => state.order.pizza);
 
-    // useEffect(() => {
-    //     setPizzaCount(() => {
-    //         pizzas.forEach(item => {
-    //             if (item.id === id) {
-    //                 return item.count;
-    //             };
-    //         });
-    //     });
-    // }, [pizzas]);
+
+    useEffect(() => {
+        let index = 0;
+        if(pizzaInOrder.some((item, i) => {
+            if(item.id === id){
+                index = i;
+                return true;
+            }
+        })){
+            setPizzaCount(pizzaInOrder[index].count);
+        } else {
+            setPizzaCount(0);
+        }
+    }, [pizzaInOrder])
+
+    const dispatch = useDispatch();
 
     const load = () => {
         if (!imageStatus) {
@@ -36,19 +40,19 @@ function PizzaItem({title, description, price, img, id}) {
             return (
                 <div className='pizza__btn-not-null'>
                     <input type='button'
-                           className='pizza__btn-dec'
+                           className='pizza__btn-change'
                            value='-'
                            onClick={() => {
                                dispatch(deleteItemInOrder({id, price}));
-                               setPizzaCount((prev) => prev - 1);
+                               // setPizzaCount(prev => prev - 1);
                            }}/>
                     <span className='pizza__count'>{pizzaCount}</span>
                     <input type='button'
-                           className='pizza__btn-inc'
+                           className='pizza__btn-change'
                            value='+'
                            onClick={() => {
                                dispatch(addItemInOrder({title, description, price, img, id}));
-                               setPizzaCount((prev) => prev + 1);
+                               // setPizzaCount(prev => prev + 1);
                            }}/>
                 </div>
             );
@@ -58,7 +62,7 @@ function PizzaItem({title, description, price, img, id}) {
                       value='Выбрать'
                       onClick={() => {
                           dispatch(addItemInOrder({title, description, price, img, id}));
-                          setPizzaCount((prev) => prev + 1);
+                          // setPizzaCount((prev) => prev + 1);
                       }}/>;
     };
 
@@ -66,7 +70,7 @@ function PizzaItem({title, description, price, img, id}) {
         <li className='pizza__item'>
             <div className='pizza__container'>
                 {load()}
-                <img src={img} alt='pizza' onLoad={() => setImageStatus(true)}/>
+                <img src={img} alt='...' onLoad={() => setImageStatus(true)}/>
                 <div className='pizza__description'>
                     <span className="pizza__title">{title}</span>
                     <span className="pizza__span">{description}</span>
