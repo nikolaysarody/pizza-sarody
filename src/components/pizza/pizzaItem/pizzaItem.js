@@ -10,7 +10,6 @@ function PizzaItem({title, description, price, img, id}) {
     const [pizzaCount, setPizzaCount] = useState(false);
     const pizzaInOrder = useSelector(state => state.order.pizza);
 
-
     useEffect(() => {
         let index = 0;
         if(pizzaInOrder.some((item, i) => {

@@ -147,7 +147,7 @@ export default class PizzaService {
     getActions() {
         return [
             {
-                title: '2 по цене 1',
+                title: 'Акция',
                 description: 'Пепперони x2',
                 text: 'Вводите промокод ПЕПЕ для выгодной покупки двух пепперони по цене одной.',
                 clickable: true,
@@ -157,16 +157,9 @@ export default class PizzaService {
             {
                 title: 'Новинка',
                 description: 'Пицца Красный Тигр',
-                clickable: true,
-                img: '/images/Pizza/action_2.jpg',
+                clickable: false,
+                img: '/images/Pizza/action_3.jpg',
                 id: 'gegre'
-            },
-            {
-                title: 'Новинка',
-                description: 'Пицца Красный Тигр',
-                clickable: true,
-                img: '/images/Pizza/action_2.jpg',
-                id: 'jytjtyr'
             }
         ];
     }

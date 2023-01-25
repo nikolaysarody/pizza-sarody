@@ -5,20 +5,29 @@ import arrowRight from './arrow_right.svg';
 import navigationDotActive from './active_dot.svg';
 import navigationDotNotActive from './not_active_dot.svg';
 import PizzaService from "../services/pizzaService";
+import SliderModal from "./sliderModal/sliderModal";
+import sliderModal from "./sliderModal/sliderModal";
+
+// import SliderItem from "./sliderItem/sliderItem";
 
 function Slider() {
     const pizzaService = new PizzaService();
     const [sliderItems, setSliderItems] = useState([]);
-    const [modal, setModal] = useState(null);
+    // const [modal, setModal] = useState(null);
+    const [modalVisible, setModalVisible] = useState(false);
     const [slideIndex, setSlide] = useState(0);
     const [offset, setOffset] = useState(0);
     const slidesField = useRef(null);
     const sliderWrapper = useRef(null);
     const [width, setWidth] = useState('');
 
+    // const setTransform = (offset) => {
+    //     slidesField.current.style.transform = `translateX(-${offset}px)`;
+    // }
+
     useEffect(() => {
         setSliderItems(pizzaService.getActions);
-    }, [pizzaService.getActions]);
+    }, []);
 
     useEffect(() => {
         slidesField.current.style.width = 100 * sliderItems.length + '%';
@@ -29,21 +38,13 @@ function Slider() {
     }, [sliderWrapper]);
 
     useEffect(() => {
-        setTransform(offset);
+        slidesField.current.style.transform = `translateX(-${offset}px)`;
     }, [offset]);
 
-    const setTransform = (offset) => {
-        slidesField.current.style.transform = `translateX(-${offset}px)`;
-    }
-
-    const showModal = (title, description, text) => {
-        // setModal(
-        //     <div className='slider__modal'>
-        //         <span>This is modal</span>
-        //     </div>
-        // );
-        // console.log(width, offset);
-    };
+    // const showModal = () => {
+    //     // setModal(<SliderModal {...sliderItems[slideIndex]} visible={modalVisible} onClose={() => setModalVisible(false)}/>);
+    //     // console.log(sliderItems);
+    // };
 
     const sliderItem = ({title, description, text = '', clickable, img, id}) => {
         let className = 'slider__item';
@@ -51,37 +52,34 @@ function Slider() {
             className += ' clickable';
         }
         return (
-            <div className={className} key={id} onClick={clickable ? () => showModal(title, description, text) : null}>
+            <div className={className} key={id} onClick={clickable ? () => {
+                setModalVisible(true);
+                // showModal(title, description, text);
+                console.log(modalVisible)
+            } : null}>
                 <div className='slider__text'>
                     <span className='slider__title'>{title}</span>
                     <span className='slider__description'>{description}</span>
                 </div>
                 <div className='slider__banner'>
                     <img src={img} alt={description}/>
+                    <div className='slider__banner-img-filter'></div>
                 </div>
             </div>
         );
     };
 
     return (
-        <div className='slider' id='actions'>
+        <div className='slider'>
+            <SliderModal {...sliderItems[slideIndex]} visible={modalVisible} onClose={() => setModalVisible(false)}/>
             <div className='slider__navigation'>
-                <img src={arrowLeft} alt='previous'
-                     className='slider__arrow-left'
+                <div className='slider__arrow-left-wrapper'
                      onClick={() => {
-                         if (offset === 0) {
-                             setOffset(+width.slice(0, width.length - 2) * (sliderItems.length - 1));
-                         } else {
-                             setOffset(offset - +width.slice(0, width.length - 2));
-                         }
-
-                         if (slideIndex === 0) {
-                             setSlide(sliderItems.length - 1);
-                         } else {
-                             setSlide(slideIndex - 1);
-                         }
-                     }}
-                />
+                         offset === 0 ? setOffset(+width.slice(0, width.length - 2) * (sliderItems.length - 1)) : setOffset(offset - +width.slice(0, width.length - 2));
+                         slideIndex === 0 ? setSlide(sliderItems.length - 1) : setSlide(slideIndex - 1);
+                     }}>
+                    <img src={arrowLeft} alt='previous' className='slider__arrow-left'/>
+                </div>
                 <div className='slider__navigation-dot'>
                     {sliderItems.map((item, index) => {
                         if (slideIndex === index) {
@@ -102,8 +100,7 @@ function Slider() {
                                     }}/>;
                     })}
                 </div>
-                <img src={arrowRight} alt='next'
-                     className='slider__arrow-right'
+                <div className='slider__arrow-right-wrapper'
                      onClick={() => {
                          if (offset === +width.slice(0, width.length - 2) * (sliderItems.length - 1)) {
                              setOffset(0);
@@ -116,13 +113,16 @@ function Slider() {
                          } else {
                              setSlide(slideIndex + 1);
                          }
-                     }}/>
+                     }}>
+                    <img src={arrowRight} alt='next'
+                         className='slider__arrow-right'
+                    />
+                </div>
+
             </div>
             <div className='slider__wrapper' ref={sliderWrapper}>
                 <div className='slider__inner' ref={slidesField}>
-                    {sliderItems.map((item) => {
-                        return sliderItem(item);
-                    })}
+                    {sliderItems.map((item) => sliderItem(item))}
                 </div>
             </div>
         </div>
