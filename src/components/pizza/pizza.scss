@@ -2,10 +2,23 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 1320px;
+    width: 100%;
     flex-wrap: wrap;
     list-style: none;
     padding-left: 0;
+
+    //@media (max-width: 1400px) {
+    //    max-width: 1320px;
+    //    //1100
+    //}
+    //
+    //@media (max-width: 1200px) {
+    //    max-width: 900px;
+    //}
+    //
+    //@media (max-width: 981px) {
+    //    margin: 0 60px 0 60px;
+    //}
 
     > * {
         margin-bottom: 50px

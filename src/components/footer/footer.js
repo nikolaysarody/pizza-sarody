@@ -2,6 +2,7 @@ import React from 'react';
 import './footer.scss';
 
 function Footer() {
+    const date = new Date();
     return (
         <div className='footer'>
             <div className='footer__container'>
@@ -20,7 +21,7 @@ function Footer() {
                 </div>
                 <div className='footer__section'>
                     <div className='footer__copyright'>
-                        <span>© 2021 Pizza Sarody</span>
+                        <span>© {date.getFullYear()} Pizza Sarody</span>
                     </div>
                 </div>
                 <div className='footer_section'>

@@ -6,24 +6,17 @@ import navigationDotActive from './active_dot.svg';
 import navigationDotNotActive from './not_active_dot.svg';
 import PizzaService from "../services/pizzaService";
 import SliderModal from "./sliderModal/sliderModal";
-import sliderModal from "./sliderModal/sliderModal";
 
-// import SliderItem from "./sliderItem/sliderItem";
 
 function Slider() {
     const pizzaService = new PizzaService();
     const [sliderItems, setSliderItems] = useState([]);
-    // const [modal, setModal] = useState(null);
     const [modalVisible, setModalVisible] = useState(false);
     const [slideIndex, setSlide] = useState(0);
     const [offset, setOffset] = useState(0);
     const slidesField = useRef(null);
     const sliderWrapper = useRef(null);
     const [width, setWidth] = useState('');
-
-    // const setTransform = (offset) => {
-    //     slidesField.current.style.transform = `translateX(-${offset}px)`;
-    // }
 
     useEffect(() => {
         setSliderItems(pizzaService.getActions);
@@ -40,11 +33,6 @@ function Slider() {
     useEffect(() => {
         slidesField.current.style.transform = `translateX(-${offset}px)`;
     }, [offset]);
-
-    // const showModal = () => {
-    //     // setModal(<SliderModal {...sliderItems[slideIndex]} visible={modalVisible} onClose={() => setModalVisible(false)}/>);
-    //     // console.log(sliderItems);
-    // };
 
     const sliderItem = ({title, description, text = '', clickable, img, id}) => {
         let className = 'slider__item';

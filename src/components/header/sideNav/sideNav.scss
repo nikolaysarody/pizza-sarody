@@ -1,0 +1,23 @@
+.header {
+  &__side-nav {
+    position: absolute;
+    //width: 414px;
+    //height: 589px;
+    background: #FFFFFF;
+    box-shadow: 5px 5px 12px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 0 0 0 28px;
+    top: 86px;
+    right: 0;
+    //transform: translateX(42px);
+
+    &-btn-menu {
+      cursor: pointer;
+    }
+
+    &-wrapper {
+      display: flex;
+      flex-direction: column;
+      margin: 40px 40px 40px 40px;
+    }
+  }
+}
