@@ -7,7 +7,6 @@ import navigationDotNotActive from './not_active_dot.svg';
 import PizzaService from "../services/pizzaService";
 import SliderModal from "./sliderModal/sliderModal";
 
-
 function Slider() {
     const pizzaService = new PizzaService();
     const [sliderItems, setSliderItems] = useState([]);
@@ -28,7 +27,7 @@ function Slider() {
 
     useEffect(() => {
         setWidth(window.getComputedStyle(sliderWrapper.current).width);
-    }, [sliderWrapper]);
+    }, [width]);
 
     useEffect(() => {
         slidesField.current.style.transform = `translateX(-${offset}px)`;
@@ -43,7 +42,7 @@ function Slider() {
             <div className={className} key={id} onClick={clickable ? () => {
                 setModalVisible(true);
                 // showModal(title, description, text);
-                console.log(modalVisible)
+                // console.log(modalVisible)
             } : null}>
                 <div className='slider__text'>
                     <span className='slider__title'>{title}</span>

@@ -1,15 +1,25 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {Link} from "react-router-dom";
-import logoMinImg from "../logo-min.svg";
 import logoImg from '../logo.svg';
 import menuImg from "../menu.svg";
 import enterImg from "../enter.svg";
 import './sideNav.scss';
 import '../header.scss';
+import {useSelector} from "react-redux";
 
 function SideNav() {
     const [sideNavSwitch, setSideNavSwitch] = useState(false);
+    const pizzas = useSelector(state => state.order.pizza);
+    const [count, setCount] = useState(0);
     const sideNav = useRef(null);
+
+    useEffect(() => {
+        let count = 0;
+        pizzas.forEach((item) => {
+            count += item.count;
+        });
+        setCount(count);
+    }, [pizzas]);
 
     useEffect(() => {
         if(sideNavSwitch){
@@ -18,6 +28,17 @@ function SideNav() {
             sideNav.current.style.transform = `translateX(${window.getComputedStyle(sideNav.current).width})`;
         }
     }, [sideNavSwitch]);
+
+    const cartCounter = () => {
+        if (count) {
+            return (
+                <div className='header__counter'>
+                    <span>{count}</span>
+                </div>
+            );
+        }
+        return null;
+    };
 
     return (
         <div className='header__container'>
@@ -50,6 +71,7 @@ function SideNav() {
                         </div>
                         <div className='header__button'>
                             <Link to='/order'>Корзина</Link>
+                            {cartCounter()}
                         </div>
                         <div className='header__promo'>
                             <input type='text' placeholder='Промокод'/>
