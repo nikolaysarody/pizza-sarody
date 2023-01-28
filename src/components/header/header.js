@@ -6,6 +6,7 @@ import enterImg from './enter.svg';
 import {Link} from "react-router-dom";
 import Cart from '../cart/cart';
 import SideNav from "./sideNav/sideNav";
+import UserPopUp from "../profile/userPopUp/userPopUp";
 
 
 function Header() {
@@ -48,8 +49,8 @@ function Header() {
                                 <img src={enterImg} alt='enter' width='13' height='13'/>
                             </button>
                         </div>
-                        <div className='header__button'>
-                            <img src={userImg} alt='user' width='22' height='22'/>
+                        <div className='header__profile'>
+                            <UserPopUp/>
                         </div>
                         <div className='header__cart'>
                             <Cart/>

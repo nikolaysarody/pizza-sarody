@@ -1,11 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import './footer.scss';
-import SideNav from "../header/sideNav/sideNav";
-import {Link} from "react-router-dom";
-import logoImg from "../header/logo.svg";
-import enterImg from "../header/enter.svg";
-import userImg from "../header/user.svg";
-import Cart from "../cart/cart";
 
 function Footer() {
     const [container, setContainer] = useState(null);
@@ -36,11 +30,6 @@ function Footer() {
                             <a href='#'>Корзина</a>
                         </div>
                     </div>
-                    {/*<div className='footer__section'>*/}
-                    {/*    <div className='footer__copyright'>*/}
-                    {/*        <span>© {new Date().getFullYear()} Pizza Sarody</span>*/}
-                    {/*    </div>*/}
-                    {/*</div>*/}
                     <div className='footer__section'>
                         <div className='footer__button'>
                             <a href='https://github.com/nikolaysarody/pizza-sarody'
