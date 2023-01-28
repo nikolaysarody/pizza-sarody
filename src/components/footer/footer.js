@@ -44,7 +44,7 @@ function Footer() {
                     <div className='footer__section'>
                         <div className='footer__button'>
                             <a href='https://github.com/nikolaysarody/pizza-sarody'
-                               target='_blank'>github.com/nikolaysarody/pizza-sarody</a>
+                               target='_blank'>github.com/nikolaysarody/<br/>pizza-sarody</a>
                         </div>
                     </div>
                 </div>
