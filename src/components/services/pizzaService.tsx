@@ -1,5 +1,21 @@
+interface GeneralInterface {
+    title: string;
+    description: string;
+    img: string;
+    id: string;
+}
+
+interface PizzaInterface extends GeneralInterface {
+    price: number;
+}
+
+interface ActionInterface extends GeneralInterface  {
+    text: string;
+    clickable: boolean;
+}
+
 export default class PizzaService {
-    getPizza() {
+    getPizza(): PizzaInterface[] {
         return [
             {
                 title: 'Пепперони',
@@ -144,7 +160,7 @@ export default class PizzaService {
         ];
     }
 
-    getActions() {
+    getActions(): ActionInterface[] {
         return [
             {
                 title: 'Акция',
@@ -157,6 +173,7 @@ export default class PizzaService {
             {
                 title: 'Новинка',
                 description: 'Пицца Красный Тигр',
+                text: '',
                 clickable: false,
                 img: '/images/Pizza/action_3.jpg',
                 id: 'gegre'

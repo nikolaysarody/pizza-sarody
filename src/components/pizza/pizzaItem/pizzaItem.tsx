@@ -1,14 +1,22 @@
 import React, {useEffect, useState} from "react";
 import {addItemInOrder, deleteItemInOrder} from "../../../store/orderSlice";
-import {useDispatch, useSelector} from 'react-redux';
+import {useAppDispatch, useAppSelector} from "../../../hook";
 import Spinner from "../../spinner/spinner";
 
 import './pizzaItem.scss';
 
-function PizzaItem({title, description, price, img, id}) {
+interface PizzaItemProps {
+    title: string;
+    description: string;
+    price: number;
+    img: string;
+    id: string;
+}
+
+const PizzaItem: React.FC<PizzaItemProps> = ({title, description, price, img, id}) => {
     const [imageStatus, setImageStatus] = useState(false);
-    const [pizzaCount, setPizzaCount] = useState(false);
-    const pizzaInOrder = useSelector(state => state.order.pizza);
+    const [pizzaCount, setPizzaCount] = useState(0);
+    const pizzaInOrder = useAppSelector(state => state.order.pizza);
 
     useEffect(() => {
         let index = 0;
@@ -24,7 +32,7 @@ function PizzaItem({title, description, price, img, id}) {
         }
     }, [pizzaInOrder])
 
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     const load = () => {
         if (!imageStatus) {

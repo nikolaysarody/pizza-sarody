@@ -1,11 +1,11 @@
 import React from 'react';
-import {useSelector} from "react-redux";
+import {useAppSelector} from "../../hook";
 import PizzaItem from "./pizzaItem/pizzaItem";
 
 import './pizza.scss';
 
 function Pizza() {
-    const pizzaItems = useSelector(state => state.pizza.pizza);
+    const pizzaItems = useAppSelector(state => state.pizza.pizza);
 
     return (
         <ul className='pizza'>
