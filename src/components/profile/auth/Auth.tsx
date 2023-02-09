@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Auth() {
+const Auth: React.FC = () => {
     return (
         <div>
 

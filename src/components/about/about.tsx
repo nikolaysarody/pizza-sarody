@@ -2,7 +2,7 @@ import React from "react";
 import './about.scss'
 import MailTo from "../buttons/mailTo/mailTo";
 
-function About() {
+const About: React.FC = () => {
     return (
         <div className='about'>
             <h3>Данный проект не является настоящей доставкой пиццы</h3>

@@ -5,13 +5,13 @@ import menuImg from "../menu.svg";
 import enterImg from "../enter.svg";
 import './sideNav.scss';
 import '../header.scss';
-import {useSelector} from "react-redux";
+import {useAppSelector} from "../../../hook";
 
-function SideNav() {
+const SideNav: React.FC = () => {
     const [sideNavSwitch, setSideNavSwitch] = useState(false);
-    const pizzas = useSelector(state => state.order.pizza);
+    const pizzas = useAppSelector(state => state.order.pizza);
     const [count, setCount] = useState(0);
-    const sideNav = useRef(null);
+    const sideNav = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         let count = 0;
@@ -22,10 +22,12 @@ function SideNav() {
     }, [pizzas]);
 
     useEffect(() => {
-        if(sideNavSwitch){
-            sideNav.current.style.transform = `translateX(-0)`;
-        } else {
-            sideNav.current.style.transform = `translateX(${window.getComputedStyle(sideNav.current).width})`;
+        if(sideNav.current){
+            if(sideNavSwitch){
+                sideNav.current.style.transform = `translateX(-0)`;
+            } else {
+                sideNav.current.style.transform = `translateX(${window.getComputedStyle(sideNav.current).width})`;
+            }
         }
     }, [sideNavSwitch]);
 

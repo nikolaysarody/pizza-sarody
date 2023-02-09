@@ -2,13 +2,17 @@ import React from 'react';
 import './cartMenu.scss';
 import cartImg from './cart.svg';
 import CartList from '../cartList/cartList';
-import {useDispatch, useSelector} from 'react-redux';
+import {useAppDispatch, useAppSelector} from '../../../hook';
 import {clearAll} from "../../../store/orderSlice";
 
-function CartMenu({toggle}) {
-    const pizzaInCart = useSelector(state => state.order.pizza);
-    const price = useSelector(state => state.order.price);
-    const dispatch = useDispatch();
+interface CartMenuProps {
+    toggle: boolean;
+}
+
+const CartMenu: React.FC<CartMenuProps> = ({toggle}) => {
+    const pizzaInCart = useAppSelector(state => state.order.pizza);
+    const price = useAppSelector(state => state.order.price);
+    const dispatch = useAppDispatch();
 
     const cartItem = () => {
         if (toggle) {
@@ -48,7 +52,7 @@ function CartMenu({toggle}) {
                 </div>
             );
         }
-        return ('');
+        return null;
     }
 
     return (cartItem());

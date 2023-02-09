@@ -4,7 +4,7 @@ import PizzaItem from "./pizzaItem/pizzaItem";
 
 import './pizza.scss';
 
-function Pizza() {
+const Pizza: React.FC = () => {
     const pizzaItems = useAppSelector(state => state.pizza.pizza);
 
     return (

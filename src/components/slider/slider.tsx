@@ -6,15 +6,25 @@ import navigationDotActive from './active_dot.svg';
 import navigationDotNotActive from './not_active_dot.svg';
 import PizzaService from "../services/pizzaService";
 import SliderModal from "./sliderModal/sliderModal";
+import SliderItem from "./sliderItem/sliderItem";
 
-function Slider() {
+type ActionsType = {
+    title: string;
+    description: string;
+    img: string;
+    id: string;
+    text: string;
+    clickable: boolean;
+}
+
+const Slider: React.FC = () => {
     const pizzaService = new PizzaService();
-    const [sliderItems, setSliderItems] = useState([]);
+    const [sliderItems, setSliderItems] = useState<ActionsType[]>([]);
     const [modalVisible, setModalVisible] = useState(false);
     const [slideIndex, setSlide] = useState(0);
     const [offset, setOffset] = useState(0);
-    const slidesField = useRef(null);
-    const sliderWrapper = useRef(null);
+    const slidesField = useRef<HTMLDivElement>(null);
+    const sliderWrapper = useRef<HTMLDivElement>(null);
     const [width, setWidth] = useState('');
 
     useEffect(() => {
@@ -22,39 +32,45 @@ function Slider() {
     }, []);
 
     useEffect(() => {
-        slidesField.current.style.width = 100 * sliderItems.length + '%';
+        if (slidesField.current) {
+            slidesField.current.style.width = 100 * sliderItems.length + '%';
+        }
     }, [slidesField, sliderItems]);
 
     useEffect(() => {
-        setWidth(window.getComputedStyle(sliderWrapper.current).width);
+        if (sliderWrapper.current) {
+            setWidth(window.getComputedStyle(sliderWrapper.current).width);
+        }
     }, [width]);
 
     useEffect(() => {
-        slidesField.current.style.transform = `translateX(-${offset}px)`;
+        if (slidesField.current) {
+            slidesField.current.style.transform = `translateX(-${offset}px)`;
+        }
     }, [offset]);
 
-    const sliderItem = ({title, description, text = '', clickable, img, id}) => {
-        let className = 'slider__item';
-        if (clickable) {
-            className += ' clickable';
-        }
-        return (
-            <div className={className} key={id} onClick={clickable ? () => {
-                setModalVisible(true);
-                // showModal(title, description, text);
-                // console.log(modalVisible)
-            } : null}>
-                <div className='slider__text'>
-                    <span className='slider__title'>{title}</span>
-                    <span className='slider__description'>{description}</span>
-                </div>
-                <div className='slider__banner'>
-                    <img src={img} alt={description}/>
-                    <div className='slider__banner-img-filter'></div>
-                </div>
-            </div>
-        );
-    };
+    // const sliderItem: React.FC<ActionsType> = ({title, description, text = '', clickable, img, id}) => {
+    //     let className = 'slider__item';
+    //     if (clickable) {
+    //         className += ' clickable';
+    //     }
+    //     return (
+    //         <div className={className} key={id} onClick={clickable ? () => {
+    //             setModalVisible(true);
+    //             // showModal(title, description, text);
+    //             // console.log(modalVisible)
+    //         } : null}>
+    //             <div className='slider__text'>
+    //                 <span className='slider__title'>{title}</span>
+    //                 <span className='slider__description'>{description}</span>
+    //             </div>
+    //             <div className='slider__banner'>
+    //                 <img src={img} alt={description}/>
+    //                 <div className='slider__banner-img-filter'></div>
+    //             </div>
+    //         </div>
+    //     );
+    // };
 
     return (
         <div className='slider'>
@@ -75,7 +91,9 @@ function Slider() {
                                         onClick={() => {
                                             setSlide(index);
                                             setOffset(+width.slice(0, width.length - 2) * index);
-                                            slidesField.current.style.transform = `translateX(-${offset}px)`;
+                                            if (slidesField.current) {
+                                                slidesField.current.style.transform = `translateX(-${offset}px)`;
+                                            }
                                         }}/>;
                         }
                         return <img src={navigationDotNotActive} alt='dot' key={item.id + index}
@@ -83,7 +101,9 @@ function Slider() {
                                     onClick={() => {
                                         setSlide(index);
                                         setOffset(+width.slice(0, width.length - 2) * index);
-                                        slidesField.current.style.transform = `translateX(-${offset}px)`;
+                                        if (slidesField.current) {
+                                            slidesField.current.style.transform = `translateX(-${offset}px)`;
+                                        }
                                     }}/>;
                     })}
                 </div>
@@ -109,7 +129,7 @@ function Slider() {
             </div>
             <div className='slider__wrapper' ref={sliderWrapper}>
                 <div className='slider__inner' ref={slidesField}>
-                    {sliderItems.map((item) => sliderItem(item))}
+                    {sliderItems.map((item) => <SliderItem {...item} visible = {() => setModalVisible(true)}/>)}
                 </div>
             </div>
         </div>

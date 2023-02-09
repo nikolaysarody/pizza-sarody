@@ -53,10 +53,10 @@ const orderSlice = createSlice({
                 state.price = state.price - action.payload.price;
             }
         },
-        removeItemInOrder(state, action: PayloadAction<Pizza>) {
-            if (state.pizza.some((item: PizzaWithCount) => item.id === action.payload.id)) {
+        removeItemInOrder(state, action: PayloadAction<string>) {
+            if (state.pizza.some((item: PizzaWithCount) => item.id === action.payload)) {
                 state.pizza.forEach((item, index) => {
-                    if (item.id === action.payload.id) {
+                    if (item.id === action.payload) {
                         state.pizza.splice(index, 1);
                         state.price = state.price - item.price * item.count;
                     }

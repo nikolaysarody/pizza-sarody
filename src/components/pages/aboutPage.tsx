@@ -1,7 +1,7 @@
 import React from "react";
 import About from "../about/about";
 
-function AboutPage() {
+const AboutPage: React.FC = () => {
     return (
         <div className='app__content-left'>
             <About/>

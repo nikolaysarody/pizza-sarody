@@ -1,13 +1,29 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import exitButton from './exit.svg';
 import './sliderModal.scss';
 import {createPortal} from "react-dom";
 
-function SliderModal({title, description, img, text, visible, onClose}) {
+interface SliderModalProps {
+    title: string;
+    description: string;
+    img: string;
+    text: string;
+    visible: boolean;
+    onClose: () => void;
+}
+
+const SliderModal: React.FC<SliderModalProps> = ({title, description, img, text, visible, onClose}) => {
+    // const [modalPortal, setModalPortal] = useState<HTMLElement | null>(null);
     const modalPortal = document.getElementById('modal');
 
+    // useEffect(() => {
+    //     if(document.getElementById('modal')){
+    //         setModalPortal(document.getElementById('modal'));
+    //     }
+    // }, []);
+
     if (visible) {
-        return createPortal(
+        return modalPortal ? createPortal(
             <div className='modal' onClick={(e) => {
                 if(e.target === e.currentTarget){
                     return onClose();
@@ -29,7 +45,7 @@ function SliderModal({title, description, img, text, visible, onClose}) {
                     </div>
                 </div>
             </div>, modalPortal
-        );
+        ) : null
     } else {
         return null;
     }

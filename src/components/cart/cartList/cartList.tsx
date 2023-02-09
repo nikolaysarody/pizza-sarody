@@ -1,10 +1,10 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import './cartList.scss';
 import CartItem from "../cartItem/cartItem";
-import {useSelector} from "react-redux";
+import {useAppSelector} from "../../../hook";
 
 function CartList() {
-    const pizzas = useSelector(state => state.order.pizza);
+    const pizzas = useAppSelector(state => state.order.pizza);
 
 
     return (

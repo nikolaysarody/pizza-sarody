@@ -8,11 +8,11 @@ import AboutPage from "./components/pages/aboutPage";
 
 import './App.scss';
 import {getPizza} from "./store/pizzaSlice";
-import {useDispatch} from "react-redux";
+import {useAppDispatch} from "./hook";
 
 
 function App() {
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
         dispatch(getPizza());

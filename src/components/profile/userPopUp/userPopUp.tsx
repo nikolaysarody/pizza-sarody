@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import './userPopUp.scss';
 import userImg from "../../header/user.svg";
 
-function UserPopUp() {
+const UserPopUp: React.FC = () => {
     const [popUpSwitch, setPopUpSwitch] = useState(false);
 
     const popUp = () => {

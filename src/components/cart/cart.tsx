@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import {useSelector} from 'react-redux';
+import {useAppSelector} from '../../hook';
 import './cart.scss';
 import cartImg from './cart.svg';
 import CartMenu from './cartMenu/cartMenu';
 
-function Cart() {
-    const pizzas = useSelector(state => state.order.pizza);
+const Cart: React.FC = () => {
+    const pizzas = useAppSelector(state => state.order.pizza);
     const [count, setCount] = useState(0);
     const [cartToggle, setCartToggle] = useState(false);
 
