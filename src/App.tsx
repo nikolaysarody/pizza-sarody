@@ -7,15 +7,16 @@ import MainPage from './components/pages/mainPage';
 import AboutPage from "./components/pages/aboutPage";
 
 import './App.scss';
-import {getPizza} from "./store/pizzaSlice";
+// import {getPizza} from "./store/slices/pizzaSlice";
 import {useAppDispatch} from "./hook";
+import {fetchPizza} from "./store/actions/pizzaActions";
 
 
 function App() {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        dispatch(getPizza());
+        dispatch(fetchPizza());
     }, []);
 
     return (

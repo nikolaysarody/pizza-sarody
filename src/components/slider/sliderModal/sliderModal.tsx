@@ -7,20 +7,13 @@ interface SliderModalProps {
     title: string;
     description: string;
     img: string;
-    text: string;
+    text?: string;
     visible: boolean;
     onClose: () => void;
 }
 
 const SliderModal: React.FC<SliderModalProps> = ({title, description, img, text, visible, onClose}) => {
-    // const [modalPortal, setModalPortal] = useState<HTMLElement | null>(null);
     const modalPortal = document.getElementById('modal');
-
-    // useEffect(() => {
-    //     if(document.getElementById('modal')){
-    //         setModalPortal(document.getElementById('modal'));
-    //     }
-    // }, []);
 
     if (visible) {
         return modalPortal ? createPortal(
@@ -45,7 +38,7 @@ const SliderModal: React.FC<SliderModalProps> = ({title, description, img, text,
                     </div>
                 </div>
             </div>, modalPortal
-        ) : null
+        ) : null;
     } else {
         return null;
     }

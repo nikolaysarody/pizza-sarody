@@ -1,32 +1,36 @@
 import React, {useEffect, useState} from "react";
-import {addItemInOrder, deleteItemInOrder} from "../../../store/orderSlice";
+import {addItemInOrder, deleteItemInOrder} from "../../../store/slices/orderSlice";
 import {useAppDispatch, useAppSelector} from "../../../hook";
 import Spinner from "../../spinner/spinner";
 
 import './pizzaItem.scss';
+import {IPizza} from "../../../models/models";
 
-interface PizzaItemProps {
-    title: string;
-    description: string;
-    price: number;
-    img: string;
-    id: string;
-}
+// interface PizzaItemProps {
+//     title: string;
+//     description: string;
+//     price: number;
+//     img: string;
+//     id: string;
+// }
 
-const PizzaItem: React.FC<PizzaItemProps> = ({title, description, price, img, id}) => {
+const PizzaItem: React.FC<Omit<IPizza, 'count'>> = ({title, description, price, img, _id}) => {
     const [imageStatus, setImageStatus] = useState(false);
-    const [pizzaCount, setPizzaCount] = useState(0);
+    const [pizzaCount, setPizzaCount] = useState<number | undefined>(0);
     const pizzaInOrder = useAppSelector(state => state.order.pizza);
 
     useEffect(() => {
         let index = 0;
         if(pizzaInOrder.some((item, i) => {
-            if(item.id === id){
+            if(item._id === _id){
                 index = i;
                 return true;
             }
+            return false;
         })){
-            setPizzaCount(pizzaInOrder[index].count);
+            if(pizzaInOrder[index].count){
+                setPizzaCount(pizzaInOrder[index].count);
+            }
         } else {
             setPizzaCount(0);
         }
@@ -43,14 +47,14 @@ const PizzaItem: React.FC<PizzaItemProps> = ({title, description, price, img, id
     };
 
     const orderButton = () => {
-        if (pizzaCount >= 1) {
+        if (pizzaCount && pizzaCount >= 1) {
             return (
                 <div className='pizza__btn-not-null'>
                     <input type='button'
                            className='pizza__btn-change'
                            value='-'
                            onClick={() => {
-                               dispatch(deleteItemInOrder({id, price}));
+                               dispatch(deleteItemInOrder({_id, price}));
                                // setPizzaCount(prev => prev - 1);
                            }}/>
                     <span className='pizza__count'>{pizzaCount}</span>
@@ -58,7 +62,7 @@ const PizzaItem: React.FC<PizzaItemProps> = ({title, description, price, img, id
                            className='pizza__btn-change'
                            value='+'
                            onClick={() => {
-                               dispatch(addItemInOrder({title, description, price, img, id}));
+                               dispatch(addItemInOrder({title, description, price, img, _id}));
                                // setPizzaCount(prev => prev + 1);
                            }}/>
                 </div>
@@ -68,7 +72,7 @@ const PizzaItem: React.FC<PizzaItemProps> = ({title, description, price, img, id
                       className='pizza__btn-null'
                       value='Выбрать'
                       onClick={() => {
-                          dispatch(addItemInOrder({title, description, price, img, id}));
+                          dispatch(addItemInOrder({title, description, price, img, _id}));
                           // setPizzaCount((prev) => prev + 1);
                       }}/>;
     };

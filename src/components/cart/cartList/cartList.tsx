@@ -9,7 +9,7 @@ function CartList() {
 
     return (
         <ul className='cart-list'>
-            {pizzas.map((item) => <CartItem {...item}  key={`${item.id}-cart`} />)}
+            {pizzas.map((item) => <CartItem {...item}  key={`${item._id}-cart`} />)}
         </ul>
     );
 }

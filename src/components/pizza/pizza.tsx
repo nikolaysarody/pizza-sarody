@@ -9,7 +9,7 @@ const Pizza: React.FC = () => {
 
     return (
         <ul className='pizza'>
-            {pizzaItems.map((item) => <PizzaItem {...item} key={item.id}/>)}
+            {pizzaItems.map((item) => <PizzaItem {...item} key={item._id}/>)}
         </ul>
     );
 }

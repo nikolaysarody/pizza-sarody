@@ -12,7 +12,9 @@ const Cart: React.FC = () => {
     useEffect(() => {
         let count = 0;
         pizzas.forEach((item) => {
-            count += item.count;
+            if(item.count){
+                count += item.count;
+            }
         });
         setCount(count);
     }, [pizzas]);

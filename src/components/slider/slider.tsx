@@ -8,12 +8,12 @@ import PizzaService from "../services/pizzaService";
 import SliderModal from "./sliderModal/sliderModal";
 import SliderItem from "./sliderItem/sliderItem";
 
-type ActionsType = {
+interface ActionsType {
     title: string;
     description: string;
     img: string;
-    id: string;
-    text: string;
+    _id: string;
+    text?: string;
     clickable: boolean;
 }
 
@@ -86,7 +86,7 @@ const Slider: React.FC = () => {
                 <div className='slider__navigation-dot'>
                     {sliderItems.map((item, index) => {
                         if (slideIndex === index) {
-                            return <img src={navigationDotActive} alt='active-dot' key={item.id + index}
+                            return <img src={navigationDotActive} alt='active-dot' key={item._id + index}
                                         className='slider__dot'
                                         onClick={() => {
                                             setSlide(index);
@@ -96,7 +96,7 @@ const Slider: React.FC = () => {
                                             }
                                         }}/>;
                         }
-                        return <img src={navigationDotNotActive} alt='dot' key={item.id + index}
+                        return <img src={navigationDotNotActive} alt='dot' key={item._id + index}
                                     className='slider__dot'
                                     onClick={() => {
                                         setSlide(index);
@@ -129,7 +129,7 @@ const Slider: React.FC = () => {
             </div>
             <div className='slider__wrapper' ref={sliderWrapper}>
                 <div className='slider__inner' ref={slidesField}>
-                    {sliderItems.map((item) => <SliderItem {...item} visible = {() => setModalVisible(true)}/>)}
+                    {sliderItems.map((item) => <SliderItem {...item} visible = {() => setModalVisible(true)} key={item._id}/>)}
                 </div>
             </div>
         </div>

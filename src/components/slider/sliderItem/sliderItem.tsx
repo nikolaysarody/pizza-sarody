@@ -4,19 +4,19 @@ type ItemType = {
     title: string;
     description: string;
     img: string;
-    id: string;
-    text: string;
+    _id: string;
+    text?: string;
     clickable: boolean;
     visible: () => void;
 }
 
-const SliderItem: React.FC<ItemType> = ({title, description, text = '', clickable, img, id, visible}) => {
+const SliderItem: React.FC<ItemType> = ({title, description, text, clickable, img, _id, visible}) => {
     let className = 'slider__item';
     if (clickable) {
         className += ' clickable';
     }
     return (
-        <div className={className} key={id} onClick={
+        <div className={className} key={_id} onClick={
             () => {
                 if (clickable) {
                     visible()

@@ -3,7 +3,7 @@ import './cartMenu.scss';
 import cartImg from './cart.svg';
 import CartList from '../cartList/cartList';
 import {useAppDispatch, useAppSelector} from '../../../hook';
-import {clearAll} from "../../../store/orderSlice";
+import {clearAll} from "../../../store/slices/orderSlice";
 
 interface CartMenuProps {
     toggle: boolean;
@@ -11,7 +11,7 @@ interface CartMenuProps {
 
 const CartMenu: React.FC<CartMenuProps> = ({toggle}) => {
     const pizzaInCart = useAppSelector(state => state.order.pizza);
-    const price = useAppSelector(state => state.order.price);
+    const price = useAppSelector(state => state.order.totalPrice);
     const dispatch = useAppDispatch();
 
     const cartItem = () => {
