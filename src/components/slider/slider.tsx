@@ -7,6 +7,7 @@ import navigationDotNotActive from './not_active_dot.svg';
 import PizzaService from "../services/pizzaService";
 import SliderModal from "./sliderModal/sliderModal";
 import SliderItem from "./sliderItem/sliderItem";
+import {useAppSelector} from '../../hook';
 
 interface ActionsType {
     title: string;
@@ -18,8 +19,7 @@ interface ActionsType {
 }
 
 const Slider: React.FC = () => {
-    const pizzaService = new PizzaService();
-    const [sliderItems, setSliderItems] = useState<ActionsType[]>([]);
+    const sliderItems = useAppSelector(state => state.action.action);
     const [modalVisible, setModalVisible] = useState(false);
     const [slideIndex, setSlide] = useState(0);
     const [offset, setOffset] = useState(0);
@@ -27,9 +27,6 @@ const Slider: React.FC = () => {
     const sliderWrapper = useRef<HTMLDivElement>(null);
     const [width, setWidth] = useState('');
 
-    useEffect(() => {
-        setSliderItems(pizzaService.getActions);
-    }, []);
 
     useEffect(() => {
         if (slidesField.current) {
@@ -48,6 +45,7 @@ const Slider: React.FC = () => {
             slidesField.current.style.transform = `translateX(-${offset}px)`;
         }
     }, [offset]);
+    console.log(offset);
 
     // const sliderItem: React.FC<ActionsType> = ({title, description, text = '', clickable, img, id}) => {
     //     let className = 'slider__item';

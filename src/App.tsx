@@ -10,6 +10,7 @@ import './App.scss';
 // import {getPizza} from "./store/slices/pizzaSlice";
 import {useAppDispatch} from "./hook";
 import {fetchPizza} from "./store/actions/pizzaActions";
+import {fetchAction} from './store/actions/actionActions';
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
 
     useEffect(() => {
         dispatch(fetchPizza());
+        dispatch(fetchAction());
     }, []);
 
     return (
