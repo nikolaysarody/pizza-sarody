@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import {addItemInOrder, deleteItemInOrder, removeItemInOrder} from "../../../store/slices/orderSlice";
 import {useAppDispatch} from '../../../hook';
 import './cartItem.scss';
@@ -15,7 +15,7 @@ import {IPizza} from "../../../models/models";
 // }
 
 const CartItem: React.FC<IPizza> = ({title, description, price, img, _id, count}) => {
-    const [imageStatus, setImageStatus] = useState(false);
+    // const [imageStatus, setImageStatus] = useState(false);
     const dispatch = useAppDispatch();
 
     // const load = () => {
@@ -30,7 +30,8 @@ const CartItem: React.FC<IPizza> = ({title, description, price, img, _id, count}
         <li className='cart-item'>
             <div className='cart-item__container'>
                 {/*{load()}*/}
-                <img className='cart-item__img' src={img} alt='pizza' onLoad={() => setImageStatus(true)}/>
+                {/*<img className='cart-item__img' src={img} alt='pizza' onLoad={() => setImageStatus(true)}/>*/}
+                <img className='cart-item__img' src={img} alt='pizza'/>
                 <span className='cart-item__price-title'>{title}</span>
                 <div>
                     <span className='cart-item__price'>{price * count!}</span>

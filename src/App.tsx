@@ -19,7 +19,7 @@ function App() {
     useEffect(() => {
         dispatch(fetchPizza());
         dispatch(fetchAction());
-    }, []);
+    }, [dispatch]);
 
     return (
         <Router>

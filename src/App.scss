@@ -25,6 +25,7 @@ body {
         display: flex;
         flex-direction: column;
         max-width: 1320px;
+        min-width: 1320px;
 
         > * {
             margin-top: 100px;
@@ -36,14 +37,17 @@ body {
         position: relative;
         @media (max-width: 1500px) {
             max-width: 1320px;
+            min-width: 1320px;
         }
 
         @media (max-width: 1319px) {
             max-width: 1150px;
+            min-width: 1150px;
         }
 
         @media (max-width: 1149px) {
             max-width: 963px;
+            min-width: 963px;
         }
 
         @media (max-width: 962px) {

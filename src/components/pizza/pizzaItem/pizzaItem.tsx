@@ -34,7 +34,7 @@ const PizzaItem: React.FC<Omit<IPizza, 'count'>> = ({title, description, price, 
         } else {
             setPizzaCount(0);
         }
-    }, [pizzaInOrder])
+    }, [pizzaInOrder, _id])
 
     const dispatch = useAppDispatch();
 

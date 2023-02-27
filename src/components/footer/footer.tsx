@@ -83,24 +83,25 @@ const Footer: React.FC = () => {
                 <div className='footer__container'>
                     <div className='footer__section'>
                         <div className='footer__button'>
-                            <a href='#'>Пицца</a>
+                            <button>Пицца</button>
                         </div>
                         <div className='footer__button'>
-                            <a href='#'>Акции</a>
+                            <button>Акции</button>
                         </div>
                     </div>
                     <div className='footer__section'>
                         <div className='footer__button'>
-                            <a href='#'>О нас</a>
+                            <button>О нас</button>
                         </div>
                         <div className='footer__button'>
-                            <a href='#'>Корзина</a>
+                            <button>Корзина</button>
                         </div>
                     </div>
                     <div className='footer__section'>
                         <div className='footer__button'>
                             <a href='https://github.com/nikolaysarody/pizza-sarody'
-                               target='_blank'>github.com/nikolaysarody/<br/>pizza-sarody</a>
+                               target='_blank'
+                               rel='noreferrer'>github.com/nikolaysarody/<br/>pizza-sarody</a>
                         </div>
                     </div>
                 </div>
@@ -112,22 +113,22 @@ const Footer: React.FC = () => {
                 <div className='footer__container'>
                     <div className='footer__section'>
                         <div className='footer__button'>
-                            <a href='#'>Пицца</a>
+                            <button>Пицца</button>
                         </div>
                     </div>
                     <div className='footer__section'>
                         <div className='footer__button'>
-                            <a href='#'>Акции</a>
+                            <button>Акции</button>
                         </div>
                     </div>
                     <div className='footer__section'>
                         <div className='footer__button'>
-                            <a href='#'>О нас</a>
+                            <button>О нас</button>
                         </div>
                     </div>
                     <div className='footer__section'>
                         <div className='footer__button'>
-                            <a href='#'>Корзина</a>
+                            <button>Корзина</button>
                         </div>
                     </div>
                     {/*<div className='footer__section'>*/}
@@ -138,7 +139,8 @@ const Footer: React.FC = () => {
                     <div className='footer__section'>
                         <div className='footer__button'>
                             <a href='https://github.com/nikolaysarody/pizza-sarody'
-                               target='_blank'>github.com/nikolaysarody/pizza-sarody</a>
+                               target='_blank'
+                               rel='noreferrer'>github.com/nikolaysarody/pizza-sarody</a>
                         </div>
                     </div>
                 </div>
