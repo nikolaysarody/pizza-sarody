@@ -3,6 +3,23 @@
   align-items: center;
   justify-content: center;
 
+  &__wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  &__user {
+    &-login {
+      padding-left: 10px;
+      font-family: 'Montserrat', 'sans-serif';
+      font-weight: 500;
+      font-size: 17px;
+
+    }
+  }
+
   &__container {
     position: absolute;
     top: 68px;

@@ -16,6 +16,15 @@ export interface IAction {
     clickable: boolean;
 }
 
+export interface IUser {
+    _id: string;
+    login: string;
+}
+
+export interface AuthResponse extends IUser{
+    access_token: string;
+}
+
 
 // export interface ServerResponse<T> {
 //     count: number;

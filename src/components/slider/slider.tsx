@@ -26,7 +26,6 @@ const Slider: React.FC = () => {
     useEffect(() => {
         if (sliderWrapper.current) {
             setWidth(window.getComputedStyle(sliderWrapper.current).width);
-            console.log(window.getComputedStyle(sliderWrapper.current).width);
         }
     }, [sliderWrapper]);
 

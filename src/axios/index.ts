@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export default axios.create({
+const axiosApi = axios.create({
     // withCredentials: true,
     baseURL: process.env.REACT_APP_BASE_URL,
     // headers: {
@@ -10,7 +10,9 @@ export default axios.create({
     withCredentials: true,
 });
 
-axios.interceptors.request.use((config) => {
+axiosApi.interceptors.request.use((config) => {
     config.headers.Authorization= `Bearer ${localStorage.getItem('token')}`;
     return config;
 });
+
+export default axiosApi;

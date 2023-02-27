@@ -2,29 +2,10 @@ import React from "react";
 import {addItemInOrder, deleteItemInOrder, removeItemInOrder} from "../../../store/slices/orderSlice";
 import {useAppDispatch} from '../../../hook';
 import './cartItem.scss';
-// import Spinner from "../../spinner/spinner";
 import {IPizza} from "../../../models/models";
 
-// interface CartItemProps {
-//     title: string;
-//     description: string;
-//     price: number;
-//     img: string;
-//     id: string;
-//     count: number;
-// }
-
 const CartItem: React.FC<IPizza> = ({title, description, price, img, _id, count}) => {
-    // const [imageStatus, setImageStatus] = useState(false);
     const dispatch = useAppDispatch();
-
-    // const load = () => {
-    //     if (!imageStatus) {
-    //         return (
-    //             <Spinner width={57}/>
-    //         );
-    //     }
-    // }
 
     return (
         <li className='cart-item'>
