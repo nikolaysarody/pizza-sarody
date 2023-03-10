@@ -13,7 +13,7 @@ const UserPopUp: React.FC = () => {
 
     useEffect(() => {
         console.log(user);
-    }, [user])
+    }, [user]);
 
     const popUp = () => {
         if (popUpSwitch) {

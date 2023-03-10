@@ -83,18 +83,18 @@ const Footer: React.FC = () => {
                 <div className='footer__container'>
                     <div className='footer__section'>
                         <div className='footer__button'>
-                            <button>Пицца</button>
+                            <a href='#'>Пицца</a>
                         </div>
                         <div className='footer__button'>
-                            <button>Акции</button>
+                            <a href='#'>Акции</a>
                         </div>
                     </div>
                     <div className='footer__section'>
                         <div className='footer__button'>
-                            <button>О нас</button>
+                            <a href='#'>О нас</a>
                         </div>
                         <div className='footer__button'>
-                            <button>Корзина</button>
+                            <a href='#'>Корзина</a>
                         </div>
                     </div>
                     <div className='footer__section'>
@@ -113,22 +113,22 @@ const Footer: React.FC = () => {
                 <div className='footer__container'>
                     <div className='footer__section'>
                         <div className='footer__button'>
-                            <button>Пицца</button>
+                            <a href='#'>Пицца</a>
                         </div>
                     </div>
                     <div className='footer__section'>
                         <div className='footer__button'>
-                            <button>Акции</button>
+                            <a href='#'>Акции</a>
                         </div>
                     </div>
                     <div className='footer__section'>
                         <div className='footer__button'>
-                            <button>О нас</button>
+                            <a href='#'>О нас</a>
                         </div>
                     </div>
                     <div className='footer__section'>
                         <div className='footer__button'>
-                            <button>Корзина</button>
+                            <a href='#'>Корзина</a>
                         </div>
                     </div>
                     {/*<div className='footer__section'>*/}
