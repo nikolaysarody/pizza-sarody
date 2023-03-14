@@ -1,4 +1,4 @@
-#### Сайт доставки пиццы. ####
+### Сайт доставки пиццы.
 
 Сделанный мной макет - `https://www.figma.com/file/MDjwptyjFD4MlKpCFZd5G5/Pizza-Sarody?node-id=0%3A1`
 
