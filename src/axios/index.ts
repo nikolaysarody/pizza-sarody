@@ -7,11 +7,11 @@ const axiosApi = axios.create({
     //     'Access-Control-Allow-Origin' : '*',
     //     'Content-Type': 'application/json',
     // },
-    withCredentials: true,
+    // withCredentials: true,
 });
 
 axiosApi.interceptors.request.use((config) => {
-    config.headers.Authorization= `Bearer ${localStorage.getItem('token')}`;
+    config.headers.Authorization= `Bearer ${localStorage.getItem('accessToken')}`;
     return config;
 });
 

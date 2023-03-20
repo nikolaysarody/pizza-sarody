@@ -81,7 +81,7 @@ const PizzaItem: React.FC<Omit<IPizza, 'count'>> = ({title, description, price, 
         <li className='pizza__item'>
             <div className='pizza__container'>
                 {load()}
-                <img src={img} alt='...' onLoad={() => setImageStatus(true)}/>
+                <img src={img} alt='' onLoad={() => setImageStatus(true)}/>
                 <div className='pizza__description'>
                     <span className="pizza__title">{title}</span>
                     <span className="pizza__span">{description}</span>

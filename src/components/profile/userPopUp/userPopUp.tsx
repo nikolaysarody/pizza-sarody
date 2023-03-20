@@ -63,7 +63,7 @@ const UserPopUp: React.FC = () => {
                      width="22"
                      height="22"
                 />
-                <span className="popup__user-login">{user.login}</span>
+                <span className="popup__user-login">{user.email}</span>
             </div>
             {popUp()}
         </div>

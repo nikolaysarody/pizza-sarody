@@ -1,18 +1,33 @@
 import {AppDispatch} from "../index";
 import AuthService from '../../services/AuthService';
 import {fetchAuthError, setAuth, setUser} from '../slices/authSlice';
-import {IUser} from '../../models/models';
-import {AxiosError, isAxiosError} from 'axios';
+import {AuthResponse, IUser} from '../../models/models';
+import axios, {AxiosResponse, isAxiosError} from 'axios';
+import {useAppDispatch} from '../../hook';
+
+// const setItems = (res: AxiosResponse<AuthResponse>) => {
+//     return (dispatch: AppDispatch) => {
+//         localStorage.setItem('accessToken', res.data.accessToken);
+//         localStorage.setItem('refreshToken', res.data.refreshToken);
+//         localStorage.setItem('email', res.data.email);
+//         localStorage.setItem('id', res.data._id);
+//         dispatch(setAuth(true));
+//         dispatch(setUser({_id: res.data._id, email: res.data.email}));
+//     }
+// }
 
 export const login = (email: string, password: string) => {
     return async (dispatch: AppDispatch) => {
         try {
             const res = await AuthService.login(email, password);
-            // console.log(res)
-            localStorage.setItem('token', res.data.access_token);
-            // localStorage.setItem('login', res.data.login);
+            // console.log(res);
+            // setItems(res);
+            localStorage.setItem('accessToken', res.data.accessToken);
+            localStorage.setItem('refreshToken', res.data.refreshToken);
+            localStorage.setItem('email', res.data.email);
+            localStorage.setItem('id', res.data.id);
             dispatch(setAuth(true));
-            dispatch(setUser({_id: res.data._id, login: res.data.login}));
+            dispatch(setUser({id: res.data.id, email: res.data.email}));
         } catch (e) {
             if(isAxiosError(e) && e.response){
                 dispatch(fetchAuthError(e.response.statusText));
@@ -27,9 +42,12 @@ export const registration = (email: string, password: string) => {
     return async (dispatch: AppDispatch) => {
         try {
             const res = await AuthService.registration(email, password);
-            localStorage.setItem('token', res.data.access_token);
+            localStorage.setItem('accessToken', res.data.accessToken);
+            localStorage.setItem('refreshToken', res.data.refreshToken);
+            localStorage.setItem('email', res.data.email);
+            localStorage.setItem('id', res.data.id);
             dispatch(setAuth(true));
-            dispatch(setUser({_id: res.data._id, login: res.data.login}));
+            dispatch(setUser({id: res.data.id, email: res.data.email}));
         } catch (e) {
             if(isAxiosError(e) && e.response){
                 dispatch(fetchAuthError(e.response.statusText));
@@ -43,10 +61,38 @@ export const registration = (email: string, password: string) => {
 export const logout = () => {
     return async (dispatch: AppDispatch) => {
         try {
-            await AuthService.logout();
-            localStorage.removeItem('token');
+            await AuthService.logout(localStorage.getItem('refreshToken')!);
+            localStorage.removeItem('accessToken');
+            localStorage.removeItem('refreshToken');
+            localStorage.removeItem('email');
+            localStorage.removeItem('id');
             dispatch(setAuth(false));
             dispatch(setUser({} as IUser));
+        } catch (e) {
+            if(isAxiosError(e) && e.response){
+                dispatch(fetchAuthError(e.response.statusText));
+            }
+            if(e instanceof Error)
+                dispatch(fetchAuthError(e.message));
+        }
+    }
+}
+
+export const checkAuth = () => {
+    return async (dispatch: AppDispatch) => {
+        try {
+            const res = await axios.post<AuthResponse>(`${process.env.REACT_APP_BASE_URL}/auth/refresh`, {
+                refreshToken: localStorage.getItem('refreshToken'),
+                accessToken: localStorage.getItem('accessToken'),
+                email: localStorage.getItem('email'),
+                id: localStorage.getItem('id')
+            });
+            localStorage.setItem('accessToken', res.data.accessToken);
+            localStorage.setItem('refreshToken', res.data.refreshToken);
+            localStorage.setItem('email', res.data.email);
+            localStorage.setItem('id', res.data.id);
+            dispatch(setAuth(true));
+            dispatch(setUser({id: res.data.id, email: res.data.email}));
         } catch (e) {
             if(isAxiosError(e) && e.response){
                 dispatch(fetchAuthError(e.response.statusText));

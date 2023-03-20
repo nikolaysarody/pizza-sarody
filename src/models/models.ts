@@ -17,12 +17,13 @@ export interface IAction {
 }
 
 export interface IUser {
-    _id: string;
-    login: string;
+    id: string;
+    email: string;
 }
 
 export interface AuthResponse extends IUser{
-    access_token: string;
+    accessToken: string;
+    refreshToken: string;
 }
 
 
