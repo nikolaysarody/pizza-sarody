@@ -18,12 +18,11 @@ function App() {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        dispatch(fetchPizza());
-        dispatch(fetchAction());
         if (localStorage.getItem('refreshToken')) {
-            console.log(localStorage.getItem('refreshToken'))
             dispatch(checkAuth());
         }
+        dispatch(fetchPizza());
+        dispatch(fetchAction());
     }, []);
 
     return (

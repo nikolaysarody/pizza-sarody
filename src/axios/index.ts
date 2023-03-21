@@ -1,18 +1,38 @@
-import axios from "axios";
+import axios from 'axios';
+import {AuthResponse} from '../models/models';
 
 const axiosApi = axios.create({
-    // withCredentials: true,
     baseURL: process.env.REACT_APP_BASE_URL,
-    // headers: {
-    //     'Access-Control-Allow-Origin' : '*',
-    //     'Content-Type': 'application/json',
-    // },
-    // withCredentials: true,
 });
 
 axiosApi.interceptors.request.use((config) => {
-    config.headers.Authorization= `Bearer ${localStorage.getItem('accessToken')}`;
+    config.headers.Authorization = `Bearer ${localStorage.getItem('accessToken')}`;
     return config;
+});
+
+axiosApi.interceptors.response.use((config) => {
+    return config;
+}, async (error)  => {
+    const originalRequest = error.config;
+    if (error.response.status === 401 && error.config && !error.config._isRetry) {
+        originalRequest._isRetry = true;
+        try {
+            const res = await axios.post<AuthResponse>(`${process.env.REACT_APP_BASE_URL}/auth/refresh`, {
+                refreshToken: localStorage.getItem('refreshToken'),
+                accessToken: localStorage.getItem('accessToken'),
+                email: localStorage.getItem('email'),
+                id: localStorage.getItem('id')
+            });
+            localStorage.setItem('accessToken', res.data.accessToken);
+            localStorage.setItem('refreshToken', res.data.refreshToken);
+            localStorage.setItem('email', res.data.email);
+            localStorage.setItem('id', res.data.id);
+            return axiosApi.request(originalRequest);
+        } catch (e) {
+            console.log('Ошибка 401');
+        }
+    }
+    throw error;
 });
 
 export default axiosApi;
