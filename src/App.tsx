@@ -11,7 +11,7 @@ import './App.scss';
 import {useAppDispatch} from './hook';
 import {fetchPizza} from './store/actions/pizzaActions';
 import {fetchAction} from './store/actions/actionActions';
-import {checkAuth} from './store/actions/authAction';
+import {checkAuth} from './store/actions/authActions';
 
 
 function App() {

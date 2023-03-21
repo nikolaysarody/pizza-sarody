@@ -1,38 +1,29 @@
-import {AppDispatch} from "../index";
+import {AppDispatch} from '../index';
 import AuthService from '../../services/AuthService';
 import {fetchAuthError, setAuth, setUser} from '../slices/authSlice';
 import {AuthResponse, IUser} from '../../models/models';
 import axios, {AxiosResponse, isAxiosError} from 'axios';
 import {useAppDispatch} from '../../hook';
 
-// const setItems = (res: AxiosResponse<AuthResponse>) => {
-//     return (dispatch: AppDispatch) => {
-//         localStorage.setItem('accessToken', res.data.accessToken);
-//         localStorage.setItem('refreshToken', res.data.refreshToken);
-//         localStorage.setItem('email', res.data.email);
-//         localStorage.setItem('id', res.data._id);
-//         dispatch(setAuth(true));
-//         dispatch(setUser({_id: res.data._id, email: res.data.email}));
-//     }
-// }
+const setItems = (res: AxiosResponse<AuthResponse>, dispatch: AppDispatch) => {
+    localStorage.setItem('accessToken', res.data.accessToken);
+    localStorage.setItem('refreshToken', res.data.refreshToken);
+    localStorage.setItem('email', res.data.email);
+    localStorage.setItem('id', res.data.id);
+    dispatch(setAuth(true));
+    dispatch(setUser({id: res.data.id, email: res.data.email}));
+}
 
 export const login = (email: string, password: string) => {
     return async (dispatch: AppDispatch) => {
         try {
             const res = await AuthService.login(email, password);
-            // console.log(res);
-            // setItems(res);
-            localStorage.setItem('accessToken', res.data.accessToken);
-            localStorage.setItem('refreshToken', res.data.refreshToken);
-            localStorage.setItem('email', res.data.email);
-            localStorage.setItem('id', res.data.id);
-            dispatch(setAuth(true));
-            dispatch(setUser({id: res.data.id, email: res.data.email}));
+            setItems(res, dispatch);
         } catch (e) {
-            if(isAxiosError(e) && e.response){
+            if (isAxiosError(e) && e.response) {
                 dispatch(fetchAuthError(e.response.statusText));
             }
-            if(e instanceof Error)
+            if (e instanceof Error)
                 dispatch(fetchAuthError(e.message));
         }
     }
@@ -42,18 +33,13 @@ export const registration = (email: string, password: string) => {
     return async (dispatch: AppDispatch) => {
         try {
             const res = await AuthService.registration(email, password);
-            localStorage.setItem('accessToken', res.data.accessToken);
-            localStorage.setItem('refreshToken', res.data.refreshToken);
-            localStorage.setItem('email', res.data.email);
-            localStorage.setItem('id', res.data.id);
-            dispatch(setAuth(true));
-            dispatch(setUser({id: res.data.id, email: res.data.email}));
+            setItems(res, dispatch);
         } catch (e) {
-            if(isAxiosError(e) && e.response){
+            if (isAxiosError(e) && e.response) {
                 dispatch(fetchAuthError(e.response.statusText));
             }
-            if(e instanceof Error)
-            dispatch(fetchAuthError(e.message));
+            if (e instanceof Error)
+                dispatch(fetchAuthError(e.message));
         }
     }
 }
@@ -69,10 +55,10 @@ export const logout = () => {
             dispatch(setAuth(false));
             dispatch(setUser({} as IUser));
         } catch (e) {
-            if(isAxiosError(e) && e.response){
+            if (isAxiosError(e) && e.response) {
                 dispatch(fetchAuthError(e.response.statusText));
             }
-            if(e instanceof Error)
+            if (e instanceof Error)
                 dispatch(fetchAuthError(e.message));
         }
     }
@@ -87,17 +73,12 @@ export const checkAuth = () => {
                 email: localStorage.getItem('email'),
                 id: localStorage.getItem('id')
             });
-            localStorage.setItem('accessToken', res.data.accessToken);
-            localStorage.setItem('refreshToken', res.data.refreshToken);
-            localStorage.setItem('email', res.data.email);
-            localStorage.setItem('id', res.data.id);
-            dispatch(setAuth(true));
-            dispatch(setUser({id: res.data.id, email: res.data.email}));
+            setItems(res, dispatch);
         } catch (e) {
-            if(isAxiosError(e) && e.response){
+            if (isAxiosError(e) && e.response) {
                 dispatch(fetchAuthError(e.response.statusText));
             }
-            if(e instanceof Error)
+            if (e instanceof Error)
                 dispatch(fetchAuthError(e.message));
         }
     }
