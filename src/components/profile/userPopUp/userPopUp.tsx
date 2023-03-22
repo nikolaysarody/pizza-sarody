@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import userImg from '../../header/user.svg';
 import {useAppDispatch, useAppSelector} from '../../../hook';
-import Auth from '../auth/auth';
+import UserAuth from '../userAuth/userAuth';
 import '../profile.scss';
 import UserMenu from '../userMenu/userMenu';
 
@@ -23,7 +23,12 @@ const UserPopUp: React.FC = () => {
                 />
                 <span className="popup__user-login">{user.email}</span>
             </div>
-            {popUpSwitch ? isAuth ? <UserMenu/> : <Auth/> : null}
+            {popUpSwitch ? <div className="popup__outside-wrapper" onClick={(e) => {
+                if(e.target === e.currentTarget){
+                    setPopUpSwitch(prev => !prev);
+                }
+            }}></div> : null}
+            {popUpSwitch ? isAuth ? <UserMenu/> : <UserAuth/> : null}
         </div>
     )
 }

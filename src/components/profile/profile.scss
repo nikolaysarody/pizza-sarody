@@ -2,6 +2,23 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* Internet Explorer/Edge */
+  user-select: none;
+
+  &__outside-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: 100vw;
+    height: 100vh;
+  }
 
   &__wrapper {
     display: flex;
@@ -29,6 +46,7 @@
     background: #FFFFFF;
     box-shadow: 5px 5px 12px 5px rgba(0, 0, 0, 0.1);
     border-radius: 20px;
+    z-index: 3;
   }
 
   &__section {
@@ -64,7 +82,6 @@
         text-decoration: none;
         color: black;
         font-size: 17px;
-        //font-weight: 600;
       }
     }
   }

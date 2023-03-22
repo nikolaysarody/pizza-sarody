@@ -1,9 +1,11 @@
 import axios from 'axios';
+import {checkAuth} from '../store/actions/authActions';
 import {AuthResponse} from '../models/models';
 
 const axiosApi = axios.create({
     baseURL: process.env.REACT_APP_BASE_URL,
 });
+
 
 axiosApi.interceptors.request.use((config) => {
     config.headers.Authorization = `Bearer ${localStorage.getItem('accessToken')}`;
@@ -27,9 +29,10 @@ axiosApi.interceptors.response.use((config) => {
             localStorage.setItem('refreshToken', res.data.refreshToken);
             localStorage.setItem('email', res.data.email);
             localStorage.setItem('id', res.data.id);
+
             return axiosApi.request(originalRequest);
         } catch (e) {
-            console.log('Ошибка 401');
+            console.log('Пользователь не авторизован');
         }
     }
     throw error;
