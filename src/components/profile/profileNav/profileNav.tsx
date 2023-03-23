@@ -1,20 +1,24 @@
 import React, {useState} from 'react';
-import {useAppDispatch} from '../../../hook';
+// import {useAppDispatch} from '../../../hook';
 import {Link} from 'react-router-dom';
+import {Pages} from '../../../models/models';
+import './profileNav.scss';
 
-const ProfileNav: React.FC = () => {
-    const dispatch = useAppDispatch();
+interface IProfileNav {
+    page: Pages
+}
 
+const ProfileNav: React.FC<IProfileNav> = ({page}) => {
     return (
         <div className="profile-nav__container">
             <div className="profile-nav__section">
-                <Link to="/profile/settings">Настройки</Link>
+                <Link className={`profile-nav__section-link${page === Pages.Settings ? '-current' : ''}`} to="/profile/settings">Настройки</Link>
             </div>
             <div className="profile-nav__section">
-                <Link to="/profile/orders">Заказы</Link>
+                <Link className={`profile-nav__section-link${page === Pages.Orders ? '-current' : ''}`} to="/profile/orders">Заказы</Link>
             </div>
             <div className="profile-nav__section">
-                <Link to="/profile/addresses">Адреса доставки</Link>
+                <Link className={`profile-nav__section-link${page === Pages.Addresses ? '-current' : ''}`} to="/profile/addresses">Адреса доставки</Link>
             </div>
         </div>
     )

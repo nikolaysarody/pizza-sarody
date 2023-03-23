@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {BrowserRouter, BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import {useAppDispatch} from './hook';
 import {fetchPizza} from './store/actions/pizzaActions';
 import {fetchAction} from './store/actions/actionActions';
@@ -25,19 +25,21 @@ function App() {
     }, []);
 
     return (
-        <Router>
+        <BrowserRouter>
             <div className="app">
                 <div className="app__body">
                     <Header/>
-                    <Route path="/" exact component={MainPage}/>
-                    <Route path="/about" component={AboutPage}/>
-                    <Route path="/profile/settings" component={SettingsPage}/>
-                    <Route path="/profile/orders" component={OrdersPage}/>
-                    <Route path="/profile/addresses" component={AddressesPage}/>
+                    <Switch>
+                        <Route path="/" exact component={MainPage}/>
+                        <Route path="/about" component={AboutPage}/>
+                        <Route path="/profile/settings" component={SettingsPage}/>
+                        <Route path="/profile/orders" component={OrdersPage}/>
+                        <Route path="/profile/addresses" component={AddressesPage}/>
+                    </Switch>
                     <Footer/>
                 </div>
             </div>
-        </Router>
+        </BrowserRouter>
     );
 }
 

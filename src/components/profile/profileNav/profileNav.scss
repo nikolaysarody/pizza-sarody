@@ -1,0 +1,43 @@
+.profile-nav {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    border-right: 3px solid #B75615;
+    align-items: end;
+  }
+
+  &__link-current {
+    color: #B75615;
+  }
+
+  &__section {
+    margin-bottom: 20px;
+    margin-right: 20px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &-link {
+      text-decoration: none;
+      color: black;
+      font-weight: 600;
+      font-size: 20px;
+
+      &-current {
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 20px;
+        color: #B75615;
+      }
+
+      //.current {
+      //  color: #B75615;
+      //}
+    }
+
+  }
+
+
+}
+

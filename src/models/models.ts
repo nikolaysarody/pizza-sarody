@@ -25,3 +25,9 @@ export interface AuthResponse extends IUser{
     accessToken: string;
     refreshToken: string;
 }
+
+export enum Pages {
+    Settings = 'settings',
+    Orders = 'orders',
+    Addresses = 'addresses'
+}
