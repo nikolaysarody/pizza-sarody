@@ -1,12 +1,19 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {login, registration} from '../../../../store/actions/authActions';
-import {useAppDispatch} from '../../../../hook';
+import {useAppDispatch, useAppSelector} from '../../../../hook';
 import '../userPopUp.scss';
 
 const UserAuth: React.FC = () => {
     const dispatch = useAppDispatch();
     const [userEmail, setUserEmail] = useState<string>('');
     const [userPassword, setUserPassword] = useState<string>('');
+    const apiError = useAppSelector(state => state.auth.error);
+
+    const error = () => {
+        return (
+            <span className="popup__error">{apiError}</span>
+        )
+    }
 
     return (
         <form className="popup__container"
@@ -27,6 +34,7 @@ const UserAuth: React.FC = () => {
                            setUserPassword(e.target.value);
                        }}/>
             </div>
+            {apiError ? error() : null}
             <div className="popup__section">
                 <input className="popup__btn-login"
                        type="submit"

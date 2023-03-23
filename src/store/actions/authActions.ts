@@ -21,10 +21,8 @@ export const login = (email: string, password: string) => {
             setItems(res, dispatch);
         } catch (e) {
             if (isAxiosError(e) && e.response) {
-                dispatch(fetchAuthError(e.response.statusText));
+                dispatch(fetchAuthError(e.response.data.message));
             }
-            if (e instanceof Error)
-                dispatch(fetchAuthError(e.message));
         }
     }
 }
