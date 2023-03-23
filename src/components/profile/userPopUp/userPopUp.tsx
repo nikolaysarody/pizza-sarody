@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import userImg from '../../header/user.svg';
 import {useAppDispatch, useAppSelector} from '../../../hook';
-import UserAuth from '../userAuth/userAuth';
-import '../profile.scss';
-import UserMenu from '../userMenu/userMenu';
+import UserAuth from './userAuth/userAuth';
+import './userPopUp.scss';
+import UserMenu from './userMenu/userMenu';
 
 const UserPopUp: React.FC = () => {
     const dispatch = useAppDispatch();

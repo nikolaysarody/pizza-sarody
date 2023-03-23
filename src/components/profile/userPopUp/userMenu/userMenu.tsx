@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import {login, logout, registration} from '../../../store/actions/authActions';
-import {useAppDispatch} from '../../../hook';
+import {login, logout, registration} from '../../../../store/actions/authActions';
+import {useAppDispatch} from '../../../../hook';
 import {Link} from 'react-router-dom';
 
 const UserMenu: React.FC = () => {

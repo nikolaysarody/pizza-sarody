@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import {login, registration} from '../../../store/actions/authActions';
-import {useAppDispatch} from '../../../hook';
-import '../profile.scss';
+import {login, registration} from '../../../../store/actions/authActions';
+import {useAppDispatch} from '../../../../hook';
+import '../userPopUp.scss';
 
 const UserAuth: React.FC = () => {
     const dispatch = useAppDispatch();
