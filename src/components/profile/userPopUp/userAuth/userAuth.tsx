@@ -2,8 +2,9 @@ import React, {useEffect, useState} from 'react';
 import {login, registration} from '../../../../store/actions/authActions';
 import {useAppDispatch, useAppSelector} from '../../../../hook';
 import '../userPopUp.scss';
+import {IUserPopUp} from '../../../../models/models';
 
-const UserAuth: React.FC = () => {
+const UserAuth: React.FC<IUserPopUp> = ({popUpSwitch}) => {
     const dispatch = useAppDispatch();
     const [userEmail, setUserEmail] = useState<string>('');
     const [userPassword, setUserPassword] = useState<string>('');
@@ -41,6 +42,7 @@ const UserAuth: React.FC = () => {
                        value="Войти"
                        onClick={() => {
                            dispatch(login(userEmail, userPassword));
+                           popUpSwitch();
                        }}
                 />
                 <input className="popup__btn-register"
@@ -48,6 +50,7 @@ const UserAuth: React.FC = () => {
                        value="Регистрация"
                        onClick={() => {
                            dispatch(registration(userEmail, userPassword));
+                           popUpSwitch();
                        }}/>
             </div>
         </form>

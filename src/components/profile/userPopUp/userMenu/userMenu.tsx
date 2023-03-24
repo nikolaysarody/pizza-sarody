@@ -2,8 +2,9 @@ import React, {useState} from 'react';
 import {login, logout, registration} from '../../../../store/actions/authActions';
 import {useAppDispatch} from '../../../../hook';
 import {Link} from 'react-router-dom';
+import {IUserPopUp} from '../../../../models/models';
 
-const UserMenu: React.FC = () => {
+const UserMenu: React.FC<IUserPopUp> = ({popUpSwitch}) => {
     const dispatch = useAppDispatch();
     // const [userEmail, setUserEmail] = useState<string>('');
     // const [userPassword, setUserPassword] = useState<string>('');
@@ -13,17 +14,17 @@ const UserMenu: React.FC = () => {
             <div className="popup__container">
                 <div className="popup__section">
                     <div className="popup__section-title">
-                        <Link to="/profile/settings">Настройки</Link>
+                        <Link to="/profile/settings" onClick={() => popUpSwitch()}>Настройки</Link>
                     </div>
                 </div>
                 <div className="popup__section">
                     <div className="popup__section-title">
-                        <Link to="/profile/orders">Заказы</Link>
+                        <Link to="/profile/orders" onClick={() => popUpSwitch()}>Заказы</Link>
                     </div>
                 </div>
                 <div className="popup__section">
                     <div className="popup__section-title">
-                        <Link to="/profile/address">Адреса доставки</Link>
+                        <Link to="/profile/addresses" onClick={() => popUpSwitch()}>Адреса доставки</Link>
                     </div>
                 </div>
                 <div className="popup__section">
@@ -32,6 +33,7 @@ const UserMenu: React.FC = () => {
                            value="Выйти"
                            onClick={() => {
                                dispatch(logout());
+                               popUpSwitch();
                            }}/>
                 </div>
             </div>

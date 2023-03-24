@@ -28,7 +28,7 @@ const UserPopUp: React.FC = () => {
                     setPopUpSwitch(prev => !prev);
                 }
             }}></div> : null}
-            {popUpSwitch ? isAuth ? <UserMenu/> : <UserAuth/> : null}
+            {popUpSwitch ? isAuth ? <UserMenu popUpSwitch={() => setPopUpSwitch(prev => !prev)}/> : <UserAuth popUpSwitch={() => setPopUpSwitch(prev => !prev)}/> : null}
         </div>
     )
 }

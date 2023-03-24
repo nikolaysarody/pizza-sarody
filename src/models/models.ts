@@ -31,3 +31,7 @@ export enum Pages {
     Orders = 'orders',
     Addresses = 'addresses'
 }
+
+export interface IUserPopUp {
+    popUpSwitch: () => void
+}
