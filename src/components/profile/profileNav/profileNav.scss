@@ -24,12 +24,18 @@
       color: black;
       font-weight: 600;
       font-size: 20px;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
 
       &-current {
         text-decoration: none;
         font-weight: 600;
         font-size: 20px;
         color: #B75615;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
       }
 
       //.current {
