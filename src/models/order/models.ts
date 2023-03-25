@@ -15,7 +15,8 @@ export enum OrderStatus {
 
 export enum OrderPaymentOption {
     Site = 'Онлайн на сайте',
-    Courier = 'Картой курьеру'
+    Courier = 'Картой курьеру',
+    Cash = 'Наличными курьеру'
 }
 
 export interface IOrder {

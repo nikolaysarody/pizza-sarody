@@ -7,6 +7,18 @@ import arrow from './black_arrow.png';
 const OrderItem: React.FC<IOrder> = ({id, orderNumber, orderStatus, paymentStatus, paymentOption, cost, pizzas}) => {
     const [detailSwitch, setDetailSwitch] = useState<boolean>(false);
 
+    const cancelBtn = () => {
+        if (orderStatus !== OrderStatus.Canceled){
+            return (
+                <div className="orders__item-cancel">
+                    <input type="button" value="Отменить"/>
+                </div>
+            );
+        } else {
+            return null;
+        }
+    }
+
     return (
         <li className="orders__item-container">
             <div className="orders__item-info">
@@ -33,6 +45,7 @@ const OrderItem: React.FC<IOrder> = ({id, orderNumber, orderStatus, paymentStatu
             {detailSwitch ? (
                 <div className="orders__item-detail">
                     {pizzas.map((item) => <OrderItemDetail {...item} key={item._id}/>)}
+                    {cancelBtn()}
                 </div>
             ) : null}
         </li>

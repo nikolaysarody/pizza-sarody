@@ -1,9 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
-
-@mixin fontStyle {
-    font-family: 'Montserrat', sans-serif;
-    font-variant: small-caps;
-}
+@import "./src/style/variables";
 
 body {
     margin: 0;

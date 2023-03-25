@@ -1,3 +1,5 @@
+@import "src/style/variables";
+
 .orders {
   display: flex;
   flex-direction: row;
@@ -32,6 +34,16 @@
       list-style-type: none;
     }
 
+    &-cancel {
+      input {
+        @include defaultBtn();
+        margin-top: 0;
+        font-size: 17px;
+        font-weight: 500;
+        margin-bottom: 30px;
+      }
+    }
+
     &-info {
       display: flex;
       flex-direction: row;
@@ -41,7 +53,7 @@
 
       span {
         font-weight: 400;
-        font-size: 17px;
+        font-size: 19px;
 
         //margin-right: 60px;
 
@@ -60,6 +72,7 @@
       margin-bottom: 30px;
       align-items: center;
       justify-content: flex-start;
+      font-size: 17px;
 
       & > * {
         margin-right: 20px;
