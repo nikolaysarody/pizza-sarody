@@ -12,6 +12,7 @@ import Footer from './components/footer/footer';
 import MainPage from './components/pages/mainPage';
 import AboutPage from './components/pages/aboutPage';
 import './App.scss';
+import OrderingPage from './components/pages/orderingPage';
 
 function App() {
     const dispatch = useAppDispatch();
@@ -35,6 +36,7 @@ function App() {
                         <Route path="/profile/settings" component={SettingsPage}/>
                         <Route path="/profile/orders" component={OrdersPage}/>
                         <Route path="/profile/addresses" component={AddressesPage}/>
+                        <Route path="/ordering" component={OrderingPage}/>
                     </Switch>
                     <Footer/>
                 </div>

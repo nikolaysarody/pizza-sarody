@@ -41,7 +41,7 @@ const Cart: React.FC = () => {
             {/*        setCartToggle(prev => !prev)*/}
             {/*    }*/}
             {/*}}></div> : null}*/}
-            <CartMenu toggle={cartToggle}/>
+            <CartMenu toggle={cartToggle} setToggle={() => setCartToggle(prev => !prev)}/>
         </div>
     );
 }
