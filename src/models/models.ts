@@ -35,3 +35,13 @@ export enum Pages {
 export interface IUserPopUp {
     popUpSwitch: () => void
 }
+
+export interface IAddress {
+    id: string;
+    street: string;
+    house: string;
+    entrance: number;
+    apartment: number;
+    floor: number;
+    byDefault: boolean
+}

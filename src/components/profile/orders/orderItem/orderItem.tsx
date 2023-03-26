@@ -6,12 +6,15 @@ import arrow from './black_arrow.png';
 
 const OrderItem: React.FC<IOrder> = ({id, orderNumber, orderStatus, paymentStatus, paymentOption, cost, pizzas}) => {
     const [detailSwitch, setDetailSwitch] = useState<boolean>(false);
+    const [status, setStatusSwitch] = useState<OrderStatus>(orderStatus);
 
     const cancelBtn = () => {
-        if (orderStatus !== OrderStatus.Canceled){
+        if (status !== OrderStatus.Canceled) {
             return (
                 <div className="orders__item-cancel">
-                    <input type="button" value="Отменить"/>
+                    <input type="button"
+                           value="Отменить"
+                           onClick={() => setStatusSwitch(OrderStatus.Canceled)}/>
                 </div>
             );
         } else {
@@ -32,7 +35,7 @@ const OrderItem: React.FC<IOrder> = ({id, orderNumber, orderStatus, paymentStatu
                     {paymentOption}
                 </span>
                 <span>
-                    {orderStatus}
+                    {status}
                 </span>
                 <span>
                     <span className="bold">{cost}</span> руб.

@@ -10,7 +10,7 @@ const Settings: React.FC = () => {
     return (
         <div className="settings">
             <ProfileNav page={Pages.Settings}/>
-            <div className="settings__container">
+            <div className="settings__container-form">
                 <h1>Личные данные</h1>
                 <form>
                     <label>
