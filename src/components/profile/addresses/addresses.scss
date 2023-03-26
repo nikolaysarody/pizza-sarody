@@ -1,0 +1,56 @@
+@import "./src/style/variables";
+
+.addresses {
+  @include defaultFlexContainer();
+  @include defaultForm();
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+
+    &-row {
+      display: flex;
+      flex-direction: row;
+    }
+  }
+
+  &__container {
+    margin-left: 100px;
+    h3 {
+      font-size: 17px;
+      margin-top: 0;
+    }
+  }
+
+  &__items {
+    padding-left: 0;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+
+    &-container {
+      display: flex;
+      align-items: center;
+      padding-left: 25px;
+      //justify-content: space-between;
+      list-style-type: none;
+      width: 495px;
+      height: 80px;
+      background: #FFFFFF;
+      box-shadow: 5px 5px 12px 5px rgba(0, 0, 0, 0.1);
+      border-radius: 20px;
+      margin-bottom: 25px;
+
+      span {
+        font-size: 17px;
+        font-weight: 600;
+      }
+
+      img {
+        margin-right: 30px;
+      }
+    }
+  }
+}
