@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {IAddress} from '../../../../models/models';
-import selector from './selector.png';
-import pushedSelector from './pushed_selector.png'
+import selector from '../../../../icons/selector.png';
+import pushedSelector from '../../../../icons/pushed_selector.png'
 
 const AddressItem: React.FC<IAddress> = ({id,street, byDefault, floor, house, entrance, apartment}) => {
     const [selectedItem, setSelectedItem] = useState<boolean>(byDefault);

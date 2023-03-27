@@ -1,8 +1,8 @@
 import React from 'react';
 import './header.scss';
-import logoImg from './logo.svg';
+import logoImg from '../../icons/logo.svg';
 // import userImg from './user.svg';
-import enterImg from './enter.svg';
+import enterImg from '../../icons/enter.svg';
 import {Link} from "react-router-dom";
 import Cart from '../cart/cart';
 import SideNav from "./sideNav/sideNav";

@@ -1,8 +1,8 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {Link} from "react-router-dom";
-import logoImg from '../logo.svg';
-import menuImg from "../menu.svg";
-import enterImg from "../enter.svg";
+import logoImg from '../../../icons/logo.svg';
+import menuImg from "../../../icons/menu.svg";
+import enterImg from "../../../icons/enter.svg";
 import './sideNav.scss';
 import '../header.scss';
 import {useAppSelector} from "../../../hook";

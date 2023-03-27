@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import {IOrder, OrderStatus} from '../../../../models/order/models';
 import OrderItemDetail from './orderItemDetail/orderItemDetail';
-import arrowDown from './black_arrow_down.png';
-import arrow from './black_arrow.png';
+import arrowDown from '../../../../icons/black_arrow_down.png';
+import arrow from '../../../../icons/black_arrow.png';
 
 const OrderItem: React.FC<IOrder> = ({id, orderNumber, orderStatus, paymentStatus, paymentOption, cost, pizzas}) => {
     const [detailSwitch, setDetailSwitch] = useState<boolean>(false);

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import userImg from '../../header/user.svg';
+import userImg from '../../../icons/user.svg';
 import {useAppDispatch, useAppSelector} from '../../../hook';
 import UserAuth from './userAuth/userAuth';
 import './userPopUp.scss';

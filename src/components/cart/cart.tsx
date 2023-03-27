@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useAppSelector} from '../../hook';
 import './cart.scss';
-import cartImg from './cart.svg';
+import cartImg from '../../icons/cart.svg';
 import CartMenu from './cartMenu/cartMenu';
 
 const Cart: React.FC = () => {

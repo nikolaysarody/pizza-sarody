@@ -1,5 +1,5 @@
 import React from 'react';
-import exitButton from './exit.svg';
+import exitButton from '../../../icons/exit.svg';
 import './sliderModal.scss';
 import {createPortal} from "react-dom";
 

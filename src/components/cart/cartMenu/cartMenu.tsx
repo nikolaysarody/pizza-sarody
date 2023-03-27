@@ -1,6 +1,6 @@
 import React from 'react';
 import './cartMenu.scss';
-import cartImg from './cart.svg';
+import cartImg from '../../../icons/cart_menu.svg';
 import CartList from '../cartList/cartList';
 import {useAppDispatch, useAppSelector} from '../../../hook';
 import {clearAll} from '../../../store/slices/orderSlice';
