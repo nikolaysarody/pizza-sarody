@@ -1,0 +1,27 @@
+.addresses {
+  &__item {
+    &-container {
+      display: flex;
+      align-items: center;
+      padding-left: 25px;
+      //justify-content: space-between;
+      list-style-type: none;
+      width: 495px;
+      height: 80px;
+      background: #FFFFFF;
+      box-shadow: 5px 5px 12px 5px rgba(0, 0, 0, 0.1);
+      border-radius: 20px;
+      margin-bottom: 25px;
+
+      span {
+        font-size: 17px;
+        font-weight: 600;
+      }
+
+      img {
+        cursor: pointer;
+        margin-right: 30px;
+      }
+    }
+  }
+}

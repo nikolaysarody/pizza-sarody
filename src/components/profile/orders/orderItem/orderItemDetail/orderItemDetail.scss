@@ -1,0 +1,25 @@
+.orders {
+  &__item {
+    &-pizza {
+      display: flex;
+      flex-direction: row;
+      margin-bottom: 25px;
+      align-items: center;
+      justify-content: space-around;
+      font-size: 17px;
+      max-width: 573px;
+
+      & > * {
+        margin-right: 20px;
+      }
+
+      &:last-child {
+        margin-bottom: 35px;
+      }
+
+      img {
+        height: 80px;
+      }
+    }
+  }
+}

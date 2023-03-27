@@ -1,5 +1,6 @@
 import React from 'react';
 import {IPizza} from '../../../../../models/models';
+import "./orderItemDetail.scss";
 
 const OrderItemDetail: React.FC<IPizza> = ({_id, description, price, title, img, count}) => {
 
@@ -11,7 +12,6 @@ const OrderItemDetail: React.FC<IPizza> = ({_id, description, price, title, img,
             <div className="orders__item-count">
                 {count}
             </div>
-            {/*<span><span className="bold">{count}</span> шт.</span>*/}
         </div>
     );
 }

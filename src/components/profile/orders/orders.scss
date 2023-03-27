@@ -74,27 +74,27 @@
       }
     }
 
-    &-pizza {
-      display: flex;
-      flex-direction: row;
-      margin-bottom: 30px;
-      align-items: center;
-      justify-content: space-around;
-      font-size: 17px;
-      max-width: 573px;
-
-      & > * {
-        margin-right: 20px;
-      }
-
-      &:last-child {
-        margin-bottom: 35px;
-      }
-
-      img {
-        height: 57px;
-      }
-    }
+    //&-pizza {
+    //  display: flex;
+    //  flex-direction: row;
+    //  margin-bottom: 30px;
+    //  align-items: center;
+    //  justify-content: space-around;
+    //  font-size: 17px;
+    //  max-width: 573px;
+    //
+    //  & > * {
+    //    margin-right: 20px;
+    //  }
+    //
+    //  &:last-child {
+    //    margin-bottom: 35px;
+    //  }
+    //
+    //  img {
+    //    height: 57px;
+    //  }
+    //}
   }
 
   .bold {

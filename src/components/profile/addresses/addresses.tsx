@@ -7,7 +7,6 @@ import OrderItem from '../orders/orderItem/orderItem';
 import AddressItem from './addressItem/addressItem';
 
 const Addresses: React.FC = () => {
-    // const dispatch = useAppDispatch();
 
     const addresses: IAddress[] = [
         {
@@ -28,7 +27,7 @@ const Addresses: React.FC = () => {
             floor: 3,
             byDefault: true
         }
-    ]
+    ];
 
 
     return (
