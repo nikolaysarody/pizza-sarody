@@ -8,7 +8,10 @@ const OrderItemDetail: React.FC<IPizza> = ({_id, description, price, title, img,
             <img src={img} alt=""/>
             <span>{title}</span>
             <span><span className="bold">{price * count!}</span> руб.</span>
-            <span><span className="bold">{count}</span> шт.</span>
+            <div className="orders__item-count">
+                {count}
+            </div>
+            {/*<span><span className="bold">{count}</span> шт.</span>*/}
         </div>
     );
 }
