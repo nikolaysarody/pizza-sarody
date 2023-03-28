@@ -12,7 +12,7 @@ const UserPopUp: React.FC = () => {
 
     useEffect(() => {
         if (isAuth) {
-            setPopUpSwitch(prev => !prev);
+            setPopUpSwitch(false);
         }
     }, [isAuth]);
 
