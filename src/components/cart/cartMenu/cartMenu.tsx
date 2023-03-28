@@ -39,8 +39,7 @@ const CartMenu: React.FC<CartMenuProps> = ({toggle, setToggle}) => {
                                     <span className="price-bold">{price}</span>
                                     <span className="price">рублей</span>
                                 </div>
-                                <Link to="/ordering" className="cart__order" onClick={() => setToggle()}>Оформить заказ</Link>
-                                {/*<input type="button" value="Оформить заказ" className="cart__order"/>*/}
+                                <Link to="/checkout" className="cart__order" onClick={() => setToggle()}>Оформить заказ</Link>
                             </div>
                         </div>
                     </div>

@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {BrowserRouter, BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import {useAppDispatch} from './hook';
 import {fetchPizza} from './store/actions/pizzaActions';
 import {fetchAction} from './store/actions/actionActions';
@@ -12,7 +12,7 @@ import Footer from './components/footer/footer';
 import MainPage from './components/pages/mainPage';
 import AboutPage from './components/pages/aboutPage';
 import './App.scss';
-import OrderingPage from './components/pages/orderingPage';
+import CheckoutPage from './components/pages/checkoutPage';
 
 function App() {
     const dispatch = useAppDispatch();
@@ -26,7 +26,7 @@ function App() {
     }, []);
 
     return (
-        <BrowserRouter>
+        <Router>
             <div className="app">
                 <div className="app__body">
                     <Header/>
@@ -36,12 +36,12 @@ function App() {
                         <Route path="/profile/settings" component={SettingsPage}/>
                         <Route path="/profile/orders" component={OrdersPage}/>
                         <Route path="/profile/addresses" component={AddressesPage}/>
-                        <Route path="/ordering" component={OrderingPage}/>
+                        <Route path="/checkout" component={CheckoutPage}/>
                     </Switch>
                     <Footer/>
                 </div>
             </div>
-        </BrowserRouter>
+        </Router>
     );
 }
 

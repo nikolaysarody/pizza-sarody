@@ -1,13 +1,12 @@
 import React from 'react';
-import {IOrder, OrderPaymentOption, OrderPaymentStatus, OrderStatus} from '../../models/order/models';
-import OrderItem from '../profile/orders/orderItem/orderItem';
+import {OrderPaymentOption} from '../../models/order/models';
 import PaymentOption from './payment/payment';
 import {IAddress} from '../../models/models';
 import AddressItem from '../profile/addresses/addressItem/addressItem';
 import OrderItemDetail from '../profile/orders/orderItem/orderItemDetail/orderItemDetail';
-import './ordering.scss';
+import './checkout.scss';
 
-const Ordering: React.FC = () => {
+const Checkout: React.FC = () => {
     const pizzas = [
         {
             _id: 'hrthrf',
@@ -79,4 +78,4 @@ const Ordering: React.FC = () => {
     );
 }
 
-export default Ordering;
+export default Checkout;
