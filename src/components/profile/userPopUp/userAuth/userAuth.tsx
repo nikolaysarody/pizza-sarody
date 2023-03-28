@@ -1,14 +1,14 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {login, registration} from '../../../../store/actions/authActions';
 import {useAppDispatch, useAppSelector} from '../../../../hook';
 import '../userPopUp.scss';
-import {IUserPopUp} from '../../../../models/models';
 
-const UserAuth: React.FC<IUserPopUp> = ({popUpSwitch}) => {
+const UserAuth: React.FC = () => {
     const dispatch = useAppDispatch();
     const [userEmail, setUserEmail] = useState<string>('');
     const [userPassword, setUserPassword] = useState<string>('');
     const apiError = useAppSelector(state => state.auth.error);
+
 
     const error = () => {
         return (
@@ -42,7 +42,6 @@ const UserAuth: React.FC<IUserPopUp> = ({popUpSwitch}) => {
                        value="Войти"
                        onClick={() => {
                            dispatch(login(userEmail, userPassword));
-                           popUpSwitch();
                        }}
                 />
                 <input className="popup__btn-register"
@@ -50,7 +49,6 @@ const UserAuth: React.FC<IUserPopUp> = ({popUpSwitch}) => {
                        value="Регистрация"
                        onClick={() => {
                            dispatch(registration(userEmail, userPassword));
-                           popUpSwitch();
                        }}/>
             </div>
         </form>

@@ -1,15 +1,20 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import userImg from '../../../icons/user.svg';
-import {useAppDispatch, useAppSelector} from '../../../hook';
+import {useAppSelector} from '../../../hook';
 import UserAuth from './userAuth/userAuth';
 import './userPopUp.scss';
 import UserMenu from './userMenu/userMenu';
 
 const UserPopUp: React.FC = () => {
-    const dispatch = useAppDispatch();
     const user = useAppSelector(state => state.auth.user);
     const isAuth = useAppSelector(state => state.auth.isAuth);
     const [popUpSwitch, setPopUpSwitch] = useState<boolean>(false);
+
+    useEffect(() => {
+        if (isAuth) {
+            setPopUpSwitch(prev => !prev);
+        }
+    }, [isAuth]);
 
     return (
         <div className="popup">
@@ -28,7 +33,7 @@ const UserPopUp: React.FC = () => {
                     setPopUpSwitch(prev => !prev);
                 }
             }}></div> : null}
-            {popUpSwitch ? isAuth ? <UserMenu popUpSwitch={() => setPopUpSwitch(prev => !prev)}/> : <UserAuth popUpSwitch={() => setPopUpSwitch(prev => !prev)}/> : null}
+            {popUpSwitch ? isAuth ? <UserMenu popUpSwitch={() => setPopUpSwitch(prev => !prev)}/> : <UserAuth/> : null}
         </div>
     )
 }

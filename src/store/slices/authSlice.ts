@@ -1,6 +1,5 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {IUser} from '../../models/models';
-import {AxiosError} from 'axios';
 
 interface AuthState {
     user: IUser;
@@ -25,9 +24,7 @@ const authSlice = createSlice({
             state.user = action.payload;
         },
         fetchAuthError(state, action: PayloadAction<String>) {
-            if(action.payload){
-                state.error = action.payload.toString();
-            }
+            state.error = action.payload.toString();
         }
     },
 });

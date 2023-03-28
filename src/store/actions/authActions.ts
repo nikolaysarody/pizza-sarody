@@ -3,7 +3,6 @@ import AuthService from '../../services/AuthService';
 import {fetchAuthError, setAuth, setUser} from '../slices/authSlice';
 import {AuthResponse, IUser} from '../../models/models';
 import axios, {AxiosResponse, isAxiosError} from 'axios';
-import {useAppDispatch} from '../../hook';
 
 const setItems = (res: AxiosResponse<AuthResponse>, dispatch: AppDispatch) => {
     localStorage.setItem('accessToken', res.data.accessToken);
@@ -18,6 +17,7 @@ export const login = (email: string, password: string) => {
     return async (dispatch: AppDispatch) => {
         try {
             const res = await AuthService.login(email, password);
+            dispatch(fetchAuthError(''));
             setItems(res, dispatch);
         } catch (e) {
             if (isAxiosError(e) && e.response) {
@@ -31,6 +31,7 @@ export const registration = (email: string, password: string) => {
     return async (dispatch: AppDispatch) => {
         try {
             const res = await AuthService.registration(email, password);
+            dispatch(fetchAuthError(''));
             setItems(res, dispatch);
         } catch (e) {
             if (isAxiosError(e) && e.response) {
