@@ -74,6 +74,10 @@ export const checkAuth = () => {
             });
             setItems(res, dispatch);
         } catch (e) {
+            localStorage.removeItem('accessToken');
+            localStorage.removeItem('refreshToken');
+            localStorage.removeItem('email');
+            localStorage.removeItem('id');
             if (isAxiosError(e) && e.response) {
                 dispatch(fetchAuthError(e.response.statusText));
             }
