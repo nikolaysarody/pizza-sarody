@@ -8,9 +8,9 @@ const setItems = (res: AxiosResponse<AuthResponse>, dispatch: AppDispatch) => {
     localStorage.setItem('accessToken', res.data.accessToken);
     localStorage.setItem('refreshToken', res.data.refreshToken);
     localStorage.setItem('email', res.data.email);
-    localStorage.setItem('id', res.data.id);
+    // localStorage.setItem('id', res.data.id);
     dispatch(setAuth(true));
-    dispatch(setUser({id: res.data.id, email: res.data.email}));
+    dispatch(setUser({email: res.data.email}));
 }
 
 export const login = (email: string, password: string) => {
@@ -50,7 +50,7 @@ export const logout = () => {
             localStorage.removeItem('accessToken');
             localStorage.removeItem('refreshToken');
             localStorage.removeItem('email');
-            localStorage.removeItem('id');
+            // localStorage.removeItem('id');
             dispatch(setAuth(false));
             dispatch(setUser({} as IUser));
         } catch (e) {
@@ -70,14 +70,14 @@ export const checkAuth = () => {
                 refreshToken: localStorage.getItem('refreshToken'),
                 accessToken: localStorage.getItem('accessToken'),
                 email: localStorage.getItem('email'),
-                id: localStorage.getItem('id')
+                // id: localStorage.getItem('id')
             });
             setItems(res, dispatch);
         } catch (e) {
             localStorage.removeItem('accessToken');
             localStorage.removeItem('refreshToken');
             localStorage.removeItem('email');
-            localStorage.removeItem('id');
+            // localStorage.removeItem('id');
             if (isAxiosError(e) && e.response) {
                 dispatch(fetchAuthError(e.response.statusText));
             }

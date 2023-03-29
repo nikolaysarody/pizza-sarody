@@ -1,4 +1,4 @@
-import axios, {AxiosError} from 'axios';
+import axios from 'axios';
 import {AuthResponse} from '../models/models';
 
 const axiosApi = axios.create({
@@ -21,12 +21,12 @@ axiosApi.interceptors.response.use((config) => {
                 refreshToken: localStorage.getItem('refreshToken'),
                 accessToken: localStorage.getItem('accessToken'),
                 email: localStorage.getItem('email'),
-                id: localStorage.getItem('id')
+                // id: localStorage.getItem('id')
             });
             localStorage.setItem('accessToken', res.data.accessToken);
             localStorage.setItem('refreshToken', res.data.refreshToken);
             localStorage.setItem('email', res.data.email);
-            localStorage.setItem('id', res.data.id);
+            // localStorage.setItem('id', res.data.id);
             return axiosApi.request(originalRequest);
         } catch (e) {
             console.log('Пользователь не авторизован');
