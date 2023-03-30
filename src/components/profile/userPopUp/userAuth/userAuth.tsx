@@ -18,11 +18,14 @@ const UserAuth: React.FC = () => {
 
     return (
         <form className="popup__container"
+              autoComplete="on"
               onSubmit={(e) => {
                   e.preventDefault();
               }}>
             <div className="popup__section">
                 <input className="popup__section-login"
+                       id="email"
+                       type="email"
                        placeholder="Логин"
                        onChange={(e) => {
                            setUserEmail(e.target.value);
@@ -30,6 +33,7 @@ const UserAuth: React.FC = () => {
             </div>
             <div className="popup__section">
                 <input className="popup__section-login"
+                       type="password"
                        placeholder="Пароль"
                        onChange={(e) => {
                            setUserPassword(e.target.value);
