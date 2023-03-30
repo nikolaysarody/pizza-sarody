@@ -51,6 +51,11 @@
         margin-top: 15px;
         padding-left: 10px;
 
+        &:focus {
+          border: 1px solid #B75615;
+          outline: 2px solid #B75615;
+        }
+
         &[type=submit] {
           @include defaultBtn();
           @include fontStyle();
