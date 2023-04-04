@@ -17,7 +17,7 @@ export interface IAction {
 }
 
 export interface IUser {
-    // id: string;
+    id: string;
     email: string;
 }
 

@@ -1,5 +1,5 @@
 import {AppDispatch} from '../index';
-import AuthService from '../../services/AuthService';
+import AuthService from '../../services/authService';
 import {fetchAuthError, setAuth, setUser} from '../slices/authSlice';
 import {AuthResponse, IUser} from '../../models/models';
 import axios, {AxiosResponse, isAxiosError} from 'axios';
@@ -8,9 +8,9 @@ const setItems = (res: AxiosResponse<AuthResponse>, dispatch: AppDispatch) => {
     localStorage.setItem('accessToken', res.data.accessToken);
     localStorage.setItem('refreshToken', res.data.refreshToken);
     localStorage.setItem('email', res.data.email);
-    // localStorage.setItem('id', res.data.id);
+    localStorage.setItem('id', res.data.id);
     dispatch(setAuth(true));
-    dispatch(setUser({email: res.data.email}));
+    dispatch(setUser({email: res.data.email, id: res.data.id}));
 }
 
 export const login = (email: string, password: string) => {
@@ -68,7 +68,7 @@ export const checkAuth = () => {
         try {
             const res = await axios.post<AuthResponse>(`${process.env.REACT_APP_BASE_URL}/auth/refresh`, {
                 refreshToken: localStorage.getItem('refreshToken'),
-                accessToken: localStorage.getItem('accessToken'),
+                // accessToken: localStorage.getItem('accessToken'),
                 email: localStorage.getItem('email'),
                 // id: localStorage.getItem('id')
             });
@@ -77,7 +77,7 @@ export const checkAuth = () => {
             localStorage.removeItem('accessToken');
             localStorage.removeItem('refreshToken');
             localStorage.removeItem('email');
-            // localStorage.removeItem('id');
+            localStorage.removeItem('id');
             if (isAxiosError(e) && e.response) {
                 dispatch(fetchAuthError(e.response.statusText));
             }

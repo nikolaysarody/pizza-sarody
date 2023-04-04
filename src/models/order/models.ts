@@ -28,3 +28,7 @@ export interface IOrder {
     cost: number
     pizzas: IPizza[]
 }
+
+export interface OrderResponse extends IOrder{
+    userId: string;
+}

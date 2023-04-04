@@ -1,5 +1,6 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {IPizza} from "../../models/models";
+import {IOrder, OrderResponse} from '../../models/order/models';
 
 // type PizzaGeneral = {
 //     id: string;
@@ -17,11 +18,13 @@ import {IPizza} from "../../models/models";
 interface OrderState {
     pizza: IPizza[];
     totalPrice: number;
+    items: IOrder[]
 }
 
 const initialState: OrderState = {
     pizza: [],
-    totalPrice: 0
+    totalPrice: 0,
+    items: []
 }
 
 const orderSlice = createSlice({
@@ -63,6 +66,9 @@ const orderSlice = createSlice({
                     }
                 });
             }
+        },
+        getOrders (state, action: PayloadAction<OrderResponse[]>){
+            state.items = action.payload;
         },
         // addItemInOrder(state, action: PayloadAction<Pizza>) {
         //     if (!state.pizza.some((item: IPizza) => item._id === action.payload.id)) {
@@ -107,6 +113,6 @@ const orderSlice = createSlice({
     }
 });
 
-export const {addItemInOrder, deleteItemInOrder, removeItemInOrder, clearAll} = orderSlice.actions;
+export const {addItemInOrder, deleteItemInOrder, removeItemInOrder, getOrders, clearAll} = orderSlice.actions;
 
 export default orderSlice.reducer;
