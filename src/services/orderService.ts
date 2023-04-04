@@ -7,6 +7,10 @@ export default class OrderService {
         return axiosApi.post<OrderResponse[]>('/order', {userId});
     }
 
+    static async add(data: OrderResponse): Promise<AxiosResponse<OrderResponse>> {
+        return axiosApi.post<OrderResponse>('/order/add', data);
+    }
+
     // static async registration(email: string, password: string): Promise<AxiosResponse<AuthResponse>> {
     //     return axiosApi.post<AuthResponse>('/auth/registration', {email, password});
     // }

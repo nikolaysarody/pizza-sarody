@@ -1,30 +1,35 @@
 import React from 'react';
-import {OrderPaymentOption} from '../../models/order/models';
+import {OrderPaymentOption, OrderPaymentStatus, OrderStatus} from '../../models/order/models';
 import PaymentOption from './payment/payment';
-import {IAddress} from '../../models/models';
+import {IAddress, IPizza} from '../../models/models';
 import AddressItem from '../profile/addresses/addressItem/addressItem';
 import OrderItemDetail from '../profile/orders/orderItem/orderItemDetail/orderItemDetail';
 import './checkout.scss';
+import {useAppDispatch, useAppSelector} from '../../hook';
+import {addOrder} from '../../store/actions/orderActions';
 
 const Checkout: React.FC = () => {
-    const pizzas = [
-        {
-            _id: 'hrthrf',
-            title: 'Маринара',
-            description: 'Томатный соус, чеснок и базилик',
-            price: 400,
-            img: '/images/Pizza/pizza_3.jpg',
-            count: 5
-        },
-        {
-            _id: 'gregerf',
-            title: 'Маргарита',
-            description: 'Томатный соус, моцарелла и орегано',
-            price: 400,
-            img: '/images/Pizza/pizza_2.jpg',
-            count: 6
-        }
-    ];
+    const dispatch = useAppDispatch();
+    const pizzas = useAppSelector(state => state.order.pizza);
+    const price = useAppSelector(state => state.order.totalPrice);
+    // const pizzas = [
+    //     {
+    //         _id: 'hrthrf',
+    //         title: 'Маринара',
+    //         description: 'Томатный соус, чеснок и базилик',
+    //         price: 400,
+    //         img: '/images/Pizza/pizza_3.jpg',
+    //         count: 5
+    //     },
+    //     {
+    //         _id: 'gregerf',
+    //         title: 'Маргарита',
+    //         description: 'Томатный соус, моцарелла и орегано',
+    //         price: 400,
+    //         img: '/images/Pizza/pizza_2.jpg',
+    //         count: 6
+    //     }
+    // ];
     const addresses: IAddress[] = [
         {
             id: 'sdqwds',
@@ -62,8 +67,19 @@ const Checkout: React.FC = () => {
                         <PaymentOption selectedItem={false} paymentOption={OrderPaymentOption.Site}/>
                     </div>
                     <div className="ordering__payment-info">
-                        <span>Сумма: <span className="bold">110</span> руб.</span>
-                        <input type="button" value="Заказать"/>
+                        <span>Сумма: <span className="bold">{price}</span> руб.</span>
+                        <input type="button"
+                               value="Заказать"
+                               onClick={() => dispatch(addOrder(
+                                   {
+                                       userId: localStorage.getItem('id')!,
+                                       paymentStatus: OrderPaymentStatus.NotPaid,
+                                       paymentOption: OrderPaymentOption.Cash,
+                                       orderStatus: OrderStatus.Waited,
+                                       cost: price,
+                                       pizzas
+                                   }
+                               ))}/>
                     </div>
                 </div>
                 <div className="ordering__wrapper">
