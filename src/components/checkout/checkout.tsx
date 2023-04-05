@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {OrderPaymentOption, OrderPaymentStatus, OrderStatus} from '../../models/order/models';
 import PaymentOption from './payment/payment';
 import {IAddress, IPizza} from '../../models/models';
@@ -12,6 +12,8 @@ const Checkout: React.FC = () => {
     const dispatch = useAppDispatch();
     const pizzas = useAppSelector(state => state.order.pizza);
     const price = useAppSelector(state => state.order.totalPrice);
+    const [paymentOption, setPaymentOption] = useState<OrderPaymentOption>(OrderPaymentOption.Cash);
+    const [modalVisible, setModalVisible] = useState<boolean>(false);
     // const pizzas = [
     //     {
     //         _id: 'hrthrf',
@@ -62,9 +64,15 @@ const Checkout: React.FC = () => {
                     </div>
                     <h3>Способ оплаты:</h3>
                     <div className="ordering__payment">
-                        <PaymentOption selectedItem={true} paymentOption={OrderPaymentOption.Cash}/>
-                        <PaymentOption selectedItem={false} paymentOption={OrderPaymentOption.Courier}/>
-                        <PaymentOption selectedItem={false} paymentOption={OrderPaymentOption.Site}/>
+                        <PaymentOption selectedItem={paymentOption === OrderPaymentOption.Cash}
+                                       paymentOption={OrderPaymentOption.Cash} key={OrderPaymentOption.Cash}
+                                       changeOption={() => setPaymentOption(OrderPaymentOption.Cash)}/>
+                        <PaymentOption selectedItem={paymentOption === OrderPaymentOption.Courier}
+                                       paymentOption={OrderPaymentOption.Courier} key={OrderPaymentOption.Cash}
+                                       changeOption={() => setPaymentOption(OrderPaymentOption.Courier)}/>
+                        <PaymentOption selectedItem={paymentOption === OrderPaymentOption.Site}
+                                       paymentOption={OrderPaymentOption.Site} key={OrderPaymentOption.Cash}
+                                       changeOption={() => setPaymentOption(OrderPaymentOption.Site)}/>
                     </div>
                     <div className="ordering__payment-info">
                         <span>Сумма: <span className="bold">{price}</span> руб.</span>
@@ -74,7 +82,7 @@ const Checkout: React.FC = () => {
                                    {
                                        userId: localStorage.getItem('id')!,
                                        paymentStatus: OrderPaymentStatus.NotPaid,
-                                       paymentOption: OrderPaymentOption.Cash,
+                                       paymentOption: paymentOption,
                                        orderStatus: OrderStatus.Waited,
                                        cost: price,
                                        pizzas

@@ -6,13 +6,14 @@ import "./payment.scss";
 
 interface IPayment {
     selectedItem: boolean;
-    paymentOption: OrderPaymentOption
+    paymentOption: OrderPaymentOption,
+    changeOption: () => void
 }
 
-const PaymentOption: React.FC<IPayment> = ({selectedItem, paymentOption}) => {
+const PaymentOption: React.FC<IPayment> = ({selectedItem, paymentOption, changeOption}) => {
 
     return (
-        <div className="payment">
+        <div className="payment" onClick={changeOption}>
             {selectedItem ? <img src={pushedSelector} alt='*'/> : <img src={selector} alt='*'/>}
             <span>{paymentOption}</span>
         </div>

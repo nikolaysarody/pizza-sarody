@@ -19,7 +19,7 @@ const SliderItem: React.FC<ItemType> = ({title, description, text, clickable, im
         <div className={className} key={_id} onClick={
             () => {
                 if (clickable) {
-                    visible()
+                    visible();
                 }
             }
         }>
