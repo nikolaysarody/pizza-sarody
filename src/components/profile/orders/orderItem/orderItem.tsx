@@ -3,19 +3,23 @@ import {IOrder, OrderStatus} from '../../../../models/order/models';
 import OrderItemDetail from './orderItemDetail/orderItemDetail';
 import arrowDown from '../../../../icons/black_arrow_down.png';
 import arrow from '../../../../icons/black_arrow.png';
+import {useAppDispatch} from '../../../../hook';
+import {cancelOrder} from '../../../../store/actions/orderActions';
 
 const OrderItem: React.FC<IOrder> = ({id, orderNumber, orderStatus, paymentStatus, paymentOption, cost, pizzas}) => {
+    const dispatch = useAppDispatch();
     const [detailSwitch, setDetailSwitch] = useState<boolean>(false);
     const [status, setStatusSwitch] = useState<OrderStatus>(orderStatus);
 
     const cancelBtn = () => {
         if (status !== OrderStatus.Canceled) {
             return (
-                <div className="orders__item-cancel">
                     <input type="button"
                            value="Отменить"
-                           onClick={() => setStatusSwitch(OrderStatus.Canceled)}/>
-                </div>
+                           onClick={() => {
+                               dispatch(cancelOrder(orderNumber!));
+                               setStatusSwitch(OrderStatus.Canceled);
+                           }}/>
             );
         } else {
             return null;
@@ -48,7 +52,11 @@ const OrderItem: React.FC<IOrder> = ({id, orderNumber, orderStatus, paymentStatu
             {detailSwitch ? (
                 <div className="orders__item-detail">
                     {pizzas.map((item) => <OrderItemDetail {...item} key={item._id}/>)}
-                    {cancelBtn()}
+                    <div className="orders__item-cancel">
+                        {cancelBtn()}
+                        <input type="button"
+                               value="Удалить"/>
+                    </div>
                 </div>
             ) : null}
         </li>

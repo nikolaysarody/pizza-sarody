@@ -3,19 +3,17 @@ import axiosApi from '../axios';
 import {OrderResponse} from '../models/order/models';
 
 export default class OrderService {
-    static async get(userId: string): Promise<AxiosResponse<OrderResponse[]>> {
+    static async getOrder(userId: string): Promise<AxiosResponse<OrderResponse[]>> {
         return axiosApi.post<OrderResponse[]>('/order', {userId});
     }
 
-    static async add(data: OrderResponse): Promise<AxiosResponse<OrderResponse>> {
+    static async addOrder(data: OrderResponse): Promise<AxiosResponse<OrderResponse>> {
         return axiosApi.post<OrderResponse>('/order/add', data);
     }
 
-    // static async registration(email: string, password: string): Promise<AxiosResponse<AuthResponse>> {
-    //     return axiosApi.post<AuthResponse>('/auth/registration', {email, password});
-    // }
-    //
-    // static async logout(refreshToken: string): Promise<void> {
-    //     return axiosApi.post('/auth/logout', {refreshToken});
-    // }
+    static async cancelOrder(orderNumber: number): Promise<AxiosResponse<OrderResponse>> {
+        const userId = localStorage.getItem('id');
+        return axiosApi.patch<OrderResponse>('/order/cancel', {userId, orderNumber});
+    }
+
 }

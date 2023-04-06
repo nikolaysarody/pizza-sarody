@@ -7,7 +7,7 @@ export const fetchOrders = (id: string) => {
     return async (dispatch: AppDispatch) => {
         try {
             dispatch(fetchingOrder());
-            const res = await OrderService.get(id);
+            const res = await OrderService.getOrder(id);
             dispatch(fetchOrdersSuccess(res.data));
         } catch (e) {
             dispatch(fetchOrderError(e as Error));
@@ -19,9 +19,19 @@ export const addOrder = (data: OrderResponse) => {
     return async (dispatch: AppDispatch) => {
         try {
             dispatch(fetchingOrder());
-            const res = await OrderService.add(data);
+            const res = await OrderService.addOrder(data);
             dispatch(appendedOrder());
             return res;
+        } catch (e) {
+            dispatch(fetchOrderError(e as Error));
+        }
+    }
+}
+
+export const cancelOrder = (orderNumber: number) => {
+    return async (dispatch: AppDispatch) => {
+        try {
+            await OrderService.cancelOrder(orderNumber);
         } catch (e) {
             dispatch(fetchOrderError(e as Error));
         }
