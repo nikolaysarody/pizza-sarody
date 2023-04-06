@@ -20,7 +20,7 @@ export enum OrderPaymentOption {
 }
 
 export interface IOrder {
-    id?: string;
+    _id?: string;
     orderNumber?: number;
     paymentStatus: OrderPaymentStatus,
     paymentOption: OrderPaymentOption,

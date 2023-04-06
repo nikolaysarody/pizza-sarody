@@ -88,10 +88,15 @@ const orderSlice = createSlice({
         clearAll(state) {
             state.pizza = [];
             state.totalPrice = 0;
+        },
+        deleteOrderItem(state, action: PayloadAction<number>) {
+            state.items.splice(state.items.findIndex((item) => {
+                return item.orderNumber === action.payload;
+            }), 1);
         }
     }
 });
 
-export const {addItemInOrder, deleteItemInOrder, removeItemInOrder, fetchOrdersSuccess, fetchingOrder, fetchOrderError, clearAll, appendedOrder} = orderSlice.actions;
+export const {addItemInOrder, deleteItemInOrder, removeItemInOrder, fetchOrdersSuccess, fetchingOrder, fetchOrderError, clearAll, appendedOrder, deleteOrderItem} = orderSlice.actions;
 
 export default orderSlice.reducer;

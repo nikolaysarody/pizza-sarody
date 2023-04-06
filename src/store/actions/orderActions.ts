@@ -37,3 +37,13 @@ export const cancelOrder = (orderNumber: number) => {
         }
     }
 }
+
+export const deleteOrder = (orderNumber: number) => {
+    return async (dispatch: AppDispatch) => {
+        try {
+            await OrderService.deleteOrder(orderNumber);
+        } catch (e) {
+            dispatch(fetchOrderError(e as Error));
+        }
+    }
+}

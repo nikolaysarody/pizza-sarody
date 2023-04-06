@@ -16,4 +16,8 @@ export default class OrderService {
         return axiosApi.patch<OrderResponse>('/order/cancel', {userId, orderNumber});
     }
 
+    static async deleteOrder(orderNumber: number): Promise<AxiosResponse<OrderResponse>> {
+        const userId = localStorage.getItem('id');
+        return axiosApi.post<OrderResponse>('/order/delete', {userId, orderNumber});
+    }
 }

@@ -11,8 +11,9 @@ const Orders: React.FC = () => {
     const orders = useAppSelector(state => state.order.items);
 
     useEffect(() => {
-        if (localStorage.getItem('id') !== null) {
-            dispatch(fetchOrders(localStorage.getItem('id')!));
+        const userId = localStorage.getItem('id');
+        if (userId !== null) {
+            dispatch(fetchOrders(userId));
         }
     }, []);
 
@@ -22,7 +23,7 @@ const Orders: React.FC = () => {
             <div className="orders__container">
                 <h1>Заказы</h1>
                 <ul className="orders__items">
-                    {orders.length !== 0 ? orders.map((item) => <OrderItem {...item} key={item.id}/>) : "Нет заказов"}
+                    {orders.length !== 0 ? orders.map((item) => <OrderItem {...item} key={item._id}/>) : "Нет заказов"}
                 </ul>
             </div>
         </div>

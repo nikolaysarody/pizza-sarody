@@ -12,13 +12,13 @@ const ProfileNav: React.FC<IProfileNav> = ({page}) => {
     return (
         <div className="profile-nav__container">
             <div className="profile-nav__section">
-                <Link className={`profile-nav__section-link${page === Pages.Settings ? '-current' : ''}`} to="/profile/settings">Настройки</Link>
+                <Link className={`profile-nav__section-link${page === Pages.Settings ? '-current' : ''}`} to="/settings">Настройки</Link>
             </div>
             <div className="profile-nav__section">
-                <Link className={`profile-nav__section-link${page === Pages.Orders ? '-current' : ''}`} to="/profile/orders">Заказы</Link>
+                <Link className={`profile-nav__section-link${page === Pages.Orders ? '-current' : ''}`} to="/orders">Заказы</Link>
             </div>
             <div className="profile-nav__section">
-                <Link className={`profile-nav__section-link${page === Pages.Addresses ? '-current' : ''}`} to="/profile/addresses">Адреса доставки</Link>
+                <Link className={`profile-nav__section-link${page === Pages.Addresses ? '-current' : ''}`} to="/addresses">Адреса доставки</Link>
             </div>
         </div>
     )
