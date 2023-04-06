@@ -16,12 +16,16 @@ import {IOrder, OrderResponse} from '../../models/order/models';
 // type PizzaWithCount = Pizza & { count: number };
 
 interface OrderState {
+    loading: boolean;
+    error: string;
     pizza: IPizza[];
     totalPrice: number;
     items: IOrder[]
 }
 
 const initialState: OrderState = {
+    loading: false,
+    error: '',
     pizza: [],
     totalPrice: 0,
     items: []
@@ -67,45 +71,20 @@ const orderSlice = createSlice({
                 });
             }
         },
-        getOrders (state, action: PayloadAction<OrderResponse[]>){
+        fetchOrdersSuccess (state, action: PayloadAction<OrderResponse[]>){
+            state.loading = false;
             state.items = action.payload;
         },
-        // addItemInOrder(state, action: PayloadAction<Pizza>) {
-        //     if (!state.pizza.some((item: IPizza) => item._id === action.payload.id)) {
-        //         state.pizza.push({...action.payload, count: 1});
-        //     } else {
-        //         state.pizza.forEach(item => {
-        //             if (item.id === action.payload.id) {
-        //                 item.count++;
-        //             }
-        //         });
-        //     }
-        //     state.totalPrice = state.totalPrice + action.payload.totalPrice;
-        // },
-        // deleteItemInOrder(state, action: PayloadAction<PizzaGeneral>) {
-        //     if (state.pizza.some((item: PizzaWithCount) => item.id === action.payload.id)) {
-        //         state.pizza.forEach((item, index) => {
-        //             if (item.id === action.payload.id) {
-        //                 if (item.count >= 2) {
-        //                     item.count--;
-        //                 } else {
-        //                     state.pizza.splice(index, 1);
-        //                 }
-        //             }
-        //         });
-        //         state.totalPrice = state.totalPrice - action.payload.totalPrice;
-        //     }
-        // },
-        // removeItemInOrder(state, action: PayloadAction<string>) {
-        //     if (state.pizza.some((item: PizzaWithCount) => item.id === action.payload)) {
-        //         state.pizza.forEach((item, index) => {
-        //             if (item.id === action.payload) {
-        //                 state.pizza.splice(index, 1);
-        //                 state.totalPrice = state.totalPrice - item.totalPrice * item.count;
-        //             }
-        //         });
-        //     }
-        // },
+        fetchingOrder(state){
+            state.loading = true;
+        },
+        appendedOrder(state) {
+            state.loading = false;
+        },
+        fetchOrderError(state, action: PayloadAction<Error>){
+            state.loading = false;
+            state.error = action.payload.message;
+        },
         clearAll(state) {
             state.pizza = [];
             state.totalPrice = 0;
@@ -113,6 +92,6 @@ const orderSlice = createSlice({
     }
 });
 
-export const {addItemInOrder, deleteItemInOrder, removeItemInOrder, getOrders, clearAll} = orderSlice.actions;
+export const {addItemInOrder, deleteItemInOrder, removeItemInOrder, fetchOrdersSuccess, fetchingOrder, fetchOrderError, clearAll, appendedOrder} = orderSlice.actions;
 
 export default orderSlice.reducer;

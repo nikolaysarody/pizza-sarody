@@ -1,12 +1,14 @@
 import React, {useState} from 'react';
 import {OrderPaymentOption, OrderPaymentStatus, OrderStatus} from '../../models/order/models';
 import PaymentOption from './payment/payment';
-import {IAddress, IPizza} from '../../models/models';
+import {IAddress} from '../../models/models';
 import AddressItem from '../profile/addresses/addressItem/addressItem';
 import OrderItemDetail from '../profile/orders/orderItem/orderItemDetail/orderItemDetail';
 import './checkout.scss';
 import {useAppDispatch, useAppSelector} from '../../hook';
 import {addOrder} from '../../store/actions/orderActions';
+import AcceptModal from './acceptModal/acceptModal';
+import {fetchOrderError} from '../../store/slices/orderSlice';
 
 const Checkout: React.FC = () => {
     const dispatch = useAppDispatch();
@@ -14,6 +16,7 @@ const Checkout: React.FC = () => {
     const price = useAppSelector(state => state.order.totalPrice);
     const [paymentOption, setPaymentOption] = useState<OrderPaymentOption>(OrderPaymentOption.Cash);
     const [modalVisible, setModalVisible] = useState<boolean>(false);
+    const [orderNumber, setOrderNumber] = useState<number>(0);
     // const pizzas = [
     //     {
     //         _id: 'hrthrf',
@@ -55,6 +58,7 @@ const Checkout: React.FC = () => {
 
     return (
         <div className="ordering">
+            <AcceptModal orderNumber={orderNumber} visible={modalVisible} onClose={() => setModalVisible(false)}/>
             <h1>Оформление заказа</h1>
             <div className="ordering__container">
                 <div className="ordering__wrapper">
@@ -78,16 +82,19 @@ const Checkout: React.FC = () => {
                         <span>Сумма: <span className="bold">{price}</span> руб.</span>
                         <input type="button"
                                value="Заказать"
-                               onClick={() => dispatch(addOrder(
-                                   {
+                               onClick={() => {
+                                   dispatch(addOrder({
                                        userId: localStorage.getItem('id')!,
                                        paymentStatus: OrderPaymentStatus.NotPaid,
                                        paymentOption: paymentOption,
                                        orderStatus: OrderStatus.Waited,
                                        cost: price,
                                        pizzas
-                                   }
-                               ))}/>
+                                   }))
+                                       .then(res => setOrderNumber(res!.data.orderNumber!))
+                                       .catch(e => dispatch(fetchOrderError(e as Error)));
+                                   setModalVisible(true);
+                               }}/>
                     </div>
                 </div>
                 <div className="ordering__wrapper">
