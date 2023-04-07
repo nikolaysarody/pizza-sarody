@@ -1,23 +1,21 @@
 import {AxiosResponse} from 'axios';
 import axiosApi from '../axios';
-import {OrderResponse} from '../models/order/models';
+import {IOrder, OrderResponse} from '../models/order/models';
 
 export default class OrderService {
-    static async getOrder(userId: string): Promise<AxiosResponse<OrderResponse[]>> {
-        return axiosApi.post<OrderResponse[]>('/order', {userId});
+    static async getOrders(): Promise<AxiosResponse<OrderResponse[]>> {
+        return axiosApi.get<OrderResponse[]>('/order/get');
     }
 
-    static async addOrder(data: OrderResponse): Promise<AxiosResponse<OrderResponse>> {
+    static async addOrder(data: IOrder): Promise<AxiosResponse<OrderResponse>> {
         return axiosApi.post<OrderResponse>('/order/add', data);
     }
 
     static async cancelOrder(orderNumber: number): Promise<AxiosResponse<OrderResponse>> {
-        const userId = localStorage.getItem('id');
-        return axiosApi.patch<OrderResponse>('/order/cancel', {userId, orderNumber});
+        return axiosApi.patch<OrderResponse>('/order/cancel', {orderNumber});
     }
 
     static async deleteOrder(orderNumber: number): Promise<AxiosResponse<OrderResponse>> {
-        const userId = localStorage.getItem('id');
-        return axiosApi.post<OrderResponse>('/order/delete', {userId, orderNumber});
+        return axiosApi.post<OrderResponse>('/order/delete', {orderNumber});
     }
 }

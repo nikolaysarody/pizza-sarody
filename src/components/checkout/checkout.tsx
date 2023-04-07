@@ -84,7 +84,6 @@ const Checkout: React.FC = () => {
                                value="Заказать"
                                onClick={() => {
                                    dispatch(addOrder({
-                                       userId: localStorage.getItem('id')!,
                                        paymentStatus: OrderPaymentStatus.NotPaid,
                                        paymentOption: paymentOption,
                                        orderStatus: OrderStatus.Waited,

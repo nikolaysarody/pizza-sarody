@@ -1,5 +1,4 @@
-import React, {useState} from 'react';
-// import {useAppDispatch} from '../../../hook';
+import React from 'react';
 import {Link} from 'react-router-dom';
 import {Pages} from '../../../models/models';
 import './profileNav.scss';

@@ -1,13 +1,13 @@
 import {AppDispatch} from "../index";
 import OrderService from '../../services/orderService';
 import {fetchingOrder, fetchOrdersSuccess, fetchOrderError, appendedOrder} from '../slices/orderSlice';
-import {OrderResponse} from '../../models/order/models';
+import {IOrder} from '../../models/order/models';
 
-export const fetchOrders = (id: string) => {
+export const fetchOrders = () => {
     return async (dispatch: AppDispatch) => {
         try {
             dispatch(fetchingOrder());
-            const res = await OrderService.getOrder(id);
+            const res = await OrderService.getOrders();
             dispatch(fetchOrdersSuccess(res.data));
         } catch (e) {
             dispatch(fetchOrderError(e as Error));
@@ -15,7 +15,7 @@ export const fetchOrders = (id: string) => {
     }
 }
 
-export const addOrder = (data: OrderResponse) => {
+export const addOrder = (data: IOrder) => {
     return async (dispatch: AppDispatch) => {
         try {
             dispatch(fetchingOrder());

@@ -29,7 +29,6 @@ const Addresses: React.FC = () => {
         }
     ];
 
-
     return (
         <div className="addresses">
             <ProfileNav page={Pages.Addresses}/>
