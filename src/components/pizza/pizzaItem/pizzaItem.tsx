@@ -2,9 +2,9 @@ import React, {useEffect, useState} from "react";
 import {addItemInOrder, deleteItemInOrder} from "../../../store/slices/orderSlice";
 import {useAppDispatch, useAppSelector} from "../../../hook";
 import Spinner from "../../spinner/spinner";
-
 import './pizzaItem.scss';
-import {IPizza} from "../../../models/models";
+import {IPizza} from '../../../models/pizza/models';
+
 
 // interface PizzaItemProps {
 //     title: string;

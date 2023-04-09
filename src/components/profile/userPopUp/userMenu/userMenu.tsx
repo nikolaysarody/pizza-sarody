@@ -2,7 +2,7 @@ import React from 'react';
 import {logout} from '../../../../store/actions/authActions';
 import {useAppDispatch} from '../../../../hook';
 import {Link} from 'react-router-dom';
-import {IUserPopUp} from '../../../../models/models';
+import {IUserPopUp} from '../../../../models/user/models';
 
 const UserMenu: React.FC<IUserPopUp> = ({popUpSwitch}) => {
     const dispatch = useAppDispatch();

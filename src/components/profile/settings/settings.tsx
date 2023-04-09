@@ -1,12 +1,9 @@
 import React from 'react';
-// import {useAppDispatch} from '../../../hook';
 import ProfileNav from '../profileNav/profileNav';
-import {Pages} from '../../../models/models';
 import './settings.scss';
+import {Pages} from '../../../models/user/models';
 
 const Settings: React.FC = () => {
-    // const dispatch = useAppDispatch();
-
     return (
         <div className="settings">
             <ProfileNav page={Pages.Settings}/>

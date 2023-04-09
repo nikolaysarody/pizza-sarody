@@ -1,4 +1,4 @@
-import {IPizza} from '../models';
+import {IPizza} from '../pizza/models';
 
 export enum OrderPaymentStatus {
     Paid = 'Оплачен',

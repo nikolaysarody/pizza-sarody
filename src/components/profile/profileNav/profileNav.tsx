@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {Pages} from '../../../models/models';
 import './profileNav.scss';
+import {Pages} from '../../../models/user/models';
 
 interface IProfileNav {
     page: Pages

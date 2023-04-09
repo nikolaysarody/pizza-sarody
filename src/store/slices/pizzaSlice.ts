@@ -1,22 +1,5 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-// import PizzaService from "../../components/services/pizzaService";
-import {IPizza} from "../../models/models";
-
-// export const getPizza = createAsyncThunk(
-//     'pizza/getPizza',
-//     async(_, {rejectWithValue, dispatch}) => {
-//         const res: Pizza[] = new PizzaService().getPizza();
-//         dispatch(updatePizzas(res));
-//     }
-// );
-
-// type Pizza = {
-//     title: string;
-//     description: string;
-//     img: string;
-//     id: string;
-//     price: number;
-// }
+import {IPizza} from '../../models/pizza/models';
 
 interface PizzaState {
     loading: boolean;
@@ -34,9 +17,6 @@ const pizzaSlice = createSlice({
     name: 'pizza',
     initialState,
     reducers: {
-        // updatePizzas(state, action: PayloadAction<Pizza[]>){
-        //     state.pizza = action.payload;
-        // },
         fetchingPizza(state){
             state.loading = true;
         },

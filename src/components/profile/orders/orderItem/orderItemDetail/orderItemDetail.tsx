@@ -1,6 +1,6 @@
 import React from 'react';
-import {IPizza} from '../../../../../models/models';
 import "./orderItemDetail.scss";
+import {IPizza} from '../../../../../models/pizza/models';
 
 const OrderItemDetail: React.FC<IPizza> = ({_id, description, price, title, img, count}) => {
 

@@ -1,8 +1,9 @@
 import {AppDispatch} from '../index';
 import AuthService from '../../services/authService';
 import {fetchAuthError, setAuth, setUser} from '../slices/authSlice';
-import {AuthResponse, IUser} from '../../models/models';
 import axios, {AxiosResponse, isAxiosError} from 'axios';
+import {AuthResponse} from '../../models/auth/models';
+import {IUser} from '../../models/user/models';
 
 const setItems = (res: AxiosResponse<AuthResponse>, dispatch: AppDispatch) => {
     localStorage.setItem('accessToken', res.data.accessToken);

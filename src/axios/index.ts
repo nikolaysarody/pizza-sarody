@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {AuthResponse} from '../models/models';
+import {AuthResponse} from '../models/auth/models';
 
 const axiosApi = axios.create({
     baseURL: process.env.REACT_APP_BASE_URL,

@@ -1,6 +1,6 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {IPizza} from "../../models/models";
 import {IOrder, OrderResponse} from '../../models/order/models';
+import {IPizza} from '../../models/pizza/models';
 
 // type PizzaGeneral = {
 //     id: string;

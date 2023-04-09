@@ -1,10 +1,10 @@
 import React, {useEffect} from 'react';
-import {Pages} from '../../../models/models';
 import ProfileNav from '../profileNav/profileNav';
 import OrderItem from './orderItem/orderItem';
 import './orders.scss';
 import {fetchOrders} from '../../../store/actions/orderActions';
 import {useAppDispatch, useAppSelector} from '../../../hook';
+import {Pages} from '../../../models/user/models';
 
 const Orders: React.FC = () => {
     const dispatch = useAppDispatch();

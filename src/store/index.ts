@@ -3,12 +3,14 @@ import orderSlice from "./slices/orderSlice";
 import pizzaSlice from "./slices/pizzaSlice";
 import actionSlice from './slices/actionSlice';
 import authSlice from './slices/authSlice';
+import addressSlice from './slices/addressSlice';
 
 const rootReducer = combineReducers({
     order: orderSlice,
     pizza: pizzaSlice,
     action: actionSlice,
-    auth: authSlice
+    auth: authSlice,
+    address: addressSlice
 })
 
 const store = configureStore({
