@@ -1,7 +1,6 @@
 import {AppDispatch} from "../index";
 import {
     appendedAddress,
-    deleteAddressFromStore,
     fetchAddressError,
     fetchAddressesSuccess,
     fetchingAddress
@@ -27,7 +26,6 @@ export const addAddress = (data: IAddress) => {
             dispatch(fetchingAddress());
             const res = await AddressService.addAddress(data);
             dispatch(appendedAddress(res.data));
-            // return res;
         } catch (e) {
             dispatch(fetchAddressError(e as Error));
         }
@@ -40,7 +38,17 @@ export const deleteAddress = (id: string) => {
             dispatch(fetchingAddress());
             const res = await AddressService.deleteAddress(id);
             dispatch(fetchAddressesSuccess(res.data));
-            // dispatch(deleteAddressFromStore(id));
+        } catch (e) {
+            dispatch(fetchAddressError(e as Error));
+        }
+    }
+}
+export const setDefaultAddress = (id: string) => {
+    return async (dispatch: AppDispatch) => {
+        try {
+            dispatch(fetchingAddress());
+            const res = await AddressService.setDefaultAddress(id);
+            dispatch(fetchAddressesSuccess(res.data));
         } catch (e) {
             dispatch(fetchAddressError(e as Error));
         }

@@ -5,7 +5,7 @@ import './addressesItem.scss';
 import {IAddress} from '../../../../models/address/models';
 import trash from '../../../../icons/trash.svg';
 import {useAppDispatch} from '../../../../hook';
-import {deleteAddress} from '../../../../store/actions/addressAction';
+import {deleteAddress, setDefaultAddress} from '../../../../store/actions/addressAction';
 
 const AddressItem: React.FC<IAddress> = ({
                                              _id,
@@ -20,8 +20,20 @@ const AddressItem: React.FC<IAddress> = ({
 
     return (
         <li className="addresses__item-container">
-            {byDefault ? <img className="addresses__selector" src={pushedSelector} alt="*"/> :
-                <img className="addresses__selector" src={selector} alt="*"/>}
+            {byDefault ?
+                <img className="addresses__selector"
+                     src={pushedSelector}
+                     alt="*"/>
+                :
+                <img className="addresses__selector"
+                     src={selector}
+                     alt="*"
+                     onClick={() => {
+                         if (_id) {
+                             dispatch(setDefaultAddress(_id));
+                         }
+                     }}/>
+            }
             <span>ул. {street} | д. {house} | под. {entrance} | кв. {apartment} | эт. {floor}</span>
             <img className="addresses__trash"
                  src={trash}
