@@ -17,11 +17,19 @@
         font-size: 17px;
         font-weight: 600;
       }
-
-      img {
-        cursor: pointer;
-        margin-right: 30px;
-      }
     }
+  }
+
+  &__selector {
+    cursor: pointer;
+    margin-right: 30px;
+  }
+
+  &__trash {
+    width: 18px;
+    cursor: pointer;
+    position: relative;
+    margin-left: auto;
+    right: 30px;
   }
 }

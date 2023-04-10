@@ -2,6 +2,7 @@ import React from "react";
 import {addItemInOrder, deleteItemInOrder, removeItemInOrder} from "../../../store/slices/orderSlice";
 import {useAppDispatch} from '../../../hook';
 import './cartItem.scss';
+import trash from '../../../icons/trash.svg';
 import {IPizza} from '../../../models/pizza/models';
 
 const CartItem: React.FC<IPizza> = ({title, description, price, img, _id, count}) => {
@@ -34,7 +35,7 @@ const CartItem: React.FC<IPizza> = ({title, description, price, img, _id, count}
                            }}/>
                 </div>
                 <img className='cart-item__btn-del'
-                     src='/icons/Trash/115789_trash_icon.svg'
+                     src={trash}
                      alt='delete'
                      onClick={() => {
                          dispatch(removeItemInOrder(_id))

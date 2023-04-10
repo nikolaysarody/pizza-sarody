@@ -1,5 +1,11 @@
 import {AppDispatch} from "../index";
-import {appendedAddress, fetchAddressError, fetchAddressesSuccess, fetchingAddress} from '../slices/addressSlice';
+import {
+    appendedAddress,
+    deleteAddressFromStore,
+    fetchAddressError,
+    fetchAddressesSuccess,
+    fetchingAddress
+} from '../slices/addressSlice';
 import AddressService from '../../services/addressService';
 import {IAddress} from '../../models/address/models';
 
@@ -20,8 +26,8 @@ export const addAddress = (data: IAddress) => {
         try {
             dispatch(fetchingAddress());
             const res = await AddressService.addAddress(data);
-            dispatch(appendedAddress(data));
-            return res;
+            dispatch(appendedAddress(res.data));
+            // return res;
         } catch (e) {
             dispatch(fetchAddressError(e as Error));
         }
@@ -31,7 +37,10 @@ export const addAddress = (data: IAddress) => {
 export const deleteAddress = (id: string) => {
     return async (dispatch: AppDispatch) => {
         try {
-            await AddressService.deleteAddress(id);
+            dispatch(fetchingAddress());
+            const res = await AddressService.deleteAddress(id);
+            dispatch(fetchAddressesSuccess(res.data));
+            // dispatch(deleteAddressFromStore(id));
         } catch (e) {
             dispatch(fetchAddressError(e as Error));
         }

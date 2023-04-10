@@ -32,9 +32,12 @@ const addressSlice = createSlice({
             state.loading = false;
             state.items.push(action.payload);
         },
+        deleteAddressFromStore(state, action: PayloadAction<string>) {
+            state.items.splice(state.items.findIndex((item) => item._id === action.payload), 1);
+        }
     },
 });
 
-export const {fetchAddressesSuccess, fetchingAddress, fetchAddressError, appendedAddress} = addressSlice.actions;
+export const {fetchAddressesSuccess, fetchingAddress, fetchAddressError, appendedAddress, deleteAddressFromStore} = addressSlice.actions;
 
 export default addressSlice.reducer;

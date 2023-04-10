@@ -11,7 +11,7 @@ export default class AddressService {
         return axiosApi.post<AddressResponse>('/address/add', data);
     }
 
-    static async deleteAddress(id: string): Promise<AxiosResponse<AddressResponse>> {
-        return axiosApi.post<AddressResponse>('/address/delete', {id});
+    static async deleteAddress(id: string): Promise<AxiosResponse<AddressResponse[]>> {
+        return axiosApi.post<AddressResponse[]>('/address/delete', {id});
     }
 }
