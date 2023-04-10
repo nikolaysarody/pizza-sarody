@@ -27,6 +27,11 @@
     display: flex;
     flex-direction: column;
 
+    &-address {
+      display: flex;
+      margin-bottom: 25px;
+    }
+
     &-container {
       list-style-type: none;
     }

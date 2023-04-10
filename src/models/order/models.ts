@@ -1,4 +1,5 @@
 import {IPizza} from '../pizza/models';
+import {IAddress} from '../address/models';
 
 export enum OrderPaymentStatus {
     Paid = 'Оплачен',
@@ -20,8 +21,6 @@ export enum OrderPaymentOption {
 }
 
 export interface IOrder {
-    _id?: string;
-    orderNumber?: number;
     paymentStatus: OrderPaymentStatus,
     paymentOption: OrderPaymentOption,
     orderStatus: OrderStatus,
@@ -30,5 +29,8 @@ export interface IOrder {
 }
 
 export interface OrderResponse extends IOrder{
+    _id: string;
+    orderNumber: number;
+    address: IAddress;
     userId: string;
 }

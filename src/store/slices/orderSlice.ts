@@ -1,26 +1,13 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {IOrder, OrderResponse} from '../../models/order/models';
+import {OrderResponse} from '../../models/order/models';
 import {IPizza} from '../../models/pizza/models';
-
-// type PizzaGeneral = {
-//     id: string;
-//     totalPrice: number;
-// }
-//
-// type Pizza = PizzaGeneral & {
-//     title: string;
-//     description: string;
-//     img: string;
-// }
-
-// type PizzaWithCount = Pizza & { count: number };
 
 interface OrderState {
     loading: boolean;
     error: string;
     pizza: IPizza[];
     totalPrice: number;
-    items: IOrder[]
+    items: OrderResponse[]
 }
 
 const initialState: OrderState = {

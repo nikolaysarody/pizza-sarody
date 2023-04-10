@@ -24,6 +24,7 @@ function App() {
         }
         dispatch(fetchPizza());
         dispatch(fetchAction());
+        // dispatch(fetchAddresses());
     }, []);
 
     return (
