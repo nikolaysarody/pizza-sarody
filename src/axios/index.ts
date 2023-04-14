@@ -3,6 +3,7 @@ import {AuthResponse} from '../models/auth/models';
 
 const axiosApi = axios.create({
     baseURL: process.env.REACT_APP_BASE_URL,
+    withCredentials: true
 });
 
 axiosApi.interceptors.request.use((config) => {
@@ -17,16 +18,8 @@ axiosApi.interceptors.response.use((config) => {
     if (error.response.status === 401 && error.config && !error.config._isRetry && localStorage.getItem('refreshToken')) {
         originalRequest._isRetry = true;
         try {
-            const res = await axios.post<AuthResponse>(`${process.env.REACT_APP_BASE_URL}/auth/refresh`, {
-                refreshToken: localStorage.getItem('refreshToken'),
-                // accessToken: localStorage.getItem('accessToken'),
-                email: localStorage.getItem('email'),
-                // id: localStorage.getItem('id')
-            });
+            const res = await axios.get<AuthResponse>(`${process.env.REACT_APP_BASE_URL}/auth/refresh`, {withCredentials: true});
             localStorage.setItem('accessToken', res.data.accessToken);
-            localStorage.setItem('refreshToken', res.data.refreshToken);
-            localStorage.setItem('email', res.data.email);
-            localStorage.setItem('id', res.data.id);
             return axiosApi.request(originalRequest);
         } catch (e) {
             console.log('Пользователь не авторизован');

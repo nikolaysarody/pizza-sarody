@@ -19,12 +19,9 @@ function App() {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        if (localStorage.getItem('refreshToken')) {
-            dispatch(checkAuth());
-        }
+        dispatch(checkAuth());
         dispatch(fetchPizza());
         dispatch(fetchAction());
-        // dispatch(fetchAddresses());
     }, []);
 
     return (

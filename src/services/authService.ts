@@ -11,7 +11,7 @@ export default class AuthService {
         return axiosApi.post<AuthResponse>('/auth/registration', {email, password});
     }
 
-    static async logout(refreshToken: string): Promise<void> {
-        return axiosApi.post('/auth/logout', {refreshToken});
+    static async logout(): Promise<void> {
+        return axiosApi.get('/auth/logout');
     }
 }
