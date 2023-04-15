@@ -36,11 +36,11 @@ const Cart: React.FC = () => {
                 <img src={cartImg} alt='cart' width='24' height='24'/>
                 {cartCounter()}
             </div>
-            {/*{cartToggle ? <div className="cart__outside-wrapper" onClick={(e) => {*/}
-            {/*    if(e.target === e.currentTarget){*/}
-            {/*        setCartToggle(prev => !prev)*/}
-            {/*    }*/}
-            {/*}}></div> : null}*/}
+            {cartToggle ? <div className="cart__outside-wrapper" onClick={(e) => {
+                if(e.target === e.currentTarget){
+                    setCartToggle(prev => !prev)
+                }
+            }}></div> : null}
             <CartMenu toggle={cartToggle} setToggle={() => setCartToggle(prev => !prev)}/>
         </div>
     );
