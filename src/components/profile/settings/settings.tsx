@@ -14,14 +14,14 @@ const Settings: React.FC = () => {
                         Логин
                         <input type="text"/>
                     </label>
-                    <label>
-                        Старый пароль
-                        <input type="text"/>
-                    </label>
-                    <label>
-                        Новый пароль
-                        <input type="text"/>
-                    </label>
+                    {/*<label>*/}
+                    {/*    Старый пароль*/}
+                    {/*    <input type="text"/>*/}
+                    {/*</label>*/}
+                    {/*<label>*/}
+                    {/*    Новый пароль*/}
+                    {/*    <input type="text"/>*/}
+                    {/*</label>*/}
                     <input type="submit" value="Сохранить"/>
                 </form>
             </div>
