@@ -19,7 +19,9 @@ function App() {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        dispatch(checkAuth());
+        if (localStorage.getItem('accessToken')) {
+            dispatch(checkAuth());
+        }
         dispatch(fetchPizza());
         dispatch(fetchAction());
     }, []);

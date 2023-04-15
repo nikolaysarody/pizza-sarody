@@ -68,10 +68,11 @@ export const checkAuth = () => {
             dispatch(setAuth(false));
             dispatch(setUser({} as IUser));
             if (isAxiosError(e) && e.response) {
-                dispatch(fetchAuthError(e.response.statusText));
+                console.log(e)
+                dispatch(fetchAuthError(e.response.data.message));
             }
-            if (e instanceof Error)
-                dispatch(fetchAuthError(e.message));
+            // if (e instanceof Error)
+            //     dispatch(fetchAuthError(e.message));
         }
     }
 }
