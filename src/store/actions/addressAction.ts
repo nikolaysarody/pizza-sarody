@@ -7,6 +7,7 @@ import {
 } from '../slices/addressSlice';
 import AddressService from '../../services/addressService';
 import {IAddress} from '../../models/address/models';
+import {isAxiosError} from 'axios';
 
 export const fetchAddresses = () => {
     return async (dispatch: AppDispatch) => {
@@ -15,7 +16,9 @@ export const fetchAddresses = () => {
             const res = await AddressService.getAddresses();
             dispatch(fetchAddressesSuccess(res.data));
         } catch (e) {
-            dispatch(fetchAddressError(e as Error));
+            if (isAxiosError(e) && e.response) {
+                dispatch(fetchAddressError(e.response.data.message));
+            }
         }
     }
 }
@@ -27,7 +30,9 @@ export const addAddress = (data: IAddress) => {
             const res = await AddressService.addAddress(data);
             dispatch(appendedAddress(res.data));
         } catch (e) {
-            dispatch(fetchAddressError(e as Error));
+            if (isAxiosError(e) && e.response) {
+                dispatch(fetchAddressError(e.response.data.message));
+            }
         }
     }
 }
@@ -39,7 +44,9 @@ export const deleteAddress = (id: string) => {
             const res = await AddressService.deleteAddress(id);
             dispatch(fetchAddressesSuccess(res.data));
         } catch (e) {
-            dispatch(fetchAddressError(e as Error));
+            if (isAxiosError(e) && e.response) {
+                dispatch(fetchAddressError(e.response.data.message));
+            }
         }
     }
 }
@@ -50,7 +57,9 @@ export const setDefaultAddress = (id: string) => {
             const res = await AddressService.setDefaultAddress(id);
             dispatch(fetchAddressesSuccess(res.data));
         } catch (e) {
-            dispatch(fetchAddressError(e as Error));
+            if (isAxiosError(e) && e.response) {
+                dispatch(fetchAddressError(e.response.data.message));
+            }
         }
     }
 }

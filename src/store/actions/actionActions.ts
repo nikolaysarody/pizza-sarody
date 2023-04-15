@@ -1,6 +1,7 @@
 import axiosApi from "../../axios/index";
 import {AppDispatch} from "../index";
 import {fetchingAction, fetchActionSuccess, fetchActionError} from "../slices/actionSlice";
+import {isAxiosError} from 'axios';
 
 export const fetchAction = () => {
     return async (dispatch: AppDispatch) => {
@@ -9,7 +10,9 @@ export const fetchAction = () => {
             const res = await axiosApi.get('/action');
             dispatch(fetchActionSuccess(res.data));
         } catch (e) {
-            dispatch(fetchActionError(e as Error));
+            if (isAxiosError(e) && e.response) {
+                dispatch(fetchActionError(e.response.data.message));
+            }
         }
     }
 }

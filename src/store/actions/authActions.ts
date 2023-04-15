@@ -33,10 +33,8 @@ export const registration = (email: string, password: string) => {
             setItems(res, dispatch);
         } catch (e) {
             if (isAxiosError(e) && e.response) {
-                dispatch(fetchAuthError(e.response.statusText));
+                dispatch(fetchAuthError(e.response.data.message));
             }
-            if (e instanceof Error)
-                dispatch(fetchAuthError(e.message));
         }
     }
 }
@@ -50,10 +48,8 @@ export const logout = () => {
             dispatch(setUser({} as IUser));
         } catch (e) {
             if (isAxiosError(e) && e.response) {
-                dispatch(fetchAuthError(e.response.statusText));
+                dispatch(fetchAuthError(e.response.data.message));
             }
-            if (e instanceof Error)
-                dispatch(fetchAuthError(e.message));
         }
     }
 }
