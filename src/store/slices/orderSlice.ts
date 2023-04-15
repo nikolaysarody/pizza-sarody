@@ -1,4 +1,4 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {OrderResponse} from '../../models/order/models';
 import {IPizza} from '../../models/pizza/models';
 
@@ -33,6 +33,8 @@ const orderSlice = createSlice({
                 });
             }
             state.totalPrice = state.totalPrice + action.payload.price;
+            localStorage.setItem('pizza', JSON.stringify(state.pizza));
+            localStorage.setItem('price', JSON.stringify(state.totalPrice));
         },
         deleteItemInOrder(state, action: PayloadAction<Pick<IPizza, '_id' | 'price'>>) {
             if (state.pizza.some((item: IPizza) => item._id === action.payload._id)) {
@@ -46,6 +48,8 @@ const orderSlice = createSlice({
                     }
                 });
                 state.totalPrice = state.totalPrice - action.payload.price;
+                localStorage.setItem('pizza', JSON.stringify(state.pizza));
+                localStorage.setItem('price', JSON.stringify(state.totalPrice));
             }
         },
         removeItemInOrder(state, action: PayloadAction<string>) {
@@ -54,36 +58,55 @@ const orderSlice = createSlice({
                     if (item._id === action.payload && item.count) {
                         state.pizza.splice(index, 1);
                         state.totalPrice = state.totalPrice - item.price * item.count;
+                        localStorage.setItem('pizza', JSON.stringify(state.pizza));
+                        localStorage.setItem('price', state.totalPrice.toString());
                     }
                 });
             }
         },
-        fetchOrdersSuccess (state, action: PayloadAction<OrderResponse[]>){
+        fetchOrdersSuccess(state, action: PayloadAction<OrderResponse[]>) {
             state.loading = false;
             state.items = action.payload;
         },
-        fetchingOrder(state){
+        fetchingOrder(state) {
             state.loading = true;
         },
         appendedOrder(state) {
             state.loading = false;
         },
-        fetchOrderError(state, action: PayloadAction<Error>){
+        fetchOrderError(state, action: PayloadAction<Error>) {
             state.loading = false;
             state.error = action.payload.message;
         },
         clearAll(state) {
             state.pizza = [];
             state.totalPrice = 0;
+            localStorage.removeItem('pizza');
+            localStorage.removeItem('price');
         },
         deleteOrderItem(state, action: PayloadAction<number>) {
             state.items.splice(state.items.findIndex((item) => {
                 return item.orderNumber === action.payload;
             }), 1);
+        },
+        initCart(state) {
+            state.pizza = JSON.parse(localStorage.getItem('pizza')!);
+            state.totalPrice = +localStorage.getItem('price')!;
         }
     }
 });
 
-export const {addItemInOrder, deleteItemInOrder, removeItemInOrder, fetchOrdersSuccess, fetchingOrder, fetchOrderError, clearAll, appendedOrder, deleteOrderItem} = orderSlice.actions;
+export const {
+    addItemInOrder,
+    deleteItemInOrder,
+    removeItemInOrder,
+    fetchOrdersSuccess,
+    fetchingOrder,
+    fetchOrderError,
+    clearAll,
+    appendedOrder,
+    deleteOrderItem,
+    initCart
+} = orderSlice.actions;
 
 export default orderSlice.reducer;

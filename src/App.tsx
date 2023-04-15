@@ -14,6 +14,7 @@ import AboutPage from './components/pages/aboutPage';
 import './App.scss';
 import CheckoutPage from './components/pages/checkoutPage';
 import PrivateRoute from './components/router/privateRoute';
+import {initCart} from './store/slices/orderSlice';
 
 function App() {
     const dispatch = useAppDispatch();
@@ -21,6 +22,9 @@ function App() {
     useEffect(() => {
         if (localStorage.getItem('accessToken')) {
             dispatch(checkAuth());
+        }
+        if (localStorage.getItem('pizza')) {
+            dispatch(initCart());
         }
         dispatch(fetchPizza());
         dispatch(fetchAction());
