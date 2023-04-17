@@ -38,33 +38,41 @@ const Addresses: React.FC = () => {
                         <form onSubmit={onSubmit}>
                             <label>
                                 Улица
-                                <input {...register('street', {
-                                    required: 'Поле обязательно к заполнению'
-                                })}/>
+                                <input placeholder="Пушкина"
+                                       {...register('street', {
+                                           required: 'Поле обязательно к заполнению'
+                                       })}/>
                             </label>
-                            {errors?.street ? <p className="addresses__error">{errors.street.message}</p> : null}
+                            {errors?.street ?
+                                <p className="addresses__container-form-error">{errors.street.message}</p> : null}
                             <label>
                                 Дом
-                                <input {...register('house', {
-                                    required: 'Поле обязательно к заполнению'
-                                })}/>
+                                <input placeholder="12"
+                                       {...register('house', {
+                                           required: 'Поле обязательно к заполнению'
+                                       })}/>
                             </label>
-                            {errors?.house ? <p className="addresses__error">{errors.house.message}</p> : null}
+                            {errors?.house ?
+                                <p className="addresses__container-form-error">{errors.house.message}</p> : null}
                             <label>
                                 Подъезд
-                                <input type="number" {...register('entrance', {
-                                    required: 'Поле должно содержать только цифры',
-                                    maxLength: {
-                                        value: 2,
-                                        message: 'Максимум 2 символа'
-                                    },
-                                    valueAsNumber: true
-                                })}/>
+                                <input type="number"
+                                       placeholder="1"
+                                       {...register('entrance', {
+                                           required: 'Поле должно содержать только цифры',
+                                           maxLength: {
+                                               value: 2,
+                                               message: 'Максимум 2 символа'
+                                           },
+                                           valueAsNumber: true
+                                       })}/>
                             </label>
-                            {errors?.entrance ? <p className="addresses__error">{errors.entrance.message}</p> : null}
+                            {errors?.entrance ?
+                                <p className="addresses__container-form-error">{errors.entrance.message}</p> : null}
                             <label>
                                 Квартира
                                 <input type="number"
+                                       placeholder="23"
                                        {...register('apartment', {
                                            required: 'Поле должно содержать только цифры',
                                            maxLength: {
@@ -74,10 +82,12 @@ const Addresses: React.FC = () => {
                                            valueAsNumber: true
                                        })}/>
                             </label>
-                            {errors?.apartment ? <p className="addresses__error">{errors.apartment.message}</p> : null}
+                            {errors?.apartment ?
+                                <p className="addresses__container-form-error">{errors.apartment.message}</p> : null}
                             <label>
                                 Этаж
                                 <input type="number"
+                                       placeholder="5"
                                        {...register('floor', {
                                            required: 'Поле должно содержать только цифры',
                                            maxLength: {
@@ -87,7 +97,8 @@ const Addresses: React.FC = () => {
                                            valueAsNumber: true
                                        })}/>
                             </label>
-                            {errors?.floor ? <p className="addresses__error">{errors.floor.message}</p> : null}
+                            {errors?.floor ?
+                                <p className="addresses__container-form-error">{errors.floor.message}</p> : null}
                             <input type="submit" value="Добавить"/>
                         </form>
                     </div>

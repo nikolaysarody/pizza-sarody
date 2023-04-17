@@ -1,19 +1,59 @@
 import React from 'react';
 import ProfileNav from '../profileNav/profileNav';
 import './settings.scss';
-import {Pages} from '../../../models/user/models';
+import {IUser, Pages} from '../../../models/user/models';
+import {useForm} from 'react-hook-form';
+import {useAppDispatch, useAppSelector} from '../../../hook';
+import {changeEmail, changeUsername} from '../../../store/actions/userActions';
 
 const Settings: React.FC = () => {
+    const dispatch = useAppDispatch();
+    const user = useAppSelector(state => state.user.item);
+    const userError = useAppSelector(state => state.user.error);
+    const userLoad = useAppSelector(state => state.user.load);
+    const {
+        register,
+        handleSubmit,
+        formState: {errors}
+    } = useForm<IUser>({
+        mode: 'onBlur'
+    });
+    const onSubmit = handleSubmit(data => {
+        if (data.username) {
+            dispatch(changeUsername(data.username));
+        }
+        if (data.email) {
+            dispatch(changeEmail(data.email));
+        }
+    });
+
     return (
         <div className="settings">
             <ProfileNav page={Pages.Settings}/>
             <div className="settings__container-form">
                 <h1>Личные данные</h1>
-                <form>
+                <form onSubmit={onSubmit}>
                     <label>
-                        Логин
-                        <input type="text"/>
+                        Имя
+                        <input placeholder={user.username}
+                               {...register('username')}/>
                     </label>
+                    {errors?.username ?
+                        <p className="settings__container-form-error">{errors.username.message}</p> : null}
+                    {userError.username ?
+                        <p className="settings__container-form-error">{userError.username}</p> : null}
+                    <label>
+                        Почта
+                        <input type="email"
+                               placeholder={user.email}
+                               {...register('email')}/>
+                    </label>
+                    {errors?.email ?
+                        <p className="settings__container-form-error">{errors.email.message}</p> : null}
+                    {userError.email ?
+                        <p className="settings__container-form-error">{userError.email}</p> : null}
+                    {userLoad ?
+                        <p className="settings__container-form-error">Успешно</p> : null}
                     <input type="submit" value="Сохранить"/>
                 </form>
             </div>

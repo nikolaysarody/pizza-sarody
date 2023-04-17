@@ -6,7 +6,7 @@ import './userPopUp.scss';
 import UserMenu from './userMenu/userMenu';
 
 const UserPopUp: React.FC = () => {
-    const user = useAppSelector(state => state.auth.user);
+    const user = useAppSelector(state => state.user.item);
     const isAuth = useAppSelector(state => state.auth.isAuth);
     const [popUpSwitch, setPopUpSwitch] = useState<boolean>(false);
 
@@ -26,7 +26,7 @@ const UserPopUp: React.FC = () => {
                      width="22"
                      height="22"
                 />
-                <span className="popup__user-login">{user.email}</span>
+                <span className="popup__user-login">{user.username}</span>
             </div>
             {popUpSwitch ? <div className="popup__outside-wrapper" onClick={(e) => {
                 if(e.target === e.currentTarget){

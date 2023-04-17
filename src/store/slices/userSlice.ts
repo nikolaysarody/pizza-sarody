@@ -2,33 +2,42 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {IUser} from '../../models/user/models';
 
 interface UserState {
-    user: IUser;
-    isAuth: boolean;
-    error: string;
+    item: IUser;
+    error: {
+        username: string,
+        email: string
+    },
+    load: boolean
 }
 
 const initialState: UserState = {
-    user: {} as IUser,
-    isAuth: false,
-    error: ''
+    item: {} as IUser,
+    error: {
+        username: '',
+        email: ''
+    },
+    load: false
 }
 
 const userSlice = createSlice({
-    name: 'auth',
+    name: 'user',
     initialState,
     reducers: {
-        setAuth(state, action: PayloadAction<boolean>) {
-            state.isAuth = action.payload;
-        },
         setUser(state, action: PayloadAction<IUser>) {
-            state.user = action.payload;
+            state.item = action.payload;
         },
-        fetchAuthError(state, action: PayloadAction<String>) {
-            state.error = action.payload.toString();
+        fetchUsernameError(state, action: PayloadAction<String>) {
+            state.error.username = action.payload.toString();
+        },
+        fetchEmailError(state, action: PayloadAction<String>) {
+            state.error.email = action.payload.toString();
+        },
+        setLoad(state, action: PayloadAction<boolean>) {
+            state.load = action.payload;
         }
     },
 });
 
-export const {setAuth, setUser, fetchAuthError} = userSlice.actions;
+export const {setUser, fetchUsernameError, fetchEmailError, setLoad} = userSlice.actions;
 
 export default userSlice.reducer;
