@@ -5,15 +5,6 @@ import Spinner from "../../spinner/spinner";
 import './pizzaItem.scss';
 import {IPizza} from '../../../models/pizza/models';
 
-
-// interface PizzaItemProps {
-//     title: string;
-//     description: string;
-//     price: number;
-//     img: string;
-//     id: string;
-// }
-
 const PizzaItem: React.FC<Omit<IPizza, 'count'>> = ({title, description, price, img, _id}) => {
     const [imageStatus, setImageStatus] = useState(false);
     const [pizzaCount, setPizzaCount] = useState<number | undefined>(0);
@@ -55,7 +46,6 @@ const PizzaItem: React.FC<Omit<IPizza, 'count'>> = ({title, description, price, 
                            value='-'
                            onClick={() => {
                                dispatch(deleteItemInOrder({_id, price}));
-                               // setPizzaCount(prev => prev - 1);
                            }}/>
                     <span className='pizza__count'>{pizzaCount}</span>
                     <input type='button'
@@ -63,7 +53,6 @@ const PizzaItem: React.FC<Omit<IPizza, 'count'>> = ({title, description, price, 
                            value='+'
                            onClick={() => {
                                dispatch(addItemInOrder({title, description, price, img, _id}));
-                               // setPizzaCount(prev => prev + 1);
                            }}/>
                 </div>
             );
@@ -73,7 +62,6 @@ const PizzaItem: React.FC<Omit<IPizza, 'count'>> = ({title, description, price, 
                       value='Выбрать'
                       onClick={() => {
                           dispatch(addItemInOrder({title, description, price, img, _id}));
-                          // setPizzaCount((prev) => prev + 1);
                       }}/>;
     };
 
@@ -81,7 +69,7 @@ const PizzaItem: React.FC<Omit<IPizza, 'count'>> = ({title, description, price, 
         <li className='pizza__item'>
             <div className='pizza__container'>
                 {load()}
-                <img src={img} alt='' onLoad={() => setImageStatus(true)}/>
+                <img loading='lazy' src={img} alt='' onLoad={() => setImageStatus(true)}/>
                 <div className='pizza__description'>
                     <span className="pizza__title">{title}</span>
                     <span className="pizza__span">{description}</span>

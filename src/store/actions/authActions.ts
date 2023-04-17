@@ -7,6 +7,8 @@ import {IUser} from '../../models/user/models';
 
 const setItems = (res: AxiosResponse<AuthResponse>, dispatch: AppDispatch) => {
     localStorage.setItem('accessToken', res.data.accessToken);
+    localStorage.setItem('userId', res.data.id);
+    localStorage.setItem('cartId', res.data.id);
     dispatch(setAuth(true));
     dispatch(setUser({email: res.data.email, id: res.data.id}));
 }
@@ -44,6 +46,7 @@ export const logout = () => {
         try {
             await AuthService.logout();
             localStorage.removeItem('accessToken');
+            localStorage.removeItem('userId');
             dispatch(setAuth(false));
             dispatch(setUser({} as IUser));
         } catch (e) {
@@ -61,14 +64,13 @@ export const checkAuth = () => {
             setItems(res, dispatch);
         } catch (e) {
             localStorage.removeItem('accessToken');
+            localStorage.removeItem('userId');
             dispatch(setAuth(false));
             dispatch(setUser({} as IUser));
             if (isAxiosError(e) && e.response) {
                 console.log(e)
                 dispatch(fetchAuthError(e.response.data.message));
             }
-            // if (e instanceof Error)
-            //     dispatch(fetchAuthError(e.message));
         }
     }
 }

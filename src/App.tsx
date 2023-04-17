@@ -22,8 +22,12 @@ function App() {
     useEffect(() => {
         if (localStorage.getItem('accessToken')) {
             dispatch(checkAuth());
+            if (localStorage.getItem('pizza') &&
+                localStorage.getItem('cartId') === localStorage.getItem('userId')) {
+                dispatch(initCart());
+            }
         }
-        if (localStorage.getItem('pizza')) {
+        if (localStorage.getItem('cartId') === 'no-user') {
             dispatch(initCart());
         }
         dispatch(fetchPizza());

@@ -35,6 +35,10 @@ const orderSlice = createSlice({
             state.totalPrice = state.totalPrice + action.payload.price;
             localStorage.setItem('pizza', JSON.stringify(state.pizza));
             localStorage.setItem('price', JSON.stringify(state.totalPrice));
+            localStorage.getItem('userId') ?
+                localStorage.setItem('cartId', localStorage.getItem('userId')!) :
+                localStorage.setItem('cartId', 'no-user');
+
         },
         deleteItemInOrder(state, action: PayloadAction<Pick<IPizza, '_id' | 'price'>>) {
             if (state.pizza.some((item: IPizza) => item._id === action.payload._id)) {
@@ -51,6 +55,9 @@ const orderSlice = createSlice({
                 localStorage.setItem('pizza', JSON.stringify(state.pizza));
                 localStorage.setItem('price', JSON.stringify(state.totalPrice));
             }
+            if (state.totalPrice === 0) {
+                localStorage.removeItem('cartId');
+            }
         },
         removeItemInOrder(state, action: PayloadAction<string>) {
             if (state.pizza.some((item: IPizza) => item._id === action.payload)) {
@@ -60,6 +67,7 @@ const orderSlice = createSlice({
                         state.totalPrice = state.totalPrice - item.price * item.count;
                         localStorage.setItem('pizza', JSON.stringify(state.pizza));
                         localStorage.setItem('price', state.totalPrice.toString());
+                        localStorage.removeItem('cartId');
                     }
                 });
             }
