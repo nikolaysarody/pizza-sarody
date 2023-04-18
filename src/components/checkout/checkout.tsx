@@ -6,7 +6,7 @@ import OrderItemDetail from '../profile/orders/orderItem/orderItemDetail/orderIt
 import './checkout.scss';
 import {useAppDispatch, useAppSelector} from '../../hook';
 import {addOrder} from '../../store/actions/orderActions';
-import AcceptModal from './acceptModal/acceptModal';
+import Modal from './modal/modal';
 import {fetchOrderError} from '../../store/slices/orderSlice';
 import {fetchAddresses} from '../../store/actions/addressAction';
 import {useNavigate} from 'react-router-dom';
@@ -17,7 +17,9 @@ const Checkout: React.FC = () => {
     const price = useAppSelector(state => state.order.totalPrice);
     const addresses = useAppSelector(state => state.address.items);
     const [paymentOption, setPaymentOption] = useState<OrderPaymentOption>(OrderPaymentOption.Cash);
-    const [modalVisible, setModalVisible] = useState<boolean>(false);
+    const [modalRegistrationVisible, setModalRegistrationVisible] = useState<boolean>(false);
+    const [modalAddressVisible, setModalAddressVisible] = useState<boolean>(false);
+    const [modalAcceptVisible, setModalAcceptVisible] = useState<boolean>(false);
     const [orderNumber, setOrderNumber] = useState<number>(0);
     const navigate = useNavigate();
 
@@ -27,7 +29,18 @@ const Checkout: React.FC = () => {
 
     return (
         <div className="ordering">
-            <AcceptModal orderNumber={orderNumber} visible={modalVisible} onClose={() => setModalVisible(false)}/>
+            <Modal title={`Заказ №${orderNumber} принят!`}
+                   visible={modalAcceptVisible}
+                   onClose={() => setModalAcceptVisible(false)}
+                   isAccept={true}/>
+            <Modal title={`Пожалуйста, зарегистрируйтесь`}
+                   visible={modalRegistrationVisible}
+                   onClose={() => setModalRegistrationVisible(false)}
+                   isAccept={false}/>
+            <Modal title={`Пожалуйста, добавьте адрес доставки`}
+                   visible={modalAddressVisible}
+                   onClose={() => setModalAddressVisible(false)}
+                   isAccept={false}/>
             <h1>Оформление заказа</h1>
             <div className="ordering__container">
                 <div className="ordering__wrapper">
@@ -55,24 +68,33 @@ const Checkout: React.FC = () => {
                         <input type="button"
                                value="Заказать"
                                onClick={() => {
-                                   dispatch(addOrder({
-                                       paymentStatus: OrderPaymentStatus.NotPaid,
-                                       paymentOption: paymentOption,
-                                       orderStatus: OrderStatus.Waited,
-                                       cost: price,
-                                       pizzas
-                                   }))
-                                       .then(res => setOrderNumber(res!.data.orderNumber!))
-                                       .catch(e => dispatch(fetchOrderError(e as Error)));
-                                   setModalVisible(true);
+                                   if (addresses.length !== 0) {
+                                       if (localStorage.getItem('userId')) {
+                                           dispatch(addOrder({
+                                               paymentStatus: OrderPaymentStatus.NotPaid,
+                                               paymentOption: paymentOption,
+                                               orderStatus: OrderStatus.Waited,
+                                               cost: price,
+                                               pizzas
+                                           }))
+                                               .then(res => setOrderNumber(res!.data.orderNumber!))
+                                               .catch(e => dispatch(fetchOrderError(e as Error)));
+                                           setModalAcceptVisible(true);
+                                       } else setModalRegistrationVisible(true);
+                                   } else setModalAddressVisible(true);
                                }}/>
                     </div>
                 </div>
                 <div className="ordering__wrapper">
                     <h3>Адрес доставки:</h3>
                     <ul className="ordering__addresses">
-                        {addresses.length !== 0 ? addresses.map((item) => <AddressItem {...item} key={item._id}/>) : <span className="ordering__addresses--no-addresses">Нет адресов</span>}
-                        <input type="button" value="Добавить адрес" onClick={() => navigate("/addresses")}/>
+                        {addresses.length !== 0 ? addresses.map((item) => <AddressItem {...item} key={item._id}/>) :
+                            <span className="ordering__addresses--no-addresses">Нет адресов</span>}
+                        <input type="button" value="Добавить адрес" onClick={() => {
+                            localStorage.getItem('userId') ?
+                                navigate('/addresses') :
+                                setModalRegistrationVisible(true);
+                        }}/>
                     </ul>
                 </div>
             </div>

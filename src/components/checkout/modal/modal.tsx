@@ -1,44 +1,48 @@
 import React from 'react';
 import exitButton from '../../../icons/close_black.png';
-import './acceptModal.scss';
+import './modal.scss';
 import {createPortal} from 'react-dom';
 import {useNavigate} from 'react-router-dom';
 import pizzaImg from '../../../icons/accept_order.png';
 import {clearAll} from '../../../store/slices/orderSlice';
 import {useAppDispatch} from '../../../hook';
 
-interface AcceptModalProps {
-    orderNumber: number;
+interface ModalProps {
+    title: string;
     visible: boolean,
-    onClose: () => void
+    onClose: () => void,
+    isAccept: boolean
 }
 
-const AcceptModal: React.FC<AcceptModalProps> = ({orderNumber, visible, onClose}) => {
+const Modal: React.FC<ModalProps> = ({title, visible, onClose, isAccept}) => {
     const dispatch = useAppDispatch();
     const modalPortal = document.getElementById('modal');
     const navigate = useNavigate();
 
     if (visible) {
         return modalPortal ? createPortal(
-            <div className="accept-modal" onClick={(e) => {
-                if (e.target === e.currentTarget) {
+            <div className="modal" onClick={(e) => {
+                if (e.target === e.currentTarget && isAccept) {
                     onClose();
                     dispatch(clearAll());
-                    return navigate("/orders");
+                    return navigate('/orders');
                 }
+                onClose();
             }}>
-                <div className="accept-modal__wrapper">
-                    <img className="accept-modal__top-exit-btn" src={exitButton}
+                <div className="modal__wrapper">
+                    <img className="modal__top-exit-btn" src={exitButton}
                          alt="exit"
                          onClick={() => {
                              onClose();
-                             dispatch(clearAll());
-                             navigate("/orders");
+                             if (isAccept) {
+                                 dispatch(clearAll());
+                                 navigate('/orders');
+                             }
                          }}
                     />
-                    <div className="accept-modal__container">
-                        <img className="accept-modal__container-img" src={pizzaImg} alt={orderNumber.toString()}/>
-                        <span className="accept-modal__container-title">Заказ №{orderNumber} принят!</span>
+                    <div className="modal__container">
+                        <img className="modal__container-img" src={pizzaImg} alt={title}/>
+                        <span className="modal__container-title">{title}</span>
                     </div>
 
                 </div>
@@ -49,4 +53,4 @@ const AcceptModal: React.FC<AcceptModalProps> = ({orderNumber, visible, onClose}
     }
 }
 
-export default AcceptModal;
+export default Modal;

@@ -1,11 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import userImg from '../../../icons/user.svg';
-import {useAppSelector} from '../../../hook';
+import {useAppDispatch, useAppSelector} from '../../../hook';
 import UserAuth from './userAuth/userAuth';
 import './userPopUp.scss';
 import UserMenu from './userMenu/userMenu';
+import {fetchAddresses} from '../../../store/actions/addressAction';
+import {fetchOrders} from '../../../store/actions/orderActions';
 
 const UserPopUp: React.FC = () => {
+    const dispatch = useAppDispatch();
     const user = useAppSelector(state => state.user.item);
     const isAuth = useAppSelector(state => state.auth.isAuth);
     const [popUpSwitch, setPopUpSwitch] = useState<boolean>(false);
@@ -13,6 +16,8 @@ const UserPopUp: React.FC = () => {
     useEffect(() => {
         if (isAuth) {
             setPopUpSwitch(false);
+            dispatch(fetchAddresses());
+            dispatch(fetchOrders());
         }
     }, [isAuth]);
 
