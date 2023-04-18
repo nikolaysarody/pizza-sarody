@@ -71,6 +71,9 @@ const orderSlice = createSlice({
                     }
                 });
             }
+            if (state.totalPrice === 0) {
+                localStorage.removeItem('cartId');
+            }
         },
         fetchOrdersSuccess(state, action: PayloadAction<OrderResponse[]>) {
             state.loading = false;
@@ -91,6 +94,7 @@ const orderSlice = createSlice({
             state.totalPrice = 0;
             localStorage.removeItem('pizza');
             localStorage.removeItem('price');
+            localStorage.removeItem('cartId');
         },
         deleteOrderItem(state, action: PayloadAction<number>) {
             state.items.splice(state.items.findIndex((item) => {
