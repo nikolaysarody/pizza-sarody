@@ -5,6 +5,7 @@ import actionSlice from './slices/actionSlice';
 import authSlice from './slices/authSlice';
 import addressSlice from './slices/addressSlice';
 import userSlice from './slices/userSlice';
+import promoSlice from './slices/promoSlice';
 
 const rootReducer = combineReducers({
     order: orderSlice,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
     action: actionSlice,
     auth: authSlice,
     address: addressSlice,
-    user: userSlice
+    user: userSlice,
+    promo: promoSlice
 })
 
 const store = configureStore({

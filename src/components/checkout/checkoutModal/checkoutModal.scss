@@ -1,16 +1,7 @@
 @import "./src/style/variables";
 
-.modal {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 2;
-  width: 100vw;
-  height: 100vh;
+.checkout-modal {
+  @include defaultModal();
 
   &__wrapper {
     position: relative;
@@ -26,7 +17,6 @@
 
   &__top {
     position: relative;
-    //height: 50%;
 
     &-exit-btn {
       cursor: pointer;

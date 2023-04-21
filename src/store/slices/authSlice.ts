@@ -17,8 +17,8 @@ const authSlice = createSlice({
         setAuth(state, action: PayloadAction<boolean>) {
             state.isAuth = action.payload;
         },
-        fetchAuthError(state, action: PayloadAction<String>) {
-            state.error = action.payload.toString();
+        fetchAuthError(state, action: PayloadAction<string>) {
+            state.error = action.payload;
         }
     },
 });

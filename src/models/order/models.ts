@@ -21,11 +21,11 @@ export enum OrderPaymentOption {
 }
 
 export interface IOrder {
-    paymentStatus: OrderPaymentStatus,
-    paymentOption: OrderPaymentOption,
-    orderStatus: OrderStatus,
-    cost: number
-    pizzas: IPizza[]
+    paymentStatus: OrderPaymentStatus;
+    paymentOption: OrderPaymentOption;
+    orderStatus: OrderStatus;
+    cost: number;
+    pizzas: IPizza[];
 }
 
 export interface OrderResponse extends IOrder{
@@ -33,4 +33,13 @@ export interface OrderResponse extends IOrder{
     orderNumber: number;
     address: IAddress;
     userId: string;
+}
+
+export interface IPromo {
+    title: string;
+    description: string;
+    discount: number;
+    items: IPizza[];
+    img: string;
+    expire: Date;
 }

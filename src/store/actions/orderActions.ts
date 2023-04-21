@@ -1,4 +1,4 @@
-import {AppDispatch} from "../index";
+import {AppDispatch} from '../index';
 import OrderService from '../../services/orderService';
 import {fetchingOrder, fetchOrdersSuccess, fetchOrderError, appendedOrder} from '../slices/orderSlice';
 import {IOrder} from '../../models/order/models';

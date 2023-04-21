@@ -6,10 +6,10 @@ import OrderItemDetail from '../profile/orders/orderItem/orderItemDetail/orderIt
 import './checkout.scss';
 import {useAppDispatch, useAppSelector} from '../../hook';
 import {addOrder} from '../../store/actions/orderActions';
-import Modal from './modal/modal';
 import {fetchOrderError} from '../../store/slices/orderSlice';
 import {fetchAddresses} from '../../store/actions/addressAction';
 import {useNavigate} from 'react-router-dom';
+import CheckoutModal from './checkoutModal/checkoutModal';
 
 const Checkout: React.FC = () => {
     const dispatch = useAppDispatch();
@@ -29,18 +29,18 @@ const Checkout: React.FC = () => {
 
     return (
         <div className="ordering">
-            <Modal title={`Заказ №${orderNumber} принят!`}
-                   visible={modalAcceptVisible}
-                   onClose={() => setModalAcceptVisible(false)}
-                   isAccept={true}/>
-            <Modal title={`Пожалуйста, зарегистрируйтесь`}
-                   visible={modalRegistrationVisible}
-                   onClose={() => setModalRegistrationVisible(false)}
-                   isAccept={false}/>
-            <Modal title={`Пожалуйста, добавьте адрес доставки`}
-                   visible={modalAddressVisible}
-                   onClose={() => setModalAddressVisible(false)}
-                   isAccept={false}/>
+            <CheckoutModal title={`Заказ №${orderNumber} принят!`}
+                           visible={modalAcceptVisible}
+                           onClose={() => setModalAcceptVisible(false)}
+                           isAccept={true}/>
+            <CheckoutModal title={`Пожалуйста, зарегистрируйтесь`}
+                           visible={modalRegistrationVisible}
+                           onClose={() => setModalRegistrationVisible(false)}
+                           isAccept={false}/>
+            <CheckoutModal title={`Пожалуйста, добавьте адрес доставки`}
+                           visible={modalAddressVisible}
+                           onClose={() => setModalAddressVisible(false)}
+                           isAccept={false}/>
             <h1>Оформление заказа</h1>
             <div className="ordering__container">
                 <div className="ordering__wrapper">

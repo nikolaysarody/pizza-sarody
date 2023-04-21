@@ -7,7 +7,7 @@ interface OrderState {
     error: string;
     pizza: IPizza[];
     totalPrice: number;
-    items: OrderResponse[]
+    items: OrderResponse[],
 }
 
 const initialState: OrderState = {
@@ -15,7 +15,7 @@ const initialState: OrderState = {
     error: '',
     pizza: [],
     totalPrice: 0,
-    items: []
+    items: [],
 }
 
 const orderSlice = createSlice({
@@ -118,7 +118,7 @@ export const {
     clearAll,
     appendedOrder,
     deleteOrderItem,
-    initCart
+    initCart,
 } = orderSlice.actions;
 
 export default orderSlice.reducer;

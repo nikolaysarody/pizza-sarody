@@ -1,27 +1,27 @@
 import React from 'react';
 import exitButton from '../../../icons/close_black.png';
-import './modal.scss';
+import './checkoutModal.scss';
 import {createPortal} from 'react-dom';
 import {useNavigate} from 'react-router-dom';
 import pizzaImg from '../../../icons/accept_order.png';
 import {clearAll} from '../../../store/slices/orderSlice';
 import {useAppDispatch} from '../../../hook';
 
-interface ModalProps {
+interface CheckoutModalProps {
     title: string;
     visible: boolean,
     onClose: () => void,
     isAccept: boolean
 }
 
-const Modal: React.FC<ModalProps> = ({title, visible, onClose, isAccept}) => {
+const CheckoutModal: React.FC<CheckoutModalProps> = ({title, visible, onClose, isAccept}) => {
     const dispatch = useAppDispatch();
     const modalPortal = document.getElementById('modal');
     const navigate = useNavigate();
 
     if (visible) {
         return modalPortal ? createPortal(
-            <div className="modal" onClick={(e) => {
+            <div className="checkout-modal" onClick={(e) => {
                 if (e.target === e.currentTarget && isAccept) {
                     onClose();
                     dispatch(clearAll());
@@ -29,8 +29,8 @@ const Modal: React.FC<ModalProps> = ({title, visible, onClose, isAccept}) => {
                 }
                 onClose();
             }}>
-                <div className="modal__wrapper">
-                    <img className="modal__top-exit-btn" src={exitButton}
+                <div className="checkout-modal__wrapper">
+                    <img className="checkout-modal__top-exit-btn" src={exitButton}
                          alt="exit"
                          onClick={() => {
                              onClose();
@@ -40,11 +40,10 @@ const Modal: React.FC<ModalProps> = ({title, visible, onClose, isAccept}) => {
                              }
                          }}
                     />
-                    <div className="modal__container">
-                        <img className="modal__container-img" src={pizzaImg} alt={title}/>
-                        <span className="modal__container-title">{title}</span>
+                    <div className="checkout-modal__container">
+                        <img className="checkout-modal__container-img" src={pizzaImg} alt={title}/>
+                        <span className="checkout-modal__container-title">{title}</span>
                     </div>
-
                 </div>
             </div>, modalPortal
         ) : null;
@@ -53,4 +52,4 @@ const Modal: React.FC<ModalProps> = ({title, visible, onClose, isAccept}) => {
     }
 }
 
-export default Modal;
+export default CheckoutModal;
