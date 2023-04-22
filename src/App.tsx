@@ -14,7 +14,7 @@ import AboutPage from './components/pages/aboutPage';
 import './App.scss';
 import CheckoutPage from './components/pages/checkoutPage';
 import PrivateRoute from './components/router/privateRoute';
-import {initCart} from './store/slices/orderSlice';
+import {initCart} from './store/slices/cartSlice';
 
 function App() {
     const dispatch = useAppDispatch();

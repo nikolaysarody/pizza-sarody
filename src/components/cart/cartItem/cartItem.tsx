@@ -1,9 +1,9 @@
 import React from "react";
-import {addItemInOrder, deleteItemInOrder, removeItemInOrder} from "../../../store/slices/orderSlice";
 import {useAppDispatch} from '../../../hook';
 import './cartItem.scss';
 import trash from '../../../icons/trash.svg';
 import {IPizza} from '../../../models/pizza/models';
+import {addItemInOrder, deleteItemInOrder, removeItemInOrder} from '../../../store/slices/cartSlice';
 
 const CartItem: React.FC<IPizza> = ({title, description, price, img, _id, count}) => {
     const dispatch = useAppDispatch();

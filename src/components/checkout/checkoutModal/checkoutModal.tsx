@@ -4,8 +4,8 @@ import './checkoutModal.scss';
 import {createPortal} from 'react-dom';
 import {useNavigate} from 'react-router-dom';
 import pizzaImg from '../../../icons/accept_order.png';
-import {clearAll} from '../../../store/slices/orderSlice';
 import {useAppDispatch} from '../../../hook';
+import {clearAll} from '../../../store/slices/cartSlice';
 
 interface CheckoutModalProps {
     title: string;

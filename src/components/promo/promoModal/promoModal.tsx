@@ -2,7 +2,7 @@ import React from 'react';
 import exitButton from '../../../icons/exit.svg';
 import blackExitButton from '../../../icons/close_black.png';
 import {createPortal} from 'react-dom';
-import {useAppSelector} from '../../../hook';
+import {useAppDispatch, useAppSelector} from '../../../hook';
 import {IPromo} from '../../../models/order/models';
 import './promoModal.scss';
 import pizzaImg from '../../../icons/accept_order.png';
@@ -24,6 +24,7 @@ const PromoModal: React.FC<PromoModalProps> = ({
                                                }) => {
     const modalPortal = document.getElementById('modal');
     const error = useAppSelector(state => state.promo.error);
+    const dispatch = useAppDispatch();
 
     if (visible) {
         return modalPortal ? createPortal(
@@ -45,6 +46,12 @@ const PromoModal: React.FC<PromoModalProps> = ({
                     </div>
                     <div className="promo-modal__down">
                         <span className="promo-modal__down-text">{description}</span>
+                        <input className="promo-modal__down-btn"
+                               type="button"
+                               value="Добавить"
+                               onClick={() => {
+                                   // dispatch(appendToCard());
+                               }}/>
                     </div>
                 </div> :
                 <div className="promo-modal__wrapper">

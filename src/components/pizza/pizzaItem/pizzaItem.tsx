@@ -1,14 +1,14 @@
 import React, {useEffect, useState} from "react";
-import {addItemInOrder, deleteItemInOrder} from "../../../store/slices/orderSlice";
 import {useAppDispatch, useAppSelector} from "../../../hook";
 import Spinner from "../../spinner/spinner";
 import './pizzaItem.scss';
 import {IPizza} from '../../../models/pizza/models';
+import {addItemInOrder, deleteItemInOrder} from '../../../store/slices/cartSlice';
 
 const PizzaItem: React.FC<Omit<IPizza, 'count'>> = ({title, description, price, img, _id}) => {
     const [imageStatus, setImageStatus] = useState(false);
     const [pizzaCount, setPizzaCount] = useState<number | undefined>(0);
-    const pizzaInOrder = useAppSelector(state => state.order.pizza);
+    const pizzaInOrder = useAppSelector(state => state.cart.pizza);
 
     useEffect(() => {
         let index = 0;

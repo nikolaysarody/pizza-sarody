@@ -9,7 +9,7 @@ import {useAppSelector} from "../../../hook";
 
 const SideNav: React.FC = () => {
     const [sideNavSwitch, setSideNavSwitch] = useState(false);
-    const pizzas = useAppSelector(state => state.order.pizza);
+    const pizzas = useAppSelector(state => state.cart.pizza);
     const [count, setCount] = useState(0);
     const sideNav = useRef<HTMLDivElement>(null);
 

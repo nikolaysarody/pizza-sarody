@@ -5,7 +5,7 @@ import cartImg from '../../icons/cart.svg';
 import CartMenu from './cartMenu/cartMenu';
 
 const Cart: React.FC = () => {
-    const pizzas = useAppSelector(state => state.order.pizza);
+    const pizzas = useAppSelector(state => state.cart.pizza);
     const [count, setCount] = useState(0);
     const [cartToggle, setCartToggle] = useState(false);
 

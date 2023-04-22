@@ -13,8 +13,8 @@ import CheckoutModal from './checkoutModal/checkoutModal';
 
 const Checkout: React.FC = () => {
     const dispatch = useAppDispatch();
-    const pizzas = useAppSelector(state => state.order.pizza);
-    const price = useAppSelector(state => state.order.totalPrice);
+    const pizzas = useAppSelector(state => state.cart.pizza);
+    const price = useAppSelector(state => state.cart.totalPrice);
     const addresses = useAppSelector(state => state.address.items);
     const [paymentOption, setPaymentOption] = useState<OrderPaymentOption>(OrderPaymentOption.Cash);
     const [modalRegistrationVisible, setModalRegistrationVisible] = useState<boolean>(false);

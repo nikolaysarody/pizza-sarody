@@ -52,7 +52,7 @@
       top: 50px;
       left: 50px;
       font-family: 'Montserrat', sans-serif;
-      font-weight: 600;
+      font-weight: 400;
       font-size: 34px;
       line-height: 41px;
       color: #FFFFFF;
@@ -93,14 +93,20 @@
     display: flex;
     //align-items: center;
     justify-content: center;
+    flex-direction: column;
     height: 50%;
+    margin: 0 50px 0 50px;
 
     &-text {
       font-family: 'Montserrat', sans-serif;;
       font-style: normal;
       font-weight: 500;
       font-size: 24px;
-      margin: 50px 50px 0 50px;
+    }
+
+    &-btn {
+      @include defaultBtn();
+      font-weight: 400;
     }
   }
 }

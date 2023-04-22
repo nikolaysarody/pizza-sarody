@@ -4,7 +4,7 @@ import CartItem from "../cartItem/cartItem";
 import {useAppSelector} from "../../../hook";
 
 function CartList() {
-    const pizzas = useAppSelector(state => state.order.pizza);
+    const pizzas = useAppSelector(state => state.cart.pizza);
 
     return (
         <ul className='cart-list'>
