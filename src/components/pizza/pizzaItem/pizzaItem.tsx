@@ -3,7 +3,7 @@ import {useAppDispatch, useAppSelector} from "../../../hook";
 import Spinner from "../../spinner/spinner";
 import './pizzaItem.scss';
 import {IPizza} from '../../../models/pizza/models';
-import {addItemInOrder, deleteItemInOrder} from '../../../store/slices/cartSlice';
+import {addItemInCart, deleteItemInCart} from '../../../store/slices/cartSlice';
 
 const PizzaItem: React.FC<Omit<IPizza, 'count'>> = ({title, description, price, img, _id}) => {
     const [imageStatus, setImageStatus] = useState(false);
@@ -45,14 +45,14 @@ const PizzaItem: React.FC<Omit<IPizza, 'count'>> = ({title, description, price, 
                            className='pizza__btn-change'
                            value='-'
                            onClick={() => {
-                               dispatch(deleteItemInOrder({_id, price}));
+                               dispatch(deleteItemInCart({_id, price}));
                            }}/>
                     <span className='pizza__count'>{pizzaCount}</span>
                     <input type='button'
                            className='pizza__btn-change'
                            value='+'
                            onClick={() => {
-                               dispatch(addItemInOrder({title, description, price, img, _id}));
+                               dispatch(addItemInCart({title, description, price, img, _id}));
                            }}/>
                 </div>
             );
@@ -61,7 +61,7 @@ const PizzaItem: React.FC<Omit<IPizza, 'count'>> = ({title, description, price, 
                       className='pizza__btn-null'
                       value='Выбрать'
                       onClick={() => {
-                          dispatch(addItemInOrder({title, description, price, img, _id}));
+                          dispatch(addItemInCart({title, description, price, img, _id}));
                       }}/>;
     };
 

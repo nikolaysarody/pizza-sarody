@@ -1,21 +1,24 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {IPizza} from '../../models/pizza/models';
+import {IPromo} from '../../models/order/models';
 
 interface CartState {
     pizza: IPizza[];
     totalPrice: number;
+    promo: IPromo;
 }
 
 const initialState: CartState = {
     pizza: [],
     totalPrice: 0,
+    promo: {} as IPromo
 }
 
 const cartSlice = createSlice({
     name: 'cart',
     initialState,
     reducers: {
-        addItemInOrder(state, action: PayloadAction<IPizza>) {
+        addItemInCart(state, action: PayloadAction<IPizza>) {
             if (!state.pizza.some((item: IPizza) => item._id === action.payload._id)) {
                 state.pizza.push({...action.payload, count: 1});
             } else {
@@ -31,9 +34,8 @@ const cartSlice = createSlice({
             localStorage.getItem('userId') ?
                 localStorage.setItem('cartId', localStorage.getItem('userId')!) :
                 localStorage.setItem('cartId', 'no-user');
-
         },
-        deleteItemInOrder(state, action: PayloadAction<Pick<IPizza, '_id' | 'price'>>) {
+        deleteItemInCart(state, action: PayloadAction<Pick<IPizza, '_id' | 'price'>>) {
             if (state.pizza.some((item: IPizza) => item._id === action.payload._id)) {
                 state.pizza.forEach((item, index) => {
                     if (item._id === action.payload._id && item.count) {
@@ -52,7 +54,7 @@ const cartSlice = createSlice({
                 localStorage.removeItem('cartId');
             }
         },
-        removeItemInOrder(state, action: PayloadAction<string>) {
+        removeItemInCart(state, action: PayloadAction<string>) {
             if (state.pizza.some((item: IPizza) => item._id === action.payload)) {
                 state.pizza.forEach((item, index) => {
                     if (item._id === action.payload && item.count) {
@@ -68,7 +70,7 @@ const cartSlice = createSlice({
                 localStorage.removeItem('cartId');
             }
         },
-        clearAll(state) {
+        clearAllCart(state) {
             state.pizza = [];
             state.totalPrice = 0;
             localStorage.removeItem('pizza');
@@ -78,16 +80,24 @@ const cartSlice = createSlice({
         initCart(state) {
             state.pizza = JSON.parse(localStorage.getItem('pizza')!);
             state.totalPrice = +localStorage.getItem('price')!;
+        },
+        appendPromoToCard(state, action: PayloadAction<IPromo>) {
+            state.promo = action.payload;
+        },
+        removePromoFromCard(state) {
+            state.promo = {} as IPromo;
         }
     }
 });
 
 export const {
-    addItemInOrder,
-    deleteItemInOrder,
-    removeItemInOrder,
-    clearAll,
+    addItemInCart,
+    deleteItemInCart,
+    removeItemInCart,
+    clearAllCart,
     initCart,
+    appendPromoToCard,
+    removePromoFromCard
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

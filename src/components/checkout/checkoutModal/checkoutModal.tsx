@@ -5,7 +5,7 @@ import {createPortal} from 'react-dom';
 import {useNavigate} from 'react-router-dom';
 import pizzaImg from '../../../icons/accept_order.png';
 import {useAppDispatch} from '../../../hook';
-import {clearAll} from '../../../store/slices/cartSlice';
+import {clearAllCart} from '../../../store/slices/cartSlice';
 
 interface CheckoutModalProps {
     title: string;
@@ -24,7 +24,7 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({title, visible, onClose, i
             <div className="checkout-modal" onClick={(e) => {
                 if (e.target === e.currentTarget && isAccept) {
                     onClose();
-                    dispatch(clearAll());
+                    dispatch(clearAllCart());
                     return navigate('/orders');
                 }
                 onClose();
@@ -35,7 +35,7 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({title, visible, onClose, i
                          onClick={() => {
                              onClose();
                              if (isAccept) {
-                                 dispatch(clearAll());
+                                 dispatch(clearAllCart());
                                  navigate('/orders');
                              }
                          }}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import exitButton from '../../../icons/exit.svg';
 import blackExitButton from '../../../icons/close_black.png';
 import {createPortal} from 'react-dom';
@@ -6,6 +6,7 @@ import {useAppDispatch, useAppSelector} from '../../../hook';
 import {IPromo} from '../../../models/order/models';
 import './promoModal.scss';
 import pizzaImg from '../../../icons/accept_order.png';
+import {appendPromoToCard} from '../../../store/slices/cartSlice';
 
 interface PromoModalProps extends IPromo {
     visible: boolean,
@@ -16,14 +17,15 @@ const PromoModal: React.FC<PromoModalProps> = ({
                                                    visible,
                                                    onClose,
                                                    title = '',
-                                                   img= '',
+                                                   img = '',
                                                    expire,
                                                    items,
                                                    discount,
-                                                   description= ''
+                                                   description = ''
                                                }) => {
     const modalPortal = document.getElementById('modal');
     const error = useAppSelector(state => state.promo.error);
+    const [isAppended, setAppended] = useState<string>('')
     const dispatch = useAppDispatch();
 
     if (visible) {
@@ -31,6 +33,7 @@ const PromoModal: React.FC<PromoModalProps> = ({
             <div className="promo-modal" onClick={(e) => {
                 if (e.target === e.currentTarget) {
                     onClose();
+                    setAppended('');
                 }
             }}> {error === '' ?
                 <div className="promo-modal__wrapper">
@@ -39,10 +42,13 @@ const PromoModal: React.FC<PromoModalProps> = ({
                         <div className="promo-modal__top-img-filter"></div>
                         <img className="promo-modal__top-exit-btn" src={exitButton}
                              alt="exit"
-                             onClick={onClose}
+                             onClick={() => {
+                                 onClose();
+                                 setAppended('');
+                             }}
                         />
                         <span className="promo-modal__top-title">Промокод</span>
-                        <span className='slider-modal__top-description'>{title.toUpperCase()}</span>
+                        <span className="slider-modal__top-description">{title.toUpperCase()}</span>
                     </div>
                     <div className="promo-modal__down">
                         <span className="promo-modal__down-text">{description}</span>
@@ -50,8 +56,10 @@ const PromoModal: React.FC<PromoModalProps> = ({
                                type="button"
                                value="Добавить"
                                onClick={() => {
-                                   // dispatch(appendToCard());
+                                   setAppended('Добавлено');
+                                   dispatch(appendPromoToCard({title, img, description, expire, items, discount}));
                                }}/>
+                        <span className="promo-modal__down-append">{isAppended}</span>
                     </div>
                 </div> :
                 <div className="promo-modal__wrapper">

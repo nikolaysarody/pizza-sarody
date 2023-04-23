@@ -4,7 +4,7 @@ import cartImg from '../../../icons/cart_menu.svg';
 import CartList from '../cartList/cartList';
 import {useAppDispatch, useAppSelector} from '../../../hook';
 import {Link} from 'react-router-dom';
-import {clearAll} from '../../../store/slices/cartSlice';
+import {clearAllCart} from '../../../store/slices/cartSlice';
 
 interface CartMenuProps {
     toggle: boolean;
@@ -12,9 +12,20 @@ interface CartMenuProps {
 }
 
 const CartMenu: React.FC<CartMenuProps> = ({toggle, setToggle}) => {
-    const pizzaInCart = useAppSelector(state => state.cart.pizza);
-    const price = useAppSelector(state => state.cart.totalPrice);
     const dispatch = useAppDispatch();
+    const pizzaInCart = useAppSelector(state => state.cart.pizza);
+    const {title, items, discount} = useAppSelector(state => state.cart.promo);
+    const totalPrice = useAppSelector(state => state.cart.totalPrice);
+
+    const price = () => {
+        if (discount) {
+            if (items && items.length > 0) {
+                return totalPrice;
+            }
+            return totalPrice / 100 * discount;
+        }
+        return totalPrice;
+    }
 
     const cartItem = () => {
         if (toggle) {
@@ -27,19 +38,24 @@ const CartMenu: React.FC<CartMenuProps> = ({toggle, setToggle}) => {
                                 <input className="btn-clear"
                                        type="button"
                                        value="Очистить корзину"
-                                       onClick={() => dispatch(clearAll())}
+                                       onClick={() => dispatch(clearAllCart())}
                                 />
                             </div>
                             <div className="cart__content">
                                 <CartList/>
                             </div>
+                            {title ? <div className="cart__down--promo">
+                                <span className="cart__down--promo--price">Промокод: {title.toUpperCase()}</span>
+                                <span className="cart__down--promo--price">Скидка: -{discount}%</span>
+                            </div> : null}
                             <div className="cart__down">
                                 <div className="cart__down-wrapper">
                                     <span className="price">Сумма:</span>
-                                    <span className="price-bold">{price}</span>
+                                    <span className="price-bold">{price()}</span>
                                     <span className="price">рублей</span>
                                 </div>
-                                <Link to="/checkout" className="cart__order" onClick={() => setToggle()}>Оформить заказ</Link>
+                                <Link to="/checkout" className="cart__order" onClick={() => setToggle()}>Оформить
+                                    заказ</Link>
                             </div>
                         </div>
                     </div>

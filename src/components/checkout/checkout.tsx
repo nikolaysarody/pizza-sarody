@@ -14,14 +14,25 @@ import CheckoutModal from './checkoutModal/checkoutModal';
 const Checkout: React.FC = () => {
     const dispatch = useAppDispatch();
     const pizzas = useAppSelector(state => state.cart.pizza);
-    const price = useAppSelector(state => state.cart.totalPrice);
+    const totalPrice = useAppSelector(state => state.cart.totalPrice);
     const addresses = useAppSelector(state => state.address.items);
+    const {title, items, discount} = useAppSelector(state => state.cart.promo);
     const [paymentOption, setPaymentOption] = useState<OrderPaymentOption>(OrderPaymentOption.Cash);
     const [modalRegistrationVisible, setModalRegistrationVisible] = useState<boolean>(false);
     const [modalAddressVisible, setModalAddressVisible] = useState<boolean>(false);
     const [modalAcceptVisible, setModalAcceptVisible] = useState<boolean>(false);
     const [orderNumber, setOrderNumber] = useState<number>(0);
     const navigate = useNavigate();
+
+    const price = () => {
+        if (discount) {
+            if (items && items.length > 0) {
+                return totalPrice;
+            }
+            return totalPrice / 100 * discount;
+        }
+        return totalPrice;
+    }
 
     useEffect(() => {
         dispatch(fetchAddresses());
@@ -64,7 +75,11 @@ const Checkout: React.FC = () => {
                                        changeOption={() => setPaymentOption(OrderPaymentOption.Site)}/>
                     </div>
                     <div className="ordering__payment-info">
-                        <span>Сумма: <span className="bold">{price}</span> руб.</span>
+                        {title ? <div className="cart__down--promo">
+                            <span className="ordering__payment--promo--price">Промокод: {title.toUpperCase()}</span>
+                            <span className="ordering__payment--promo--price">Скидка: -{discount}%</span>
+                        </div> : null}
+                        <span>Сумма: <span className="bold">{price()}</span> руб.</span>
                         <input type="button"
                                value="Заказать"
                                onClick={() => {
@@ -74,7 +89,7 @@ const Checkout: React.FC = () => {
                                                paymentStatus: OrderPaymentStatus.NotPaid,
                                                paymentOption: paymentOption,
                                                orderStatus: OrderStatus.Waited,
-                                               cost: price,
+                                               cost: price(),
                                                pizzas
                                            }))
                                                .then(res => setOrderNumber(res!.data.orderNumber!))
