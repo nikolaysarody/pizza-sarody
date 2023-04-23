@@ -4,7 +4,8 @@ import cartImg from '../../../icons/cart_menu.svg';
 import CartList from '../cartList/cartList';
 import {useAppDispatch, useAppSelector} from '../../../hook';
 import {Link} from 'react-router-dom';
-import {clearAllCart} from '../../../store/slices/cartSlice';
+import {clearAllCart, removePromoFromCart} from '../../../store/slices/cartSlice';
+import trash from '../../../icons/trash.svg';
 
 interface CartMenuProps {
     toggle: boolean;
@@ -14,15 +15,15 @@ interface CartMenuProps {
 const CartMenu: React.FC<CartMenuProps> = ({toggle, setToggle}) => {
     const dispatch = useAppDispatch();
     const pizzaInCart = useAppSelector(state => state.cart.pizza);
-    const {title, items, discount} = useAppSelector(state => state.cart.promo);
+    const {title, items, discount, description} = useAppSelector(state => state.cart.promo);
     const totalPrice = useAppSelector(state => state.cart.totalPrice);
 
-    const price = () => {
+    const price = (): number => {
         if (discount) {
             if (items && items.length > 0) {
                 return totalPrice;
             }
-            return totalPrice / 100 * discount;
+            return +(totalPrice / 100 * discount).toFixed(2);
         }
         return totalPrice;
     }
@@ -44,10 +45,22 @@ const CartMenu: React.FC<CartMenuProps> = ({toggle, setToggle}) => {
                             <div className="cart__content">
                                 <CartList/>
                             </div>
-                            {title ? <div className="cart__down--promo">
-                                <span className="cart__down--promo--price">Промокод: {title.toUpperCase()}</span>
-                                <span className="cart__down--promo--price">Скидка: -{discount}%</span>
-                            </div> : null}
+                            {title ?
+                                <div className="cart__down--promo">
+                                    <div className="cart__down--promo-column">
+                                        <span
+                                            className="cart__down--promo--price">Промокод: {title.toUpperCase()}</span>
+                                        {items.length === 0 ?
+                                            <span className="cart__down--promo--price">Скидка: -{discount}%</span> :
+                                            <span className="cart__down--promo--price">Описание: {description}</span>}
+                                    </div>
+                                    <img className="cart-item__btn-del"
+                                         src={trash}
+                                         alt="delete"
+                                         onClick={() => {
+                                             dispatch(removePromoFromCart());
+                                         }}/>
+                                </div> : null}
                             <div className="cart__down">
                                 <div className="cart__down-wrapper">
                                     <span className="price">Сумма:</span>

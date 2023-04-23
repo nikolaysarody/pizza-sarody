@@ -16,7 +16,7 @@ const Checkout: React.FC = () => {
     const pizzas = useAppSelector(state => state.cart.pizza);
     const totalPrice = useAppSelector(state => state.cart.totalPrice);
     const addresses = useAppSelector(state => state.address.items);
-    const {title, items, discount} = useAppSelector(state => state.cart.promo);
+    const {title, items, discount, description} = useAppSelector(state => state.cart.promo);
     const [paymentOption, setPaymentOption] = useState<OrderPaymentOption>(OrderPaymentOption.Cash);
     const [modalRegistrationVisible, setModalRegistrationVisible] = useState<boolean>(false);
     const [modalAddressVisible, setModalAddressVisible] = useState<boolean>(false);
@@ -24,12 +24,12 @@ const Checkout: React.FC = () => {
     const [orderNumber, setOrderNumber] = useState<number>(0);
     const navigate = useNavigate();
 
-    const price = () => {
+    const price = (): number => {
         if (discount) {
             if (items && items.length > 0) {
                 return totalPrice;
             }
-            return totalPrice / 100 * discount;
+            return +(totalPrice / 100 * discount).toFixed(2);
         }
         return totalPrice;
     }
@@ -75,29 +75,35 @@ const Checkout: React.FC = () => {
                                        changeOption={() => setPaymentOption(OrderPaymentOption.Site)}/>
                     </div>
                     <div className="ordering__payment-info">
-                        {title ? <div className="cart__down--promo">
-                            <span className="ordering__payment--promo--price">Промокод: {title.toUpperCase()}</span>
-                            <span className="ordering__payment--promo--price">Скидка: -{discount}%</span>
+                        {title ? <div className="ordering__payment-info--promo">
+                            <span
+                                className="ordering__payment-info--promo--price">Промокод: {title.toUpperCase()}</span>
+                            {items.length === 0 ?
+                                <span className="ordering__payment-info--promo--price">Скидка: -{discount}%</span> :
+                                <span className="ordering__payment-info--promo--price">Описание: {description}</span>}
                         </div> : null}
-                        <span>Сумма: <span className="bold">{price()}</span> руб.</span>
-                        <input type="button"
-                               value="Заказать"
-                               onClick={() => {
-                                   if (addresses.length !== 0) {
-                                       if (localStorage.getItem('userId')) {
-                                           dispatch(addOrder({
-                                               paymentStatus: OrderPaymentStatus.NotPaid,
-                                               paymentOption: paymentOption,
-                                               orderStatus: OrderStatus.Waited,
-                                               cost: price(),
-                                               pizzas
-                                           }))
-                                               .then(res => setOrderNumber(res!.data.orderNumber!))
-                                               .catch(e => dispatch(fetchOrderError(e as Error)));
-                                           setModalAcceptVisible(true);
-                                       } else setModalRegistrationVisible(true);
-                                   } else setModalAddressVisible(true);
-                               }}/>
+                        <div className="ordering__payment-info--row">
+                            <span className="ordering__payment-info--price">Сумма:<span
+                                className="bold">&nbsp;{price()}&nbsp;</span>руб.</span>
+                            <input type="button"
+                                   value="Заказать"
+                                   onClick={() => {
+                                       if (addresses.length !== 0) {
+                                           if (localStorage.getItem('userId')) {
+                                               dispatch(addOrder({
+                                                   paymentStatus: OrderPaymentStatus.NotPaid,
+                                                   paymentOption: paymentOption,
+                                                   orderStatus: OrderStatus.Waited,
+                                                   cost: price(),
+                                                   pizzas
+                                               }))
+                                                   .then(res => setOrderNumber(res!.data.orderNumber!))
+                                                   .catch(e => dispatch(fetchOrderError(e as Error)));
+                                               setModalAcceptVisible(true);
+                                           } else setModalRegistrationVisible(true);
+                                       } else setModalAddressVisible(true);
+                                   }}/>
+                        </div>
                     </div>
                 </div>
                 <div className="ordering__wrapper">

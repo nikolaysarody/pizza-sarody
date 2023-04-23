@@ -85,16 +85,25 @@
 
         &--promo {
             display: flex;
-            align-items: flex-start;
-            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            flex-direction: row;
 
             &--price {
                 @include fontStyle();
 
                 &:last-child {
                     margin-top: 3px;
+                    margin-bottom: 10px;
                 }
             }
+        }
+
+        &--promo-column {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            flex-direction: column;
         }
 
         &-wrapper {

@@ -6,7 +6,7 @@ import {useAppDispatch, useAppSelector} from '../../../hook';
 import {IPromo} from '../../../models/order/models';
 import './promoModal.scss';
 import pizzaImg from '../../../icons/accept_order.png';
-import {appendPromoToCard} from '../../../store/slices/cartSlice';
+import {appendPromoItemsToCart, appendPromoToCart} from '../../../store/slices/cartSlice';
 
 interface PromoModalProps extends IPromo {
     visible: boolean,
@@ -25,6 +25,7 @@ const PromoModal: React.FC<PromoModalProps> = ({
                                                }) => {
     const modalPortal = document.getElementById('modal');
     const error = useAppSelector(state => state.promo.error);
+    const cartError = useAppSelector(state => state.cart.error);
     const [isAppended, setAppended] = useState<string>('')
     const dispatch = useAppDispatch();
 
@@ -56,8 +57,13 @@ const PromoModal: React.FC<PromoModalProps> = ({
                                type="button"
                                value="Добавить"
                                onClick={() => {
-                                   setAppended('Добавлено');
-                                   dispatch(appendPromoToCard({title, img, description, expire, items, discount}));
+                                   if (cartError === '') {
+                                       setAppended('Добавлено');
+                                       items.length > 0 ? dispatch(appendPromoItemsToCart({title, img, description, expire, items, discount})) :
+                                           dispatch(appendPromoToCart({title, img, description, expire, items, discount}));
+                                   } else {
+                                       setAppended(cartError);
+                                   }
                                }}/>
                         <span className="promo-modal__down-append">{isAppended}</span>
                     </div>

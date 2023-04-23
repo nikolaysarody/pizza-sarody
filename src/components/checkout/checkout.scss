@@ -46,8 +46,22 @@
   }
 
   &__payment-info {
+    display: flex;
+    flex-direction: column;
+
+    &--price {
+      display: flex;
+      align-items: center;
+    }
+
     .bold {
       font-weight: 600;
+    }
+
+    &--row {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
     }
 
     &--promo {
@@ -60,6 +74,7 @@
 
         &:last-child {
           margin-top: 3px;
+          margin-bottom: 10px;
         }
       }
     }
@@ -78,7 +93,7 @@
     cursor: pointer;
     font-weight: 500;
     font-size: 17px;
-    margin-left: 100px;
+    //margin-left: 100px;
     padding: 0 20px 0 20px;
   }
 }

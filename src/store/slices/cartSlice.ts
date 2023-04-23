@@ -6,12 +6,14 @@ interface CartState {
     pizza: IPizza[];
     totalPrice: number;
     promo: IPromo;
+    error: string
 }
 
 const initialState: CartState = {
     pizza: [],
     totalPrice: 0,
-    promo: {} as IPromo
+    promo: {} as IPromo,
+    error: ''
 }
 
 const cartSlice = createSlice({
@@ -28,7 +30,7 @@ const cartSlice = createSlice({
                     }
                 });
             }
-            state.totalPrice = state.totalPrice + action.payload.price;
+            state.totalPrice += action.payload.price;
             localStorage.setItem('pizza', JSON.stringify(state.pizza));
             localStorage.setItem('price', JSON.stringify(state.totalPrice));
             localStorage.getItem('userId') ?
@@ -46,7 +48,7 @@ const cartSlice = createSlice({
                         }
                     }
                 });
-                state.totalPrice = state.totalPrice - action.payload.price;
+                state.totalPrice -= action.payload.price;
                 localStorage.setItem('pizza', JSON.stringify(state.pizza));
                 localStorage.setItem('price', JSON.stringify(state.totalPrice));
             }
@@ -73,19 +75,71 @@ const cartSlice = createSlice({
         clearAllCart(state) {
             state.pizza = [];
             state.totalPrice = 0;
+            state.promo = {} as IPromo;
+            state.error = '';
             localStorage.removeItem('pizza');
             localStorage.removeItem('price');
             localStorage.removeItem('cartId');
+            localStorage.removeItem('promo');
+            localStorage.removeItem('promoError');
         },
         initCart(state) {
             state.pizza = JSON.parse(localStorage.getItem('pizza')!);
+            if (localStorage.getItem('promo')) {
+                state.promo = JSON.parse(localStorage.getItem('promo')!);
+            }
+            if (localStorage.getItem('promoError')) {
+                state.error = JSON.parse(localStorage.getItem('promoError')!);
+            }
             state.totalPrice = +localStorage.getItem('price')!;
         },
-        appendPromoToCard(state, action: PayloadAction<IPromo>) {
-            state.promo = action.payload;
+        appendPromoToCart(state, action: PayloadAction<IPromo>) {
+            if (!state.promo.title) {
+                state.promo = action.payload;
+                localStorage.setItem('promo', JSON.stringify(state.promo));
+            } else {
+                state.error = 'Вы не можете добавить больше одного промокода';
+                localStorage.setItem('promoError', JSON.stringify(state.error));
+            }
         },
-        removePromoFromCard(state) {
+        appendPromoItemsToCart(state, action: PayloadAction<IPromo>) {
+            const {items, discount} = action.payload;
+            if (!state.promo.title) {
+                state.promo = action.payload;
+                state.pizza.push({
+                    ...items[0],
+                    count: items.length,
+                    price: items[0].price / 100 * discount,
+                    isPromo: true
+                });
+                state.totalPrice += items[0].price * items.length / 100 * discount;
+                localStorage.setItem('promo', JSON.stringify(state.promo));
+                localStorage.setItem('pizza', JSON.stringify(state.pizza));
+                localStorage.setItem('price', JSON.stringify(state.totalPrice));
+                localStorage.getItem('userId') ?
+                    localStorage.setItem('cartId', localStorage.getItem('userId')!) :
+                    localStorage.setItem('cartId', 'no-user');
+            } else {
+                state.error = 'Вы не можете добавить больше одного промокода';
+                localStorage.setItem('promoError', JSON.stringify(state.error));
+            }
+        },
+        removePromoFromCart(state) {
+            if (state.promo.items.length > 0) {
+                state.pizza.splice(state.pizza.findIndex(item => {
+                    if (item.count && item.isPromo) {
+                        state.totalPrice -= item.price * item.count;
+                        if (state.totalPrice === 0) {
+                            localStorage.removeItem('cartId');
+                        }
+                    }
+                    return item.isPromo;
+                }), 1);
+            }
             state.promo = {} as IPromo;
+            state.error = '';
+            localStorage.removeItem('promo');
+            localStorage.removeItem('promoError');
         }
     }
 });
@@ -96,8 +150,9 @@ export const {
     removeItemInCart,
     clearAllCart,
     initCart,
-    appendPromoToCard,
-    removePromoFromCard
+    appendPromoToCart,
+    appendPromoItemsToCart,
+    removePromoFromCart
 } = cartSlice.actions;
 
 export default cartSlice.reducer;
