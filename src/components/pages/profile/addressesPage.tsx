@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 import Addresses from '../../profile/addresses/addresses';
 
-const AddressesPage: React.FC = () => {
+function AddressesPage(): JSX.Element {
     return (
-        <div className='app__content-left'>
-            <Addresses/>
+        <div className="app__content-left">
+            <Addresses />
         </div>
     );
 }

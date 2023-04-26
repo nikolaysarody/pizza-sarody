@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 import Settings from '../../profile/settings/settings';
 
-const SettingsPage: React.FC = () => {
+function SettingsPage(): JSX.Element {
     return (
-        <div className='app__content-left'>
-            <Settings/>
+        <div className="app__content-left">
+            <Settings />
         </div>
     );
 }

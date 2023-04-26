@@ -5,9 +5,9 @@ export interface IAddress {
     entrance: number;
     apartment: number;
     floor: number;
-    byDefault: boolean
+    byDefault: boolean;
 }
 
-export interface AddressResponse extends IAddress{
+export interface AddressResponse extends IAddress {
     userId: string;
 }

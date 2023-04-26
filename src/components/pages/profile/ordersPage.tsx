@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 import Orders from '../../profile/orders/orders';
 
-const OrdersPage: React.FC = () => {
+function OrdersPage(): JSX.Element {
     return (
-        <div className='app__content-left'>
-            <Orders/>
+        <div className="app__content-left">
+            <Orders />
         </div>
     );
 }

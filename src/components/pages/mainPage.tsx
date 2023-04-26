@@ -1,10 +1,10 @@
 import React from 'react';
-import Slider from "../slider/slider";
-import Pizza from "../pizza/pizza";
+import Slider from '../slider/slider';
+import Pizza from '../pizza/pizza';
 
-const MainPage: React.FC = () => {
+function MainPage(): JSX.Element {
     return (
-        <div className='app__content-center'>
+        <div className="app__content-center">
             <Slider />
             <Pizza />
         </div>

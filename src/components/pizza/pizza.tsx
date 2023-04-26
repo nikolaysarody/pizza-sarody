@@ -1,15 +1,16 @@
 import React from 'react';
-import {useAppSelector} from "../../hook";
-import PizzaItem from "./pizzaItem/pizzaItem";
-
+import { useAppSelector } from '../../hook';
+import PizzaItem from './pizzaItem/pizzaItem';
 import './pizza.scss';
 
-const Pizza: React.FC = () => {
-    const pizzaItems = useAppSelector(state => state.pizza.pizza);
+function Pizza(): JSX.Element {
+    const pizzaItems = useAppSelector((state) => state.pizza.pizza);
 
     return (
-        <ul className='pizza'>
-            {pizzaItems.map((item) => <PizzaItem {...item} key={item._id}/>)}
+        <ul className="pizza">
+            {pizzaItems.map((item) => (
+                <PizzaItem {...item} key={item.title} />
+            ))}
         </ul>
     );
 }

@@ -1,17 +1,17 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {AddressResponse, IAddress} from '../../models/address/models';
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
+import { type AddressResponse, type IAddress } from '../../models/address/models';
 
 interface AddressState {
     loading: boolean;
     error: string;
-    items: IAddress[]
+    items: IAddress[];
 }
 
 const initialState: AddressState = {
     loading: false,
     error: '',
-    items: []
-}
+    items: [],
+};
 
 const addressSlice = createSlice({
     name: 'address',
@@ -31,10 +31,10 @@ const addressSlice = createSlice({
         appendedAddress(state, action: PayloadAction<IAddress>) {
             state.loading = false;
             state.items.push(action.payload);
-        }
+        },
     },
 });
 
-export const {fetchAddressesSuccess, fetchingAddress, fetchAddressError, appendedAddress} = addressSlice.actions;
+export const { fetchAddressesSuccess, fetchingAddress, fetchAddressError, appendedAddress } = addressSlice.actions;
 
 export default addressSlice.reducer;

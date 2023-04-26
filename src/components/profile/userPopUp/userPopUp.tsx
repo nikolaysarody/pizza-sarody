@@ -1,16 +1,16 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import userImg from '../../../icons/user.svg';
-import {useAppDispatch, useAppSelector} from '../../../hook';
+import { fetchAddresses } from '../../../store/actions/addressAction';
+import { fetchOrders } from '../../../store/actions/orderActions';
+import { useAppDispatch, useAppSelector } from '../../../hook';
 import UserAuth from './userAuth/userAuth';
 import './userPopUp.scss';
 import UserMenu from './userMenu/userMenu';
-import {fetchAddresses} from '../../../store/actions/addressAction';
-import {fetchOrders} from '../../../store/actions/orderActions';
 
-const UserPopUp: React.FC = () => {
+function UserPopUp(): JSX.Element {
     const dispatch = useAppDispatch();
-    const user = useAppSelector(state => state.user.item);
-    const isAuth = useAppSelector(state => state.auth.isAuth);
+    const user = useAppSelector((state) => state.user.item);
+    const isAuth = useAppSelector((state) => state.auth.isAuth);
     const [popUpSwitch, setPopUpSwitch] = useState<boolean>(false);
 
     useEffect(() => {
@@ -19,28 +19,43 @@ const UserPopUp: React.FC = () => {
             dispatch(fetchAddresses());
             dispatch(fetchOrders());
         }
-    }, [isAuth]);
+    }, [dispatch, isAuth]);
 
     return (
         <div className="popup">
-            <div className="popup__wrapper"
-                 onClick={() => setPopUpSwitch(prev => !prev)}>
-                <img className="popup__img"
-                     src={userImg}
-                     alt="user"
-                     width="22"
-                     height="22"
-                />
+            <button
+                type="button"
+                className="popup__wrapper"
+                onClick={() => {
+                    setPopUpSwitch((prev) => !prev);
+                }}
+            >
+                <img className="popup__img" src={userImg} alt="user" width="22" height="22" />
                 <span className="popup__user-login">{user.username}</span>
-            </div>
-            {popUpSwitch ? <div className="popup__outside-wrapper" onClick={(e) => {
-                if(e.target === e.currentTarget){
-                    setPopUpSwitch(prev => !prev);
-                }
-            }}></div> : null}
-            {popUpSwitch ? isAuth ? <UserMenu popUpSwitch={() => setPopUpSwitch(prev => !prev)}/> : <UserAuth/> : null}
+            </button>
+            {popUpSwitch ? (
+                <button
+                    type="button"
+                    aria-label="close"
+                    className="popup__outside-wrapper"
+                    onClick={(e) => {
+                        if (e.target === e.currentTarget) {
+                            setPopUpSwitch((prev) => !prev);
+                        }
+                    }}
+                />
+            ) : null}
+            {popUpSwitch && isAuth ? (
+                <UserMenu
+                    popUpSwitch={() => {
+                        setPopUpSwitch((prev) => !prev);
+                    }}
+                />
+            ) : (
+                <UserAuth />
+            )}
         </div>
-    )
+    );
 }
 
 export default UserPopUp;

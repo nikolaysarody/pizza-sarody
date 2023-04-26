@@ -1,6 +1,6 @@
-import {AxiosResponse} from 'axios';
+import { type AxiosResponse } from 'axios';
 import axiosApi from '../axios';
-import {AddressResponse, IAddress} from '../models/address/models';
+import { type AddressResponse, type IAddress } from '../models/address/models';
 
 export default class AddressService {
     static async getAddresses(): Promise<AxiosResponse<AddressResponse[]>> {
@@ -12,10 +12,10 @@ export default class AddressService {
     }
 
     static async deleteAddress(id: string): Promise<AxiosResponse<AddressResponse[]>> {
-        return axiosApi.post<AddressResponse[]>('/address/delete', {id});
+        return axiosApi.post<AddressResponse[]>('/address/delete', { id });
     }
 
     static async setDefaultAddress(id: string): Promise<AxiosResponse<AddressResponse[]>> {
-        return axiosApi.post<AddressResponse[]>('/address/set-default-address', {id});
+        return axiosApi.post<AddressResponse[]>('/address/set-default-address', { id });
     }
 }

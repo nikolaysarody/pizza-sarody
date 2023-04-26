@@ -1,4 +1,4 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
 interface AuthState {
     isAuth: boolean;
@@ -7,8 +7,8 @@ interface AuthState {
 
 const initialState: AuthState = {
     isAuth: false,
-    error: ''
-}
+    error: '',
+};
 
 const authSlice = createSlice({
     name: 'auth',
@@ -19,10 +19,10 @@ const authSlice = createSlice({
         },
         fetchAuthError(state, action: PayloadAction<string>) {
             state.error = action.payload;
-        }
+        },
     },
 });
 
-export const {setAuth, fetchAuthError} = authSlice.actions;
+export const { setAuth, fetchAuthError } = authSlice.actions;
 
 export default authSlice.reducer;

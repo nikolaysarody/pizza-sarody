@@ -1,10 +1,10 @@
-import React from "react";
-import About from "../about/about";
+import React from 'react';
+import About from '../about/about';
 
-const AboutPage: React.FC = () => {
+function AboutPage(): JSX.Element {
     return (
-        <div className='app__content-left'>
-            <About/>
+        <div className="app__content-left">
+            <About />
         </div>
     );
 }

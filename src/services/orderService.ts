@@ -1,6 +1,6 @@
-import {AxiosResponse} from 'axios';
+import { type AxiosResponse } from 'axios';
 import axiosApi from '../axios';
-import {IOrder, OrderResponse} from '../models/order/models';
+import { type IOrder, type OrderResponse } from '../models/order/models';
 
 export default class OrderService {
     static async getOrders(): Promise<AxiosResponse<OrderResponse[]>> {
@@ -12,10 +12,10 @@ export default class OrderService {
     }
 
     static async cancelOrder(orderNumber: number): Promise<AxiosResponse<OrderResponse>> {
-        return axiosApi.patch<OrderResponse>('/order/cancel', {orderNumber});
+        return axiosApi.patch<OrderResponse>('/order/cancel', { orderNumber });
     }
 
     static async deleteOrder(orderNumber: number): Promise<AxiosResponse<OrderResponse>> {
-        return axiosApi.post<OrderResponse>('/order/delete', {orderNumber});
+        return axiosApi.post<OrderResponse>('/order/delete', { orderNumber });
     }
 }

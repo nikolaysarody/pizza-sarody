@@ -1,5 +1,5 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {IPromo} from '../../models/order/models';
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
+import { type IPromo } from '../../models/order/models';
 
 interface PromoState {
     loading: boolean;
@@ -10,8 +10,8 @@ interface PromoState {
 const initialState: PromoState = {
     loading: false,
     error: '',
-    item: {} as IPromo
-}
+    item: {} as IPromo,
+};
 
 const promoSlice = createSlice({
     name: 'promo',
@@ -28,10 +28,10 @@ const promoSlice = createSlice({
         fetchPromoError(state, action: PayloadAction<string>) {
             state.loading = false;
             state.error = action.payload;
-        }
+        },
     },
 });
 
-export const {fetchingPromo, fetchPromoSuccess, fetchPromoError} = promoSlice.actions;
+export const { fetchingPromo, fetchPromoSuccess, fetchPromoError } = promoSlice.actions;
 
 export default promoSlice.reducer;

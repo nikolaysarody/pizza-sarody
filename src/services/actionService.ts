@@ -1,6 +1,6 @@
-import {AxiosResponse} from 'axios';
+import { type AxiosResponse } from 'axios';
 import axiosApi from '../axios';
-import {IAction} from '../models/action/models';
+import { type IAction } from '../models/action/models';
 
 export default class ActionService {
     static async getActions(): Promise<AxiosResponse<IAction[]>> {

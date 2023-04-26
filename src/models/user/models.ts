@@ -4,12 +4,8 @@ export interface IUser {
     username: string;
 }
 
-export interface IUserPopUp {
-    popUpSwitch: () => void
-}
-
 export enum Pages {
     Settings = 'settings',
     Orders = 'orders',
-    Addresses = 'addresses'
+    Addresses = 'addresses',
 }

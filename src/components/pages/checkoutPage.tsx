@@ -1,10 +1,10 @@
 import React from 'react';
 import Checkout from '../checkout/checkout';
 
-const CheckoutPage: React.FC = () => {
+function CheckoutPage(): JSX.Element {
     return (
-        <div className='app__content-center'>
-            <Checkout/>
+        <div className="app__content-center">
+            <Checkout />
         </div>
     );
 }

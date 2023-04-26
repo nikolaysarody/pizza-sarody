@@ -5,5 +5,5 @@ export interface IPizza {
     img: string;
     price: number;
     count?: number;
-    isPromo?: boolean
+    isPromo?: boolean;
 }

@@ -1,17 +1,16 @@
 import React from 'react';
-import "./orderItemDetail.scss";
-import {IPizza} from '../../../../../models/pizza/models';
+import './orderItemDetail.scss';
+import { type IPizza } from '../../../../../models/pizza/models';
 
-const OrderItemDetail: React.FC<IPizza> = ({_id, description, price, title, img, count}) => {
-
+function OrderItemDetail({ price, title, img, count }: IPizza): JSX.Element {
     return (
         <div className="orders__item-pizza">
-            <img src={img} alt=""/>
+            <img src={img} alt="" />
             <span>{title}</span>
-            <span><span className="bold">{price * count!}</span> руб.</span>
-            <div className="orders__item-count">
-                {count}
-            </div>
+            <span>
+                <span className="bold">{price * (count || 1)}</span> руб.
+            </span>
+            <div className="orders__item-count">{count}</div>
         </div>
     );
 }

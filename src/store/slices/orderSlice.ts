@@ -1,17 +1,17 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {OrderResponse} from '../../models/order/models';
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
+import { type OrderResponse } from '../../models/order/models';
 
 interface OrderState {
     loading: boolean;
     error: string;
-    items: OrderResponse[],
+    items: OrderResponse[];
 }
 
 const initialState: OrderState = {
     loading: false,
     error: '',
     items: [],
-}
+};
 
 const orderSlice = createSlice({
     name: 'order',
@@ -32,19 +32,17 @@ const orderSlice = createSlice({
             state.error = action.payload.message;
         },
         deleteOrderItem(state, action: PayloadAction<number>) {
-            state.items.splice(state.items.findIndex((item) => {
-                return item.orderNumber === action.payload;
-            }), 1);
-        }
-    }
+            state.items.splice(
+                state.items.findIndex((item) => {
+                    return item.orderNumber === action.payload;
+                }),
+                1
+            );
+        },
+    },
 });
 
-export const {
-    fetchOrdersSuccess,
-    fetchingOrder,
-    fetchOrderError,
-    appendedOrder,
-    deleteOrderItem,
-} = orderSlice.actions;
+export const { fetchOrdersSuccess, fetchingOrder, fetchOrderError, appendedOrder, deleteOrderItem } =
+    orderSlice.actions;
 
 export default orderSlice.reducer;

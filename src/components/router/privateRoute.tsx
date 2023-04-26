@@ -1,12 +1,11 @@
-import {useAppSelector} from '../../hook';
-import {Navigate, Outlet} from 'react-router-dom';
+import React from 'react';
+import { Navigate, Outlet } from 'react-router-dom';
+import { useAppSelector } from '../../hook';
 
-const PrivateRoute = () => {
-    const isAuth = useAppSelector(state => state.auth.isAuth);
+function PrivateRoute() {
+    const isAuth = useAppSelector((state) => state.auth.isAuth);
 
-    return (
-        isAuth ? <Outlet/> : <Navigate to="/"/>
-    );
-};
+    return isAuth ? <Outlet /> : <Navigate to="/" />;
+}
 
 export default PrivateRoute;

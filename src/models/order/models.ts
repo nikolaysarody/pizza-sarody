@@ -1,9 +1,9 @@
-import {IPizza} from '../pizza/models';
-import {IAddress} from '../address/models';
+import { type IPizza } from '../pizza/models';
+import { type IAddress } from '../address/models';
 
 export enum OrderPaymentStatus {
     Paid = 'Оплачен',
-    NotPaid = 'Не оплачен'
+    NotPaid = 'Не оплачен',
 }
 
 export enum OrderStatus {
@@ -11,13 +11,13 @@ export enum OrderStatus {
     Done = 'Готов',
     Cooking = 'Готовится',
     Waited = 'Ожидает оплаты',
-    Canceled = 'Отменен'
+    Canceled = 'Отменен',
 }
 
 export enum OrderPaymentOption {
     Site = 'Онлайн на сайте',
     Courier = 'Картой курьеру',
-    Cash = 'Наличными курьеру'
+    Cash = 'Наличными курьеру',
 }
 
 export interface IOrder {
@@ -28,7 +28,7 @@ export interface IOrder {
     pizzas: IPizza[];
 }
 
-export interface OrderResponse extends IOrder{
+export interface OrderResponse extends IOrder {
     _id: string;
     orderNumber: number;
     address: IAddress;
@@ -41,5 +41,5 @@ export interface IPromo {
     discount: number;
     items: IPizza[];
     img: string;
-    expire: Date;
+    expire?: Date;
 }
