@@ -5,6 +5,7 @@ import { type IPizza } from '../../../models/pizza/models';
 import { addItemInCart, deleteItemInCart } from '../../../store/slices/cartSlice';
 
 function PizzaItem({ title, description, price, img, _id }: Omit<IPizza, 'count'>): JSX.Element {
+    const dispatch = useAppDispatch();
     // const [imageStatus, setImageStatus] = useState(false);
     const [pizzaCount, setPizzaCount] = useState<number | undefined>(0);
     const pizzaInOrder = useAppSelector((state) => state.cart.pizza);
@@ -27,8 +28,6 @@ function PizzaItem({ title, description, price, img, _id }: Omit<IPizza, 'count'
             setPizzaCount(0);
         }
     }, [pizzaInOrder, title]);
-
-    const dispatch = useAppDispatch();
 
     // const load = () => {
     //     return imageStatus ? null : <Spinner />;

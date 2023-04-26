@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 interface ItemType {
     title: string;
@@ -12,9 +12,12 @@ interface ItemType {
 function SliderItem({ title, description, clickable, img, _id, visible }: ItemType): JSX.Element {
     const [classNames, setClassNames] = useState<string>('slider__item');
 
-    if (clickable) {
-        setClassNames((prev) => `${prev} clickable`);
-    }
+    useEffect(() => {
+        if (clickable) {
+            setClassNames((prev) => `${prev} clickable`);
+        }
+    }, [clickable]);
+
     return (
         <button
             type="button"

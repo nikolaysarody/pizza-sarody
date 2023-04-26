@@ -78,12 +78,9 @@ function Slider(): JSX.Element {
                                             slidesField.current.style.transform = `translateX(-${offset}px)`;
                                         }
                                     }}
+                                    key={`${item.title}${item.description}`}
                                 >
-                                    <img
-                                        src={navigationDotActive}
-                                        alt="active-dot"
-                                        key={`${item.title}${item.description}`}
-                                    />
+                                    <img src={navigationDotActive} alt="active-dot" />
                                 </button>
                             );
                         }
@@ -98,8 +95,9 @@ function Slider(): JSX.Element {
                                         slidesField.current.style.transform = `translateX(-${offset}px)`;
                                     }
                                 }}
+                                key={`${item.title}${item.description}`}
                             >
-                                <img src={navigationDotNotActive} alt="dot" key={`${item.title}${item.description}`} />
+                                <img src={navigationDotNotActive} alt="dot" />
                             </button>
                         );
                     })}
