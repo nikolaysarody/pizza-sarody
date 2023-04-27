@@ -87,9 +87,9 @@ const cartSlice = createSlice({
             localStorage.removeItem('promoError');
         },
         initCart(state) {
-            state.pizza = JSON.parse(localStorage.getItem('pizza') || '');
-            state.promo = JSON.parse(localStorage.getItem('promo') || '');
-            state.error = JSON.parse(localStorage.getItem('promoError') || '');
+            state.pizza = JSON.parse(localStorage.getItem('pizza') || '{}');
+            state.promo = JSON.parse(localStorage.getItem('promo') || '{}');
+            state.error = JSON.parse(localStorage.getItem('promoError') || '{}');
             const price = localStorage.getItem('price');
             state.totalPrice = price ? +price : 0;
         },

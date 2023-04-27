@@ -31,6 +31,7 @@ function Promo(): JSX.Element {
             />
             <button
                 type="button"
+                className="promo__btn"
                 onClick={() => {
                     if (promoTitle !== '') {
                         dispatch(checkPromo(promoTitle));

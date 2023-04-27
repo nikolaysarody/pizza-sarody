@@ -13,6 +13,44 @@ function UserPopUp(): JSX.Element {
     const isAuth = useAppSelector((state) => state.auth.isAuth);
     const [popUpSwitch, setPopUpSwitch] = useState<boolean>(false);
 
+    const popUp = () => {
+        if (popUpSwitch) {
+            if (isAuth) {
+                return (
+                    <>
+                        <button
+                            type="button"
+                            aria-label="close"
+                            className="popup__outside-wrapper"
+                            onClick={(e) => {
+                                if (e.target === e.currentTarget) {
+                                    setPopUpSwitch((prev) => !prev);
+                                }
+                            }}
+                        />
+                        <UserMenu popUpSwitch={() => setPopUpSwitch((prev) => !prev)} />
+                    </>
+                );
+            }
+            return (
+                <>
+                    <button
+                        type="button"
+                        aria-label="close"
+                        className="popup__outside-wrapper"
+                        onClick={(e) => {
+                            if (e.target === e.currentTarget) {
+                                setPopUpSwitch((prev) => !prev);
+                            }
+                        }}
+                    />
+                    <UserAuth />
+                </>
+            );
+        }
+        return null;
+    };
+
     useEffect(() => {
         if (isAuth) {
             setPopUpSwitch(false);
@@ -33,27 +71,7 @@ function UserPopUp(): JSX.Element {
                 <img className="popup__img" src={userImg} alt="user" width="22" height="22" />
                 <span className="popup__user-login">{user.username}</span>
             </button>
-            {popUpSwitch ? (
-                <button
-                    type="button"
-                    aria-label="close"
-                    className="popup__outside-wrapper"
-                    onClick={(e) => {
-                        if (e.target === e.currentTarget) {
-                            setPopUpSwitch((prev) => !prev);
-                        }
-                    }}
-                />
-            ) : null}
-            {popUpSwitch && isAuth ? (
-                <UserMenu
-                    popUpSwitch={() => {
-                        setPopUpSwitch((prev) => !prev);
-                    }}
-                />
-            ) : (
-                <UserAuth />
-            )}
+            {popUp()}
         </div>
     );
 }
