@@ -10,6 +10,7 @@ function Cart(): JSX.Element {
     const [cartToggle, setCartToggle] = useState(false);
 
     useEffect(() => {
+        setCount(0);
         pizzas.forEach((item) => {
             setCount((prev) => prev + (item.count || 0));
         });
