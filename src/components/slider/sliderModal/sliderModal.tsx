@@ -14,10 +14,10 @@ interface SliderModalProps {
 function SliderModal({ title, description, img, text, onClose }: SliderModalProps): JSX.Element | null {
     const modalPortal = document.getElementById('modal');
 
-    return modalPortal != null
+    return modalPortal
         ? createPortal(
-              <button
-                  type="button"
+              <div
+                  role="button"
                   className="slider-modal"
                   onClick={(e) => {
                       if (e.target === e.currentTarget) {
@@ -39,7 +39,7 @@ function SliderModal({ title, description, img, text, onClose }: SliderModalProp
                           <span className="slider-modal__down-text">{text}</span>
                       </div>
                   </div>
-              </button>,
+              </div>,
               modalPortal
           )
         : null;

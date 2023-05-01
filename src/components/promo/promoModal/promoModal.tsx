@@ -29,8 +29,8 @@ function PromoModal({
 
     return modalPortal
         ? createPortal(
-              <button
-                  type="button"
+              <div
+                  role="button"
                   className="promo-modal"
                   onClick={(e) => {
                       if (e.target === e.currentTarget) {
@@ -114,7 +114,7 @@ function PromoModal({
                           </div>
                       </div>
                   )}
-              </button>,
+              </div>,
               modalPortal
           )
         : null;

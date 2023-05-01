@@ -20,8 +20,8 @@ function CheckoutModal({ title, onClose, isAccept }: CheckoutModalProps): JSX.El
 
     return modalPortal
         ? createPortal(
-              <button
-                  type="button"
+              <div
+                  role="button"
                   className="checkout-modal"
                   onClick={(e) => {
                       if (e.target === e.currentTarget && isAccept) {
@@ -52,7 +52,7 @@ function CheckoutModal({ title, onClose, isAccept }: CheckoutModalProps): JSX.El
                           <span className="checkout-modal__container-title">{title}</span>
                       </div>
                   </div>
-              </button>,
+              </div>,
               modalPortal
           )
         : null;

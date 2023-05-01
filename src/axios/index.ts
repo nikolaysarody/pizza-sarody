@@ -18,12 +18,7 @@ axiosApi.interceptors.response.use(
     },
     async (error) => {
         const originalRequest = error.config;
-        if (
-            error.response.status === 401 &&
-            error.config &&
-            !error.config._isRetry &&
-            localStorage.getItem('refreshToken')
-        ) {
+        if (error.response.status === 401 && error.config && !error.config._isRetry) {
             originalRequest._isRetry = true;
             try {
                 const res = await axios.get<AuthResponse>(`${process.env.REACT_APP_BASE_URL}/auth/refresh`, {

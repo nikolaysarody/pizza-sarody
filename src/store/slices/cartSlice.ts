@@ -108,6 +108,7 @@ const cartSlice = createSlice({
                 state.promo = action.payload;
                 state.pizza.push({
                     ...items[0],
+                    title: `${items[0].title} Акция`,
                     count: items.length,
                     price: (items[0].price / 100) * discount,
                     isPromo: true,
