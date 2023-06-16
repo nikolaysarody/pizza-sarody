@@ -1,16 +1,22 @@
 import React from 'react';
-import './cartMenu.scss';
 import { Link } from 'react-router-dom';
-import cartImg from '../../../icons/cart_menu.svg';
+import CartImg from '../../../shared/assets/icons/cart_menu.svg';
 import CartList from '../cartList/cartList';
 import { useAppDispatch, useAppSelector } from '../../../hook';
 import { clearAllCart, removePromoFromCart } from '../../../store/slices/cartSlice';
-import trash from '../../../icons/trash.svg';
+import Trash from '../../../shared/assets/icons/trash.svg';
+import './cartMenu.scss';
 
-function CartMenu({ setToggle }: { setToggle: () => void }): JSX.Element {
+interface CartMenuProps {
+    setToggle: () => void;
+}
+
+const CartMenu = ({ setToggle }: CartMenuProps) => {
     const dispatch = useAppDispatch();
     const pizzaInCart = useAppSelector((state) => state.cart.pizza);
-    const { title, items, discount, description } = useAppSelector((state) => state.cart.promo);
+    const {
+        title, items, discount, description,
+    } = useAppSelector((state) => state.cart.promo);
     const totalPrice = useAppSelector((state) => state.cart.totalPrice);
 
     const price = (): number => {
@@ -42,11 +48,21 @@ function CartMenu({ setToggle }: { setToggle: () => void }): JSX.Element {
                     {title ? (
                         <div className="cart__down--promo">
                             <div className="cart__down--promo-column">
-                                <span className="cart__down--promo--price">Промокод: {title.toUpperCase()}</span>
+                                <span className="cart__down--promo--price">
+                                    Промокод:
+                                    {title.toUpperCase()}
+                                </span>
                                 {items.length === 0 ? (
-                                    <span className="cart__down--promo--price">Скидка: -{discount}%</span>
+                                    <span className="cart__down--promo--price">
+                                        Скидка: -
+                                        {discount}
+                                        %
+                                    </span>
                                 ) : (
-                                    <span className="cart__down--promo--price">Описание: {description}</span>
+                                    <span className="cart__down--promo--price">
+                                        Описание:
+                                        {description}
+                                    </span>
                                 )}
                             </div>
                             <button
@@ -56,7 +72,7 @@ function CartMenu({ setToggle }: { setToggle: () => void }): JSX.Element {
                                     dispatch(removePromoFromCart());
                                 }}
                             >
-                                <img src={trash} alt="delete" />
+                                <Trash />
                             </button>
                         </div>
                     ) : null}
@@ -83,11 +99,11 @@ function CartMenu({ setToggle }: { setToggle: () => void }): JSX.Element {
     return (
         <div className="cart__menu empty">
             <div className="cart__item-empty">
-                <img src={cartImg} alt="cart" width="42" height="42" />
+                <CartImg width="42" height="42" />
                 <span>Корзина пустая</span>
             </div>
         </div>
     );
-}
+};
 
 export default CartMenu;

@@ -12,7 +12,9 @@ interface CartState {
 const initialState: CartState = {
     pizza: [],
     totalPrice: 0,
-    promo: { title: '', discount: 0, items: [], img: '', description: '' },
+    promo: {
+        title: '', discount: 0, items: [], img: '', description: '',
+    },
     error: '',
 };
 
@@ -78,7 +80,9 @@ const cartSlice = createSlice({
         clearAllCart(state) {
             state.pizza = [];
             state.totalPrice = 0;
-            state.promo = { title: '', discount: 0, items: [], img: '', description: '' };
+            state.promo = {
+                title: '', discount: 0, items: [], img: '', description: '',
+            };
             state.error = '';
             localStorage.removeItem('pizza');
             localStorage.removeItem('price');
@@ -135,7 +139,7 @@ const cartSlice = createSlice({
                         }
                         return item.isPromo;
                     }),
-                    1
+                    1,
                 );
             }
             state.promo = {} as IPromo;

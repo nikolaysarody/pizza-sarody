@@ -1,9 +1,9 @@
 import { type AxiosResponse } from 'axios';
-import axiosApi from '../axios';
+import $api from '../shared/api/api';
 import { type IAction } from '../models/action/models';
 
 export default class ActionService {
     static async getActions(): Promise<AxiosResponse<IAction[]>> {
-        return axiosApi.get<IAction[]>('/action');
+        return $api.get<IAction[]>('/action');
     }
 }

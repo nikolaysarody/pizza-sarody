@@ -1,13 +1,13 @@
 import React from 'react';
 import './header.scss';
 import { Link } from 'react-router-dom';
-import logoImg from '../../icons/logo.svg';
+import LogoImg from '../../shared/assets/icons/logo.svg';
 import Cart from '../cart/cart';
 import UserPopUp from '../profile/userPopUp/userPopUp';
 import Promo from '../promo/promo';
 import SideNav from './sideNav/sideNav';
 
-function Header(): JSX.Element {
+const Header = () => {
     if (window.innerWidth < 962) {
         return (
             <div className="header">
@@ -21,7 +21,7 @@ function Header(): JSX.Element {
                 <div className="header__section">
                     <div className="header__logo">
                         <Link to="/">
-                            <img src={logoImg} alt="Pizza Sarody" width="200" height="46" />
+                            <LogoImg width="200" height="46" />
                         </Link>
                     </div>
                 </div>
@@ -43,6 +43,6 @@ function Header(): JSX.Element {
             </div>
         </div>
     );
-}
+};
 
 export default Header;

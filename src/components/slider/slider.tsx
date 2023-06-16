@@ -1,14 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
-import './slider.scss';
-import arrowLeft from '../../icons/arrow_left.svg';
-import arrowRight from '../../icons/arrow_right.svg';
-import navigationDotActive from '../../icons/active_dot.svg';
-import navigationDotNotActive from '../../icons/not_active_dot.svg';
 import { useAppSelector } from '../../hook';
 import SliderModal from './sliderModal/sliderModal';
 import SliderItem from './sliderItem/sliderItem';
+import NavigationDotActive from '../../shared/assets/icons/active_dot.svg';
+import NavigationDotNotActive from '../../shared/assets/icons/not_active_dot.svg';
+import ArrowLeft from '../../shared/assets/icons/arrow_left.svg';
+import ArrowRight from '../../shared/assets/icons/arrow_right.svg';
+import './slider.scss';
 
-function Slider(): JSX.Element {
+const Slider = () => {
     const sliderItems = useAppSelector((state) => state.action.action);
     const [modalVisible, setModalVisible] = useState<boolean>(false);
     const [slideIndex, setSlide] = useState<number>(0);
@@ -62,7 +62,7 @@ function Slider(): JSX.Element {
                         }
                     }}
                 >
-                    <img src={arrowLeft} alt="previous" className="slider__arrow-left" />
+                    <ArrowLeft className="slider__arrow-left" />
                 </button>
                 <div className="slider__navigation-dot">
                     {sliderItems.map((item, index) => {
@@ -80,7 +80,7 @@ function Slider(): JSX.Element {
                                     }}
                                     key={`${item.title}${item.description}`}
                                 >
-                                    <img src={navigationDotActive} alt="active-dot" />
+                                    <NavigationDotActive />
                                 </button>
                             );
                         }
@@ -97,7 +97,7 @@ function Slider(): JSX.Element {
                                 }}
                                 key={`${item.title}${item.description}`}
                             >
-                                <img src={navigationDotNotActive} alt="dot" />
+                                <NavigationDotNotActive />
                             </button>
                         );
                     })}
@@ -119,7 +119,7 @@ function Slider(): JSX.Element {
                         }
                     }}
                 >
-                    <img src={arrowRight} alt="next" className="slider__arrow-right" />
+                    <ArrowRight className="slider__arrow-right" />
                 </button>
             </div>
             <div className="slider__wrapper" ref={sliderWrapper}>
@@ -137,6 +137,6 @@ function Slider(): JSX.Element {
             </div>
         </div>
     );
-}
+};
 
 export default Slider;

@@ -69,12 +69,12 @@
         display: flex;
         justify-content: space-between;
 
-        .price{
+        .price {
             @include fontStyle();
             font-weight: 500;
             font-size: 17px;
 
-            &-bold{
+            &-bold {
                 @include fontStyle();
                 font-weight: 600;
                 font-size: 17px;

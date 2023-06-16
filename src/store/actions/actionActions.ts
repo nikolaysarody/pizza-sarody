@@ -1,6 +1,6 @@
 import { isAxiosError } from 'axios';
 import { type AppDispatch } from '../index';
-import { fetchingAction, fetchActionSuccess, fetchActionError } from '../slices/actionSlice';
+import { fetchActionError, fetchActionSuccess, fetchingAction } from '../slices/actionSlice';
 import ActionService from '../../services/actionService';
 
 const fetchAction = () => {

@@ -1,7 +1,9 @@
 import { isAxiosError } from 'axios';
 import { type AppDispatch } from '../index';
 import UserService from '../../services/userService';
-import { fetchEmailError, fetchUsernameError, setLoad, setUser } from '../slices/userSlice';
+import {
+    fetchEmailError, fetchUsernameError, setLoad, setUser,
+} from '../slices/userSlice';
 
 export const changeUsername = (username: string) => {
     return async (dispatch: AppDispatch) => {

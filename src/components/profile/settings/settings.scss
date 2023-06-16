@@ -1,6 +1,6 @@
 @import "./src/style/variables";
 
 .settings {
-  @include defaultFlexContainer();
-  @include defaultForm();
+    @include defaultFlexContainer();
+    @include defaultForm();
 }

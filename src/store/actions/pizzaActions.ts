@@ -1,5 +1,5 @@
 import { isAxiosError } from 'axios';
-import axiosApi from '../../axios/index';
+import $api from '../../shared/api/api';
 import { type AppDispatch } from '../index';
 import { fetchingPizza, fetchPizzaError, fetchPizzaSuccess } from '../slices/pizzaSlice';
 
@@ -7,7 +7,7 @@ const fetchPizza = () => {
     return async (dispatch: AppDispatch) => {
         try {
             dispatch(fetchingPizza());
-            const res = await axiosApi.get('/pizza');
+            const res = await $api.get('/pizza');
             dispatch(fetchPizzaSuccess(res.data));
         } catch (e) {
             if (isAxiosError(e) && e.response != null) {

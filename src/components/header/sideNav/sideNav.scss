@@ -1,48 +1,48 @@
 .header {
-  &__side-nav {
-    position: absolute;
-    background: #FFFFFF;
-    box-shadow: 5px 5px 12px 5px rgba(0, 0, 0, 0.1);
-    border-radius: 0 0 0 28px;
-    top: 86px;
-    right: 0;
+    &__side-nav {
+        position: absolute;
+        background: #FFFFFF;
+        box-shadow: 5px 5px 12px 5px rgba(0, 0, 0, 0.1);
+        border-radius: 0 0 0 28px;
+        top: 86px;
+        right: 0;
 
-    &-btn-menu {
-      cursor: pointer;
+        &-btn-menu {
+            cursor: pointer;
+        }
+
+        &-wrapper {
+            display: flex;
+            flex-direction: column;
+            margin: 40px 40px 40px 40px;
+        }
     }
 
-    &-wrapper {
-      display: flex;
-      flex-direction: column;
-      margin: 40px 40px 40px 40px;
+    &__button {
+        display: flex;
+        align-items: center;
     }
-  }
 
-  &__button {
-    display: flex;
-    align-items: center;
-  }
+    &__counter {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        border: 2px solid #B75615;
+        border-radius: 15px;
+        box-sizing: border-box;
+        margin-left: 9px;
 
-  &__counter {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 30px;
-    height: 30px;
-    border: 2px solid #B75615;
-    border-radius: 15px;
-    box-sizing: border-box;
-    margin-left: 9px;
-
-    span {
-      font-weight: 600;
-      font-size: 17px;
-      line-height: 21px;
-      -webkit-touch-callout: none; /* iOS Safari */
-      -webkit-user-select: none;   /* Chrome/Safari/Opera */
-      -moz-user-select: none;      /* Firefox */
-      -ms-user-select: none;       /* Internet Explorer/Edge */
-      user-select: none;
+        span {
+            font-weight: 600;
+            font-size: 17px;
+            line-height: 21px;
+            -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Chrome/Safari/Opera */
+            -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none;
+        }
     }
-  }
 }

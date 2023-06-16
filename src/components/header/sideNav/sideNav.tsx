@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import logoImg from '../../../icons/logo.svg';
-import menuImg from '../../../icons/menu.svg';
-import enterImg from '../../../icons/enter.svg';
+import LogoImg from '../../../shared/assets/icons/logo.svg';
+import MenuImg from '../../../shared/assets/icons/menu.svg';
+import EnterImg from '../../../shared/assets/icons/enter.svg';
 import './sideNav.scss';
 import '../header.scss';
 import { useAppSelector } from '../../../hook';
 
-function SideNav(): JSX.Element {
+const SideNav = () => {
     const [sideNavSwitch, setSideNavSwitch] = useState(false);
     const pizzas = useAppSelector((state) => state.cart.pizza);
     const [count, setCount] = useState(0);
@@ -24,7 +24,7 @@ function SideNav(): JSX.Element {
     useEffect(() => {
         if (sideNav.current != null) {
             if (sideNavSwitch) {
-                sideNav.current.style.transform = `translateX(-0)`;
+                sideNav.current.style.transform = 'translateX(-0)';
             } else {
                 sideNav.current.style.transform = `translateX(${window.getComputedStyle(sideNav.current).width})`;
             }
@@ -47,7 +47,7 @@ function SideNav(): JSX.Element {
             <div className="header__section">
                 <div className="header__logo">
                     <Link to="/">
-                        <img src={logoImg} alt="Pizza Sarody" />
+                        <LogoImg />
                     </Link>
                 </div>
             </div>
@@ -59,7 +59,7 @@ function SideNav(): JSX.Element {
                         setSideNavSwitch((prev) => !prev);
                     }}
                 >
-                    <img src={menuImg} alt="menu" />
+                    <MenuImg />
                 </button>
                 <div className="header__side-nav" ref={sideNav}>
                     <div className="header__side-nav-wrapper">
@@ -79,7 +79,7 @@ function SideNav(): JSX.Element {
                         <div className="header__promo">
                             <input type="text" placeholder="Промокод" />
                             <button type="button">
-                                <img src={enterImg} alt="enter" width="13" height="13" />
+                                <EnterImg width="13" height="13" />
                             </button>
                         </div>
                     </div>
@@ -87,6 +87,6 @@ function SideNav(): JSX.Element {
             </div>
         </div>
     );
-}
+};
 
 export default SideNav;

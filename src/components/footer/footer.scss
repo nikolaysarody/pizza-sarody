@@ -31,18 +31,18 @@
         }
     }
 
-    &__section{
+    &__section {
         display: flex;
         flex-direction: column;
         align-items: center;
         flex-basis: 0;
     }
 
-    &__button{
+    &__button {
         margin-bottom: 10px;
         white-space: nowrap;
 
-        &:last-child{
+        &:last-child {
             margin-bottom: 0;
         }
 
@@ -54,8 +54,8 @@
         }
     }
 
-    &__copyright{
-        span{
+    &__copyright {
+        span {
             font-size: 17px;
             font-weight: 600;
         }

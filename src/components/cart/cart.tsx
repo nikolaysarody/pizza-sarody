@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useAppSelector } from '../../hook';
 import './cart.scss';
-import cartImg from '../../icons/cart.svg';
+import CartImg from '../../shared/assets/icons/cart.svg';
 import CartMenu from './cartMenu/cartMenu';
 
-function Cart(): JSX.Element {
+const Cart = () => {
     const pizzas = useAppSelector((state) => state.cart.pizza);
     const [count, setCount] = useState(0);
     const [cartToggle, setCartToggle] = useState(false);
@@ -33,7 +33,7 @@ function Cart(): JSX.Element {
                     setCartToggle((prev) => !prev);
                 }}
             >
-                <img src={cartImg} alt="cart" width="24" height="24" />
+                <CartImg width="24" height="24" />
                 {cartCounter()}
             </button>
             {cartToggle ? (
@@ -57,6 +57,6 @@ function Cart(): JSX.Element {
             ) : null}
         </div>
     );
-}
+};
 
 export default Cart;

@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import userImg from '../../../icons/user.svg';
+import { useEffect, useState } from 'react';
 import { fetchAddresses } from '../../../store/actions/addressAction';
 import { fetchOrders } from '../../../store/actions/orderActions';
 import { useAppDispatch, useAppSelector } from '../../../hook';
 import UserAuth from './userAuth/userAuth';
-import './userPopUp.scss';
 import UserMenu from './userMenu/userMenu';
+import UserImg from '../../../shared/assets/icons/user.svg';
+import './userPopUp.scss';
 
-function UserPopUp(): JSX.Element {
+const UserPopUp = () => {
     const dispatch = useAppDispatch();
     const user = useAppSelector((state) => state.user.item);
     const isAuth = useAppSelector((state) => state.auth.isAuth);
@@ -68,12 +68,12 @@ function UserPopUp(): JSX.Element {
                     setPopUpSwitch((prev) => !prev);
                 }}
             >
-                <img className="popup__img" src={userImg} alt="user" width="22" height="22" />
+                <UserImg className="popup__img" width="22" height="22" />
                 <span className="popup__user-login">{user.username}</span>
             </button>
             {popUp()}
         </div>
     );
-}
+};
 
 export default UserPopUp;

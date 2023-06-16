@@ -35,6 +35,8 @@ const addressSlice = createSlice({
     },
 });
 
-export const { fetchAddressesSuccess, fetchingAddress, fetchAddressError, appendedAddress } = addressSlice.actions;
+export const {
+    fetchAddressesSuccess, fetchingAddress, fetchAddressError, appendedAddress,
+} = addressSlice.actions;
 
 export default addressSlice.reducer;

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hook';
-import enterImg from '../../icons/enter.svg';
-import './promo.scss';
 import checkPromo from '../../store/actions/promoActions';
 import PromoModal from './promoModal/promoModal';
+import EnterImg from '../../shared/assets/icons/enter.svg';
+import './promo.scss';
 
-function Promo(): JSX.Element {
+const Promo = () => {
     const dispatch = useAppDispatch();
     const promo = useAppSelector((state) => state.promo.item);
     const [promoTitle, setPromoTitle] = useState<string>('');
@@ -39,10 +39,10 @@ function Promo(): JSX.Element {
                     }
                 }}
             >
-                <img src={enterImg} alt="enter" width="13" height="13" />
+                <EnterImg />
             </button>
         </div>
     );
-}
+};
 
 export default Promo;

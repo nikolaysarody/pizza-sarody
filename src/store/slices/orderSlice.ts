@@ -36,13 +36,14 @@ const orderSlice = createSlice({
                 state.items.findIndex((item) => {
                     return item.orderNumber === action.payload;
                 }),
-                1
+                1,
             );
         },
     },
 });
 
-export const { fetchOrdersSuccess, fetchingOrder, fetchOrderError, appendedOrder, deleteOrderItem } =
-    orderSlice.actions;
+export const {
+    fetchOrdersSuccess, fetchingOrder, fetchOrderError, appendedOrder, deleteOrderItem,
+} = orderSlice.actions;
 
 export default orderSlice.reducer;

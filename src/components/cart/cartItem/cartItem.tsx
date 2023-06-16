@@ -1,11 +1,20 @@
 import React from 'react';
 import { useAppDispatch } from '../../../hook';
 import './cartItem.scss';
-import trash from '../../../icons/trash.svg';
+import Trash from '../../../shared/assets/icons/trash.svg';
 import { type IPizza } from '../../../models/pizza/models';
 import { addItemInCart, deleteItemInCart, removeItemInCart } from '../../../store/slices/cartSlice';
 
-function CartItem({ title, description, price, img, _id, count, isPromo }: IPizza): JSX.Element {
+const CartItem = (props: IPizza) => {
+    const {
+        title,
+        description,
+        price,
+        img,
+        _id,
+        count,
+        isPromo,
+    } = props;
     const dispatch = useAppDispatch();
 
     return (
@@ -35,7 +44,9 @@ function CartItem({ title, description, price, img, _id, count, isPromo }: IPizz
                             className="cart-item__btn-change"
                             value="+"
                             onClick={() => {
-                                dispatch(addItemInCart({ title, description, price, img, _id }));
+                                dispatch(addItemInCart({
+                                    title, description, price, img, _id,
+                                }));
                             }}
                         />
                     </div>
@@ -53,12 +64,12 @@ function CartItem({ title, description, price, img, _id, count, isPromo }: IPizz
                             dispatch(removeItemInCart(title));
                         }}
                     >
-                        <img src={trash} alt="delete" />
+                        <Trash />
                     </button>
                 ) : null}
             </div>
         </li>
     );
-}
+};
 
 export default CartItem;

@@ -9,7 +9,9 @@ interface ItemType {
     visible: () => void;
 }
 
-function SliderItem({ title, description, clickable, img, _id, visible }: ItemType): JSX.Element {
+const SliderItem = ({
+    title, description, clickable, img, _id, visible,
+}: ItemType) => {
     const [classNames, setClassNames] = useState<string>('slider__item');
 
     useEffect(() => {
@@ -39,6 +41,6 @@ function SliderItem({ title, description, clickable, img, _id, visible }: ItemTy
             </div>
         </button>
     );
-}
+};
 
 export default SliderItem;

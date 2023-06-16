@@ -16,7 +16,9 @@ function Checkout() {
     const pizzas = useAppSelector((state) => state.cart.pizza);
     const totalPrice = useAppSelector((state) => state.cart.totalPrice);
     const addresses = useAppSelector((state) => state.address.items);
-    const { title, items, discount, description } = useAppSelector((state) => state.cart.promo);
+    const {
+        title, items, discount, description,
+    } = useAppSelector((state) => state.cart.promo);
     const [paymentOption, setPaymentOption] = useState<OrderPaymentOption>(OrderPaymentOption.Cash);
     const [modalRegistrationVisible, setModalRegistrationVisible] = useState<boolean>(false);
     const [modalAddressVisible, setModalAddressVisible] = useState<boolean>(false);
@@ -107,20 +109,34 @@ function Checkout() {
                         {title ? (
                             <div className="ordering__payment-info--promo">
                                 <span className="ordering__payment-info--promo--price">
-                                    Промокод: {title.toUpperCase()}
+                                    Промокод:
+                                    {' '}
+                                    {title.toUpperCase()}
                                 </span>
                                 {items.length === 0 ? (
-                                    <span className="ordering__payment-info--promo--price">Скидка: -{discount}%</span>
+                                    <span className="ordering__payment-info--promo--price">
+                                        Скидка: -
+                                        {discount}
+                                        %
+                                    </span>
                                 ) : (
                                     <span className="ordering__payment-info--promo--price">
-                                        Описание: {description}
+                                        Описание:
+                                        {' '}
+                                        {description}
                                     </span>
                                 )}
                             </div>
                         ) : null}
                         <div className="ordering__payment-info--row">
                             <span className="ordering__payment-info--price">
-                                Сумма:<span className="bold">&nbsp;{price()}&nbsp;</span>руб.
+                                Сумма:
+                                <span className="bold">
+&nbsp;
+                                    {price()}
+&nbsp;
+                                </span>
+                                руб.
                             </span>
                             <input
                                 type="button"
@@ -135,7 +151,7 @@ function Checkout() {
                                                     orderStatus: OrderStatus.Waited,
                                                     cost: price(),
                                                     pizzas,
-                                                })
+                                                }),
                                             )
                                                 .then((res) => {
                                                     if (res) {

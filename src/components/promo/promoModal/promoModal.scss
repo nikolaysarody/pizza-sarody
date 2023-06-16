@@ -1,123 +1,125 @@
 @import "./src/style/variables";
 
 .promo-modal {
-  @include defaultModal();
+    @include defaultModal();
 
-  &__wrapper {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 593px;
-    height: 451px;
-    background: #FFFFFF;
-    border-radius: 20px;
-  }
-
-  &__top {
-    position: relative;
-    height: 50%;
-    width: 100%;
-
-    &-exit-btn {
-      cursor: pointer;
-      position: absolute;
-      width: 19px;
-      height: 19px;
-      right: 20px;
-      top: 20px;
+    &__wrapper {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 593px;
+        height: 451px;
+        background: #FFFFFF;
+        border-radius: 20px;
     }
 
-    &-img {
-      object-fit: cover;
-      height: 100%;
-      width: 100%;
-      border-radius: 20px 20px 0 0;
-
-      &-filter {
+    &__top {
+        position: relative;
+        height: 50%;
         width: 100%;
-        height: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(90deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%);
-        border-radius: 20px 20px 0 0;
-      }
+
+        &-exit-btn {
+            cursor: pointer;
+            position: absolute;
+            width: 19px;
+            height: 19px;
+            right: 20px;
+            top: 20px;
+        }
+
+        &-img {
+            object-fit: cover;
+            height: 100%;
+            width: 100%;
+            border-radius: 20px 20px 0 0;
+
+            &-filter {
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: linear-gradient(90deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%);
+                border-radius: 20px 20px 0 0;
+            }
+        }
+
+        &-title {
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+            font-size: 34px;
+            line-height: 41px;
+            color: #FFFFFF;
+        }
+
+        &-description {
+            position: absolute;
+            top: 115px;
+            left: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 44px;
+            //line-height: 54px;
+            color: #FFFFFF;
+        }
     }
 
-    &-title {
-      position: absolute;
-      top: 50px;
-      left: 50px;
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 400;
-      font-size: 34px;
-      line-height: 41px;
-      color: #FFFFFF;
+    &__container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        max-width: 80%;
+
+        &-img {
+            margin-bottom: 45px;
+        }
+
+        &-title {
+            @include fontStyle();
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 24px;
+            color: black;
+            text-align: center;
+        }
     }
 
-    &-description {
-      position: absolute;
-      top: 115px;
-      left: 50px;
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 600;
-      font-size: 44px;
-      //line-height: 54px;
-      color: #FFFFFF;
-    }
-  }
-
-  &__container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    max-width: 80%;
-    &-img {
-      margin-bottom: 45px;
-    }
-    &-title {
-      @include fontStyle();
-      font-weight: 600;
-      font-size: 20px;
-      line-height: 24px;
-      color: black;
-      text-align: center;
-    }
-  }
-
-  &__down {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    height: 50%;
-    width: 100%;
+    &__down {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        height: 50%;
+        width: 100%;
 
 
-    &-text {
-      font-family: 'Montserrat', sans-serif;;
-      font-style: normal;
-      font-weight: 500;
-      font-size: 24px;
-      text-align: left;
-      margin-left: 50px;
-    }
+        &-text {
+            font-family: 'Montserrat', sans-serif;;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 24px;
+            text-align: left;
+            margin-left: 50px;
+        }
 
-    &-append {
-      margin-left: 50px;
-      margin-top: 10px;
-      @include fontStyle();
-      color: #B75615;
-    }
+        &-append {
+            margin-left: 50px;
+            margin-top: 10px;
+            @include fontStyle();
+            color: #B75615;
+        }
 
-    &-btn {
-      @include defaultBtn();
-      font-weight: 400;
-      margin-left: 50px;
+        &-btn {
+            @include defaultBtn();
+            font-weight: 400;
+            margin-left: 50px;
+        }
     }
-  }
 }

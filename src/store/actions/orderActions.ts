@@ -1,7 +1,9 @@
 import { isAxiosError } from 'axios';
 import { type AppDispatch } from '../index';
 import OrderService from '../../services/orderService';
-import { appendedOrder, fetchingOrder, fetchOrderError, fetchOrdersSuccess } from '../slices/orderSlice';
+import {
+    appendedOrder, fetchingOrder, fetchOrderError, fetchOrdersSuccess,
+} from '../slices/orderSlice';
 import { type IOrder } from '../../models/order/models';
 
 export const fetchOrders = () => {

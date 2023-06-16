@@ -1,19 +1,19 @@
 .payment {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  padding-left: 20px;
-  width: 272px;
-  height: 36px;
-  background: #FFFFFF;
-  box-shadow: 5px 5px 12px 5px rgba(0, 0, 0, 0.1);
-  border-radius: 20px;
-  margin-bottom: 25px;
-  cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 20px;
+    width: 272px;
+    height: 36px;
+    background: #FFFFFF;
+    box-shadow: 5px 5px 12px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    margin-bottom: 25px;
+    cursor: pointer;
 
-  span {
-    margin-left: 10px;
-    font-weight: 500;
-    font-size: 17px;
-  }
+    span {
+        margin-left: 10px;
+        font-weight: 500;
+        font-size: 17px;
+    }
 }
