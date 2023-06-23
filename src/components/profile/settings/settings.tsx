@@ -6,7 +6,7 @@ import { type IUser, Pages } from '../../../models/user/models';
 import { useAppDispatch, useAppSelector } from '../../../hook';
 import { changeEmail, changeUsername } from '../../../store/actions/userActions';
 
-function Settings(): JSX.Element {
+const Settings = () => {
     const dispatch = useAppDispatch();
     const user = useAppSelector((state) => state.user.item);
     const userError = useAppSelector((state) => state.user.error);
@@ -55,6 +55,6 @@ function Settings(): JSX.Element {
             </div>
         </div>
     );
-}
+};
 
 export default Settings;

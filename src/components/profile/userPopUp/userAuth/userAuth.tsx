@@ -3,7 +3,7 @@ import { login, registration } from '../../../../store/actions/authActions';
 import { useAppDispatch, useAppSelector } from '../../../../hook';
 import '../userPopUp.scss';
 
-function UserAuth(): JSX.Element {
+const UserAuth = () => {
     const dispatch = useAppDispatch();
     const [userEmail, setUserEmail] = useState<string>('');
     const [userPassword, setUserPassword] = useState<string>('');
@@ -63,6 +63,6 @@ function UserAuth(): JSX.Element {
             </div>
         </form>
     );
-}
+};
 
 export default UserAuth;

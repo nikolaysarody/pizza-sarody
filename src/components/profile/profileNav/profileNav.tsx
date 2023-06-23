@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './profileNav.scss';
 import { Pages } from '../../../models/user/models';
 
-function ProfileNav({ page }: { page: Pages }): JSX.Element {
+const ProfileNav = ({ page }: { page: Pages }) => {
     return (
         <div className="profile-nav__container">
             <div className="profile-nav__section">
@@ -29,6 +29,6 @@ function ProfileNav({ page }: { page: Pages }): JSX.Element {
             </div>
         </div>
     );
-}
+};
 
 export default ProfileNav;

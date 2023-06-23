@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { logout } from '../../../../store/actions/authActions';
 import { useAppDispatch } from '../../../../hook';
 
-function UserMenu({ popUpSwitch }: { popUpSwitch: () => void }): JSX.Element {
+const UserMenu = ({ popUpSwitch }: { popUpSwitch: () => void }) => {
     const dispatch = useAppDispatch();
 
     return (
@@ -57,6 +57,6 @@ function UserMenu({ popUpSwitch }: { popUpSwitch: () => void }): JSX.Element {
             </div>
         </div>
     );
-}
+};
 
 export default UserMenu;

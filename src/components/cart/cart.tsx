@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useAppSelector } from '../../hook';
 import './cart.scss';
-import CartImg from '../../shared/assets/icons/cart.svg';
+// import CartImg from '../../shared/assets/icons/cart.svg';
 import CartMenu from './cartMenu/cartMenu';
 
 const Cart = () => {
@@ -33,7 +33,7 @@ const Cart = () => {
                     setCartToggle((prev) => !prev);
                 }}
             >
-                <CartImg width="24" height="24" />
+                {/* <CartImg width="24" height="24" /> */}
                 {cartCounter()}
             </button>
             {cartToggle ? (

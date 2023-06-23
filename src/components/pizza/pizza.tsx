@@ -3,7 +3,7 @@ import { useAppSelector } from '../../hook';
 import PizzaItem from './pizzaItem/pizzaItem';
 import './pizza.scss';
 
-function Pizza(): JSX.Element {
+const Pizza = () => {
     const pizzaItems = useAppSelector((state) => state.pizza.pizza);
 
     return (
@@ -13,6 +13,6 @@ function Pizza(): JSX.Element {
             ))}
         </ul>
     );
-}
+};
 
 export default Pizza;

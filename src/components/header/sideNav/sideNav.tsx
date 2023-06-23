@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import LogoImg from '../../../shared/assets/icons/logo.svg';
-import MenuImg from '../../../shared/assets/icons/menu.svg';
-import EnterImg from '../../../shared/assets/icons/enter.svg';
+// import LogoImg from '../../../shared/assets/icons/logo.svg';
+// import MenuImg from '../../../shared/assets/icons/menu.svg';
+// import EnterImg from '../../../shared/assets/icons/enter.svg';
 import './sideNav.scss';
 import '../header.scss';
 import { useAppSelector } from '../../../hook';
@@ -47,7 +47,7 @@ const SideNav = () => {
             <div className="header__section">
                 <div className="header__logo">
                     <Link to="/">
-                        <LogoImg />
+                        {/* <LogoImg /> */}
                     </Link>
                 </div>
             </div>
@@ -59,7 +59,7 @@ const SideNav = () => {
                         setSideNavSwitch((prev) => !prev);
                     }}
                 >
-                    <MenuImg />
+                    {/* <MenuImg /> */}
                 </button>
                 <div className="header__side-nav" ref={sideNav}>
                     <div className="header__side-nav-wrapper">
@@ -79,7 +79,7 @@ const SideNav = () => {
                         <div className="header__promo">
                             <input type="text" placeholder="Промокод" />
                             <button type="button">
-                                <EnterImg width="13" height="13" />
+                                {/* <EnterImg width="13" height="13" /> */}
                             </button>
                         </div>
                     </div>

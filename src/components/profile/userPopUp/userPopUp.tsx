@@ -4,7 +4,7 @@ import { fetchOrders } from '../../../store/actions/orderActions';
 import { useAppDispatch, useAppSelector } from '../../../hook';
 import UserAuth from './userAuth/userAuth';
 import UserMenu from './userMenu/userMenu';
-import UserImg from '../../../shared/assets/icons/user.svg';
+// import UserImg from '../../../shared/assets/icons/user.svg';
 import './userPopUp.scss';
 
 const UserPopUp = () => {
@@ -68,7 +68,7 @@ const UserPopUp = () => {
                     setPopUpSwitch((prev) => !prev);
                 }}
             >
-                <UserImg className="popup__img" width="22" height="22" />
+                {/* <UserImg className="popup__img" width="22" height="22" /> */}
                 <span className="popup__user-login">{user.username}</span>
             </button>
             {popUp()}

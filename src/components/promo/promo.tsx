@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hook';
 import checkPromo from '../../store/actions/promoActions';
 import PromoModal from './promoModal/promoModal';
-import EnterImg from '../../shared/assets/icons/enter.svg';
+// import EnterImg from '../../shared/assets/icons/enter.svg';
 import './promo.scss';
 
 const Promo = () => {
@@ -39,7 +39,7 @@ const Promo = () => {
                     }
                 }}
             >
-                <EnterImg />
+                {/* <EnterImg /> */}
             </button>
         </div>
     );

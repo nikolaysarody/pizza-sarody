@@ -1,7 +1,7 @@
 import React from 'react';
 import './spinner.css';
 
-function Spinner({ width = 'auto' }: { width: string }): JSX.Element {
+const Spinner = ({ width = 'auto' }: { width: string }) => {
     return (
         <div className="loadingio-spinner-spinner-0yrf6jam8lyh" style={{ width }}>
             <div className="ldio-yj8579yn4s">
@@ -20,6 +20,6 @@ function Spinner({ width = 'auto' }: { width: string }): JSX.Element {
             </div>
         </div>
     );
-}
+};
 
 export default Spinner;

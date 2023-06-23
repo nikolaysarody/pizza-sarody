@@ -1,7 +1,7 @@
 import React from 'react';
 import './footer.scss';
 
-function Footer(): JSX.Element {
+const Footer = () => {
     if (window.innerWidth < 962) {
         return (
             <div className="footer">
@@ -60,6 +60,6 @@ function Footer(): JSX.Element {
             </div>
         </div>
     );
-}
+};
 
 export default Footer;

@@ -9,9 +9,16 @@ interface ItemType {
     visible: () => void;
 }
 
-const SliderItem = ({
-    title, description, clickable, img, _id, visible,
-}: ItemType) => {
+const SliderItem = (props: ItemType) => {
+    const {
+        title,
+        description,
+        clickable,
+        img,
+        _id,
+        visible,
+    } = props;
+
     const [classNames, setClassNames] = useState<string>('slider__item');
 
     useEffect(() => {

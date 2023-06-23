@@ -6,15 +6,9 @@ import fetchAction from '../store/actions/actionActions';
 import { checkAuth } from '../store/actions/authActions';
 import Header from '../components/header/header';
 import Footer from '../components/footer/footer';
-import PrivateRoute from '../components/router/privateRoute';
 import { initCart } from '../store/slices/cartSlice';
-import { SettingsPage } from '../pages/SettingsPage';
-import { OrdersPage } from '../pages/OrdersPage';
-import { AddressesPage } from '../pages/AdressesPage';
-import { MainPage } from '../pages/MainPage';
-import { AboutPage } from '../pages/AboutPage';
-import { CheckoutPage } from '../pages/CheckoutPage';
 import './styles/index.scss';
+import { AppRouter } from './providers/router';
 
 const App = () => {
     const dispatch = useAppDispatch();
@@ -38,16 +32,7 @@ const App = () => {
             <div className="app">
                 <div className="app__body">
                     <Header />
-                    <Routes>
-                        <Route element={<PrivateRoute />}>
-                            <Route path="/settings" element={<SettingsPage />} />
-                            <Route path="/orders" element={<OrdersPage />} />
-                            <Route path="/addresses" element={<AddressesPage />} />
-                        </Route>
-                        <Route path="/checkout" element={<CheckoutPage />} />
-                        <Route path="/" element={<MainPage />} />
-                        <Route path="/about" element={<AboutPage />} />
-                    </Routes>
+                    <AppRouter />
                     <Footer />
                 </div>
             </div>

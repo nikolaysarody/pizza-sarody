@@ -6,7 +6,7 @@ import { fetchOrders } from '../../../store/actions/orderActions';
 import { useAppDispatch, useAppSelector } from '../../../hook';
 import OrderItem from './orderItem/orderItem';
 
-function Orders(): JSX.Element {
+const Orders = () => {
     const dispatch = useAppDispatch();
     const orders = useAppSelector((state) => state.order.items);
 
@@ -27,6 +27,6 @@ function Orders(): JSX.Element {
             </div>
         </div>
     );
-}
+};
 
 export default Orders;
