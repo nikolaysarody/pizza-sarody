@@ -1,6 +1,8 @@
 import { isAxiosError } from 'axios';
 import { type AppDispatch } from '../index';
-import { appendedAddress, fetchAddressError, fetchAddressesSuccess, fetchingAddress } from '../slices/addressSlice';
+import {
+    appendedAddress, fetchAddressError, fetchAddressesSuccess, fetchingAddress,
+} from '../slices/addressSlice';
 import AddressService from '../../services/addressService';
 import { type IAddress } from '../../models/address/models';
 

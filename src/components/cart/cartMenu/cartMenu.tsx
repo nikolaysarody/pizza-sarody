@@ -1,16 +1,21 @@
-import React from 'react';
-import './cartMenu.scss';
 import { Link } from 'react-router-dom';
 import cartImg from '../../../icons/cart_menu.svg';
 import CartList from '../cartList/cartList';
 import { useAppDispatch, useAppSelector } from '../../../hook';
 import { clearAllCart, removePromoFromCart } from '../../../store/slices/cartSlice';
 import trash from '../../../icons/trash.svg';
+import './cartMenu.scss';
 
-function CartMenu({ setToggle }: { setToggle: () => void }): JSX.Element {
+interface CartMenuProps {
+    setToggle: () => void;
+}
+
+const CartMenu = ({ setToggle }: CartMenuProps) => {
     const dispatch = useAppDispatch();
     const pizzaInCart = useAppSelector((state) => state.cart.pizza);
-    const { title, items, discount, description } = useAppSelector((state) => state.cart.promo);
+    const {
+        title, items, discount, description,
+    } = useAppSelector((state) => state.cart.promo);
     const totalPrice = useAppSelector((state) => state.cart.totalPrice);
 
     const price = (): number => {
@@ -42,11 +47,21 @@ function CartMenu({ setToggle }: { setToggle: () => void }): JSX.Element {
                     {title ? (
                         <div className="cart__down--promo">
                             <div className="cart__down--promo-column">
-                                <span className="cart__down--promo--price">Промокод: {title.toUpperCase()}</span>
+                                <span className="cart__down--promo--price">
+                                    Промокод:
+                                    {title.toUpperCase()}
+                                </span>
                                 {items.length === 0 ? (
-                                    <span className="cart__down--promo--price">Скидка: -{discount}%</span>
+                                    <span className="cart__down--promo--price">
+                                        Скидка: -
+                                        {discount}
+                                        %
+                                    </span>
                                 ) : (
-                                    <span className="cart__down--promo--price">Описание: {description}</span>
+                                    <span className="cart__down--promo--price">
+                                        Описание:
+                                        {description}
+                                    </span>
                                 )}
                             </div>
                             <button
@@ -88,6 +103,6 @@ function CartMenu({ setToggle }: { setToggle: () => void }): JSX.Element {
             </div>
         </div>
     );
-}
+};
 
 export default CartMenu;

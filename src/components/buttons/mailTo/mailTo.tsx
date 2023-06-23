@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 
 interface MailToProps {
@@ -6,8 +5,8 @@ interface MailToProps {
     label: string;
 }
 
-function MailTo({ mailto, label }: MailToProps): JSX.Element {
+const MailTo = ({ mailto, label }: MailToProps) => {
     return <Link to={mailto}>{label}</Link>;
-}
+};
 
 export default MailTo;

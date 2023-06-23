@@ -1,13 +1,12 @@
-import React from 'react';
-import './header.scss';
 import { Link } from 'react-router-dom';
 import logoImg from '../../icons/logo.svg';
 import Cart from '../cart/cart';
 import UserPopUp from '../profile/userPopUp/userPopUp';
 import Promo from '../promo/promo';
 import SideNav from './sideNav/sideNav';
+import './header.scss';
 
-function Header(): JSX.Element {
+const Header = () => {
     if (window.innerWidth < 962) {
         return (
             <div className="header">
@@ -43,6 +42,6 @@ function Header(): JSX.Element {
             </div>
         </div>
     );
-}
+};
 
 export default Header;

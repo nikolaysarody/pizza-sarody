@@ -1,9 +1,8 @@
-import React from 'react';
-import './cartList.scss';
 import CartItem from '../cartItem/cartItem';
 import { useAppSelector } from '../../../hook';
+import './cartList.scss';
 
-function CartList(): JSX.Element {
+const CartList = () => {
     const pizzas = useAppSelector((state) => state.cart.pizza);
 
     return (
@@ -13,6 +12,6 @@ function CartList(): JSX.Element {
             ))}
         </ul>
     );
-}
+};
 
 export default CartList;

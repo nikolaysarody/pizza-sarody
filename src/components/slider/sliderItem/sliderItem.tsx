@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 interface ItemType {
     title: string;
@@ -9,7 +9,15 @@ interface ItemType {
     visible: () => void;
 }
 
-function SliderItem({ title, description, clickable, img, _id, visible }: ItemType): JSX.Element {
+const SliderItem = (props: ItemType) => {
+    const {
+        title,
+        description,
+        clickable,
+        img,
+        _id,
+        visible,
+    } = props;
     const [classNames, setClassNames] = useState<string>('slider__item');
 
     useEffect(() => {
@@ -39,6 +47,6 @@ function SliderItem({ title, description, clickable, img, _id, visible }: ItemTy
             </div>
         </button>
     );
-}
+};
 
 export default SliderItem;

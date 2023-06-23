@@ -1,5 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
-import './slider.scss';
+import { useEffect, useRef, useState } from 'react';
 import arrowLeft from '../../icons/arrow_left.svg';
 import arrowRight from '../../icons/arrow_right.svg';
 import navigationDotActive from '../../icons/active_dot.svg';
@@ -7,8 +6,9 @@ import navigationDotNotActive from '../../icons/not_active_dot.svg';
 import { useAppSelector } from '../../hook';
 import SliderModal from './sliderModal/sliderModal';
 import SliderItem from './sliderItem/sliderItem';
+import './slider.scss';
 
-function Slider(): JSX.Element {
+const Slider = () => {
     const sliderItems = useAppSelector((state) => state.action.action);
     const [modalVisible, setModalVisible] = useState<boolean>(false);
     const [slideIndex, setSlide] = useState<number>(0);
@@ -137,6 +137,6 @@ function Slider(): JSX.Element {
             </div>
         </div>
     );
-}
+};
 
 export default Slider;

@@ -1,9 +1,12 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { logout } from '../../../../store/actions/authActions';
 import { useAppDispatch } from '../../../../hook';
 
-function UserMenu({ popUpSwitch }: { popUpSwitch: () => void }): JSX.Element {
+interface UserMenuProps {
+    popUpSwitch: () => void;
+}
+
+const UserMenu = ({ popUpSwitch }: UserMenuProps) => {
     const dispatch = useAppDispatch();
 
     return (
@@ -57,6 +60,6 @@ function UserMenu({ popUpSwitch }: { popUpSwitch: () => void }): JSX.Element {
             </div>
         </div>
     );
-}
+};
 
 export default UserMenu;

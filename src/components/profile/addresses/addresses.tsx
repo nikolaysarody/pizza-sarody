@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import ProfileNav from '../profileNav/profileNav';
 import { Pages } from '../../../models/user/models';
@@ -8,7 +8,7 @@ import { type IAddress } from '../../../models/address/models';
 import AddressItem from './addressItem/addressItem';
 import './addresses.scss';
 
-function Addresses(): JSX.Element {
+const Addresses = () => {
     const dispatch = useAppDispatch();
     const addresses = useAppSelector((state) => state.address.items);
     const {
@@ -129,8 +129,8 @@ function Addresses(): JSX.Element {
                         <ul className="addresses__items">
                             {addresses.length !== 0
                                 ? addresses.map((item) => (
-                                      <AddressItem {...item} key={`${item.street}${item.apartment}${item.floor}`} />
-                                  ))
+                                    <AddressItem {...item} key={`${item.street}${item.apartment}${item.floor}`} />
+                                ))
                                 : 'Нет адресов'}
                         </ul>
                     </div>
@@ -138,6 +138,6 @@ function Addresses(): JSX.Element {
             </div>
         </div>
     );
-}
+};
 
 export default Addresses;

@@ -31,7 +31,7 @@ axiosApi.interceptors.response.use(
             }
         }
         throw error;
-    }
+    },
 );
 
 export default axiosApi;

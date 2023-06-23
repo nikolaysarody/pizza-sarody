@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { type OrderResponse, OrderStatus } from '../../../../models/order/models';
 import arrowDown from '../../../../icons/black_arrow_down.png';
 import arrow from '../../../../icons/black_arrow.png';
@@ -7,15 +7,16 @@ import { cancelOrder, deleteOrder } from '../../../../store/actions/orderActions
 import { deleteOrderItem } from '../../../../store/slices/orderSlice';
 import OrderItemDetail from './orderItemDetail/orderItemDetail';
 
-function OrderItem({
-    orderNumber,
-    orderStatus,
-    paymentStatus,
-    paymentOption,
-    cost,
-    pizzas,
-    address,
-}: OrderResponse): JSX.Element {
+const OrderItem = (props: OrderResponse) => {
+    const {
+        orderNumber,
+        orderStatus,
+        paymentStatus,
+        paymentOption,
+        cost,
+        pizzas,
+        address,
+    } = props;
     const dispatch = useAppDispatch();
     const [detailSwitch, setDetailSwitch] = useState<boolean>(false);
     const [status, setStatusSwitch] = useState<OrderStatus>(orderStatus);
@@ -41,12 +42,17 @@ function OrderItem({
     return (
         <li className="orders__item-container">
             <div className="orders__item-info">
-                <span>Заказ №{orderNumber}</span>
+                <span>
+                    Заказ №
+                    {orderNumber}
+                </span>
                 <span>{paymentStatus}</span>
                 <span>{paymentOption}</span>
                 <span>{status}</span>
                 <span>
-                    <span className="bold">{cost}</span> руб.
+                    <span className="bold">{cost}</span>
+                    {' '}
+                    руб.
                 </span>
                 <span>
                     <button
@@ -62,7 +68,20 @@ function OrderItem({
             {detailSwitch ? (
                 <div className="orders__item-detail">
                     <span className="orders__item-address">
-                        ул. {address.street}, д. {address.house}, под. {address.entrance}, кв. {address.apartment}, эт.{' '}
+                        ул.
+                        {' '}
+                        {address.street}
+                        , д.
+                        {' '}
+                        {address.house}
+                        , под.
+                        {' '}
+                        {address.entrance}
+                        , кв.
+                        {' '}
+                        {address.apartment}
+                        , эт.
+                        {' '}
                         {address.floor}
                     </span>
                     {pizzas.map((item) => (
@@ -85,6 +104,6 @@ function OrderItem({
             ) : null}
         </li>
     );
-}
+};
 
 export default OrderItem;

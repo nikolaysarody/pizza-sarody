@@ -1,12 +1,12 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import ProfileNav from '../profileNav/profileNav';
 import { Pages } from '../../../models/user/models';
-import './orders.scss';
 import { fetchOrders } from '../../../store/actions/orderActions';
 import { useAppDispatch, useAppSelector } from '../../../hook';
 import OrderItem from './orderItem/orderItem';
+import './orders.scss';
 
-function Orders(): JSX.Element {
+const Orders = () => {
     const dispatch = useAppDispatch();
     const orders = useAppSelector((state) => state.order.items);
 
@@ -27,6 +27,6 @@ function Orders(): JSX.Element {
             </div>
         </div>
     );
-}
+};
 
 export default Orders;

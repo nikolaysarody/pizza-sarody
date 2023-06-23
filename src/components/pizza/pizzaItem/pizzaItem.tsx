@@ -1,10 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../hook';
-import './pizzaItem.scss';
 import { type IPizza } from '../../../models/pizza/models';
 import { addItemInCart, deleteItemInCart } from '../../../store/slices/cartSlice';
+import './pizzaItem.scss';
 
-function PizzaItem({ title, description, price, img, _id }: Omit<IPizza, 'count'>): JSX.Element {
+const PizzaItem = (props: Omit<IPizza, 'count'>) => {
+    const {
+        title,
+        description,
+        price,
+        img,
+        _id,
+    } = props;
     const dispatch = useAppDispatch();
     // const [imageStatus, setImageStatus] = useState(false);
     const [pizzaCount, setPizzaCount] = useState<number | undefined>(0);
@@ -51,7 +58,9 @@ function PizzaItem({ title, description, price, img, _id }: Omit<IPizza, 'count'
                         className="pizza__btn-change"
                         value="+"
                         onClick={() => {
-                            dispatch(addItemInCart({ title, description, price, img, _id }));
+                            dispatch(addItemInCart({
+                                title, description, price, img, _id,
+                            }));
                         }}
                     />
                 </div>
@@ -63,7 +72,9 @@ function PizzaItem({ title, description, price, img, _id }: Omit<IPizza, 'count'
                 className="pizza__btn-null"
                 value="Выбрать"
                 onClick={() => {
-                    dispatch(addItemInCart({ title, description, price, img, _id }));
+                    dispatch(addItemInCart({
+                        title, description, price, img, _id,
+                    }));
                 }}
             />
         );
@@ -86,12 +97,16 @@ function PizzaItem({ title, description, price, img, _id }: Omit<IPizza, 'count'
                     <span className="pizza__span">{description}</span>
                 </div>
                 <div className="pizza__order">
-                    <span className="pizza__price">{price} руб.</span>
+                    <span className="pizza__price">
+                        {price}
+                        {' '}
+                        руб.
+                    </span>
                     {orderButton()}
                 </div>
             </div>
         </li>
     );
-}
+};
 
 export default PizzaItem;

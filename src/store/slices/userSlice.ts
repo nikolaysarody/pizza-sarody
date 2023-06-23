@@ -38,6 +38,8 @@ const userSlice = createSlice({
     },
 });
 
-export const { setUser, fetchUsernameError, fetchEmailError, setLoad } = userSlice.actions;
+export const {
+    setUser, fetchUsernameError, fetchEmailError, setLoad,
+} = userSlice.actions;
 
 export default userSlice.reducer;

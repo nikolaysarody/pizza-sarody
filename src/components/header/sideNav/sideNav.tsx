@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import logoImg from '../../../icons/logo.svg';
 import menuImg from '../../../icons/menu.svg';
@@ -7,7 +7,7 @@ import './sideNav.scss';
 import '../header.scss';
 import { useAppSelector } from '../../../hook';
 
-function SideNav(): JSX.Element {
+const SideNav = () => {
     const [sideNavSwitch, setSideNavSwitch] = useState(false);
     const pizzas = useAppSelector((state) => state.cart.pizza);
     const [count, setCount] = useState(0);
@@ -24,7 +24,7 @@ function SideNav(): JSX.Element {
     useEffect(() => {
         if (sideNav.current != null) {
             if (sideNavSwitch) {
-                sideNav.current.style.transform = `translateX(-0)`;
+                sideNav.current.style.transform = 'translateX(-0)';
             } else {
                 sideNav.current.style.transform = `translateX(${window.getComputedStyle(sideNav.current).width})`;
             }
@@ -87,6 +87,6 @@ function SideNav(): JSX.Element {
             </div>
         </div>
     );
-}
+};
 
 export default SideNav;

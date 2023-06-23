@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import userImg from '../../../icons/user.svg';
 import { fetchAddresses } from '../../../store/actions/addressAction';
 import { fetchOrders } from '../../../store/actions/orderActions';
 import { useAppDispatch, useAppSelector } from '../../../hook';
 import UserAuth from './userAuth/userAuth';
-import './userPopUp.scss';
 import UserMenu from './userMenu/userMenu';
+import './userPopUp.scss';
 
-function UserPopUp(): JSX.Element {
+const UserPopUp = () => {
     const dispatch = useAppDispatch();
     const user = useAppSelector((state) => state.user.item);
     const isAuth = useAppSelector((state) => state.auth.isAuth);
@@ -74,6 +74,6 @@ function UserPopUp(): JSX.Element {
             {popUp()}
         </div>
     );
-}
+};
 
 export default UserPopUp;
