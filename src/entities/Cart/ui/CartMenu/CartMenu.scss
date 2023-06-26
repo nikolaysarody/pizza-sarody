@@ -15,7 +15,7 @@
         z-index: 3;
     }
 
-    .empty {
+    &._empty {
         width: 368px;
         height: 112px;
     }
@@ -83,13 +83,13 @@
             }
         }
 
-        &--promo {
+        &_promo {
             display: flex;
             align-items: center;
             justify-content: space-between;
             flex-direction: row;
 
-            &--price {
+            &_price {
                 @include fontStyle();
 
                 &:last-child {
@@ -99,7 +99,7 @@
             }
         }
 
-        &--promo-column {
+        &_promo-column {
             display: flex;
             align-items: flex-start;
             justify-content: center;

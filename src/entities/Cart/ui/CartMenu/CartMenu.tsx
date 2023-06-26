@@ -49,20 +49,20 @@ const CartMenu = memo(({ setToggle }: CartMenuProps) => {
                         <CartList />
                     </div>
                     {title ? (
-                        <div className="cart__down--promo">
-                            <div className="cart__down--promo-column">
-                                <span className="cart__down--promo--price">
+                        <div className="cart__down__promo">
+                            <div className="cart__down__promo_column">
+                                <span className="cart__down__promo_price">
                                     Промокод:
                                     {title.toUpperCase()}
                                 </span>
                                 {items.length === 0 ? (
-                                    <span className="cart__down--promo--price">
+                                    <span className="cart__down__promo_price">
                                         Скидка: -
                                         {discount}
                                         %
                                     </span>
                                 ) : (
-                                    <span className="cart__down--promo--price">
+                                    <span className="cart__down__promo_price">
                                         Описание:
                                         {description}
                                     </span>
@@ -100,7 +100,7 @@ const CartMenu = memo(({ setToggle }: CartMenuProps) => {
         );
     }
     return (
-        <div className="cart__menu empty">
+        <div className="cart__menu-empty">
             <div className="cart__item-empty">
                 <img src={cartImg} alt="cart" width="42" height="42" />
                 <span>Корзина пустая</span>

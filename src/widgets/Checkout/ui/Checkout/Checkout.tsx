@@ -55,7 +55,7 @@ export const Checkout = () => {
                 <AddressItem {...item} key={`${item.apartment}${item.house}${item.floor}`} />
             ))
         ) : (
-            <span className="ordering__addresses--no-addresses">Нет адресов</span>
+            <span className="ordering__addresses_no-addresses">Нет адресов</span>
         )), [addresses]);
 
     const changeOptionHandler = useCallback((option: OrderPaymentOption) => {
@@ -125,20 +125,20 @@ export const Checkout = () => {
                     </div>
                     <div className="ordering__payment-info">
                         {title ? (
-                            <div className="ordering__payment-info--promo">
-                                <span className="ordering__payment-info--promo--price">
+                            <div className="ordering__payment-info_promo">
+                                <span className="ordering__payment-info_promo_price">
                                     Промокод:
                                     {' '}
                                     {title.toUpperCase()}
                                 </span>
                                 {items.length === 0 ? (
-                                    <span className="ordering__payment-info--promo--price">
+                                    <span className="ordering__payment-info_promo_price">
                                         Скидка: -
                                         {discount}
                                         %
                                     </span>
                                 ) : (
-                                    <span className="ordering__payment-info--promo--price">
+                                    <span className="ordering__payment-info_promo_price">
                                         Описание:
                                         {' '}
                                         {description}
@@ -146,8 +146,8 @@ export const Checkout = () => {
                                 )}
                             </div>
                         ) : null}
-                        <div className="ordering__payment-info--row">
-                            <span className="ordering__payment-info--price">
+                        <div className="ordering__payment-info_row">
+                            <span className="ordering__payment-info_price">
                                 Сумма:&nbsp;
                                 <span className="bold">{price()}</span>
                                 &nbsp;руб.
