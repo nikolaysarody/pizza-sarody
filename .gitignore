@@ -1,7 +1,6 @@
 /build
 node_modules
 .idea
-.pnp.*
 .yarn/*
 !.yarn/patches
 !.yarn/plugins
