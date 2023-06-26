@@ -1,4 +1,4 @@
-import Orders from '../../profile/orders/orders';
+import Orders from '../../../components/profile/orders/orders';
 
 const OrdersPage = () => {
     return (

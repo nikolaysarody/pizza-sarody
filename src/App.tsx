@@ -1,20 +1,21 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Suspense } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useAppDispatch } from './hook';
 import fetchPizza from './store/actions/pizzaActions';
 import fetchAction from './store/actions/actionActions';
 import { checkAuth } from './store/actions/authActions';
-import SettingsPage from './components/pages/profile/settingsPage';
-import OrdersPage from './components/pages/profile/ordersPage';
-import AddressesPage from './components/pages/profile/addressesPage';
 import Header from './components/header/header';
 import Footer from './components/footer/footer';
-import MainPage from './components/pages/mainPage';
-import AboutPage from './components/pages/aboutPage';
-import './App.scss';
-import CheckoutPage from './components/pages/checkoutPage';
+import { SettingsPage } from './pages/SettingsPage';
+import { OrdersPage } from './pages/OrdersPage';
+import { AddressesPage } from './pages/AddressesPage';
+import { MainPage } from './pages/MainPage';
+import { AboutPage } from './pages/AboutPage';
+import { CheckoutPage } from './pages/CheckoutPage';
 import PrivateRoute from './components/router/privateRoute';
 import { initCart } from './store/slices/cartSlice';
+import { PageLoader } from './widgets/PageLoader/ui/PageLoader';
+import './App.scss';
 
 function App() {
     const dispatch = useAppDispatch();
@@ -38,16 +39,18 @@ function App() {
             <div className="app">
                 <div className="app__body">
                     <Header />
-                    <Routes>
-                        <Route element={<PrivateRoute />}>
-                            <Route path="/settings" element={<SettingsPage />} />
-                            <Route path="/orders" element={<OrdersPage />} />
-                            <Route path="/addresses" element={<AddressesPage />} />
-                        </Route>
-                        <Route path="/checkout" element={<CheckoutPage />} />
-                        <Route path="/" element={<MainPage />} />
-                        <Route path="/about" element={<AboutPage />} />
-                    </Routes>
+                    <Suspense fallback={<PageLoader />}>
+                        <Routes>
+                            <Route element={<PrivateRoute />}>
+                                <Route path="/settings" element={<SettingsPage />} />
+                                <Route path="/orders" element={<OrdersPage />} />
+                                <Route path="/addresses" element={<AddressesPage />} />
+                            </Route>
+                            <Route path="/checkout" element={<CheckoutPage />} />
+                            <Route path="/" element={<MainPage />} />
+                            <Route path="/about" element={<AboutPage />} />
+                        </Routes>
+                    </Suspense>
                     <Footer />
                 </div>
             </div>

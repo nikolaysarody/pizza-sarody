@@ -13,7 +13,6 @@ const PizzaItem = (props: Omit<IPizza, 'count'>) => {
         _id,
     } = props;
     const dispatch = useAppDispatch();
-    // const [imageStatus, setImageStatus] = useState(false);
     const [pizzaCount, setPizzaCount] = useState<number | undefined>(0);
     const pizzaInOrder = useAppSelector((state) => state.cart.pizza);
 
@@ -35,10 +34,6 @@ const PizzaItem = (props: Omit<IPizza, 'count'>) => {
             setPizzaCount(0);
         }
     }, [pizzaInOrder, title]);
-
-    // const load = () => {
-    //     return imageStatus ? null : <Spinner />;
-    // };
 
     const orderButton = () => {
         if (pizzaCount && pizzaCount >= 1) {
@@ -83,14 +78,10 @@ const PizzaItem = (props: Omit<IPizza, 'count'>) => {
     return (
         <li className="pizza__item">
             <div className="pizza__container">
-                {/* {load()} */}
                 <img
                     loading="lazy"
                     src={img}
                     alt=""
-                    // onLoad={() => {
-                    //     setImageStatus(true);
-                    // }}
                 />
                 <div className="pizza__description">
                     <span className="pizza__title">{title}</span>

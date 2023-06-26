@@ -1,5 +1,5 @@
-import Slider from '../slider/slider';
-import Pizza from '../pizza/pizza';
+import Slider from '../../../components/slider/slider';
+import Pizza from '../../../components/pizza/pizza';
 
 const MainPage = () => {
     return (
