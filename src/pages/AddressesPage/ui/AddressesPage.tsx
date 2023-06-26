@@ -1,4 +1,4 @@
-import Addresses from '../../../components/profile/addresses/addresses';
+import { Addresses } from '../../../widgets/Addresses';
 
 const AddressesPage = () => {
     return (

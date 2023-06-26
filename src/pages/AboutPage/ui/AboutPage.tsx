@@ -1,4 +1,4 @@
-import About from '../../../widgets/About/About';
+import About from '../../../entities/About/About';
 
 const AboutPage = () => {
     return (
