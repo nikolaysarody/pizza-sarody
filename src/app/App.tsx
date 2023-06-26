@@ -1,9 +1,9 @@
-import React, { useEffect, Suspense } from 'react';
+import { useEffect, Suspense } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useAppDispatch } from '../shared/lib/hooks/hooks';
-import fetchPizza from '../store/actions/pizzaActions';
-import fetchAction from '../store/actions/actionActions';
-import { checkAuth } from '../store/actions/authActions';
+import fetchPizza from '../entities/Pizza/model/action/pizzaActions';
+import fetchAction from '../entities/Promo/model/action/actionActions';
+import { checkAuth } from '../widgets/UserPopUp/model/action/authActions';
 import { Header } from '../widgets/Header';
 import { Footer } from '../widgets/Footer';
 import { SettingsPage } from '../pages/SettingsPage';
@@ -13,11 +13,11 @@ import { MainPage } from '../pages/MainPage';
 import { AboutPage } from '../pages/AboutPage';
 import { CheckoutPage } from '../pages/CheckoutPage';
 import PrivateRoute from './providers/router/privateRoute';
-import { initCart } from '../store/slices/cartSlice';
+import { initCart } from '../entities/Cart/model/slice/cartSlice';
 import { PageLoader } from '../widgets/PageLoader';
 import './styles/index.scss';
 
-function App() {
+const App = () => {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
@@ -56,6 +56,6 @@ function App() {
             </div>
         </Router>
     );
-}
+};
 
 export default App;

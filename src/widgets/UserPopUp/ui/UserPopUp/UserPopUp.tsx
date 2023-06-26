@@ -1,19 +1,21 @@
-import { useEffect, useState } from 'react';
+import {
+    memo, useEffect, useMemo, useState,
+} from 'react';
 import userImg from '../../../../shared/assets/icons/user.svg';
-import { fetchAddresses } from '../../../../store/actions/addressAction';
-import { fetchOrders } from '../../../../store/actions/orderActions';
+import { fetchAddresses } from '../../../Addresses/model/action/addressAction';
+import { fetchOrders } from '../../../../entities/Orders/model/action/orderActions';
 import { useAppDispatch, useAppSelector } from '../../../../shared/lib/hooks/hooks';
 import UserAuth from '../UserAuth/UserAuth';
 import UserMenu from '../UserMenu/UserMenu';
 import './UserPopUp.scss';
 
-export const UserPopUp = () => {
+export const UserPopUp = memo(() => {
     const dispatch = useAppDispatch();
     const user = useAppSelector((state) => state.user.item);
     const isAuth = useAppSelector((state) => state.auth.isAuth);
     const [popUpSwitch, setPopUpSwitch] = useState<boolean>(false);
 
-    const popUp = () => {
+    const popUp = useMemo(() => {
         if (popUpSwitch) {
             if (isAuth) {
                 return (
@@ -49,7 +51,7 @@ export const UserPopUp = () => {
             );
         }
         return null;
-    };
+    }, [isAuth, popUpSwitch]);
 
     useEffect(() => {
         if (isAuth) {
@@ -71,7 +73,7 @@ export const UserPopUp = () => {
                 <img className="popup__img" src={userImg} alt="user" width="22" height="22" />
                 <span className="popup__user-login">{user.username}</span>
             </button>
-            {popUp()}
+            {popUp}
         </div>
     );
-};
+});

@@ -1,18 +1,18 @@
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import { createPortal } from 'react-dom';
 import exitButton from '../../../../shared/assets/icons/exit.svg';
 import blackExitButton from '../../../../shared/assets/icons/close_black.png';
 import { useAppDispatch, useAppSelector } from '../../../../shared/lib/hooks/hooks';
-import { type IPromo } from '../../../../models/order';
-import './PromoModal.scss';
+import { type IPromo } from '../../../Orders/model/types/order';
 import pizzaImg from '../../../../shared/assets/icons/accept_order.png';
-import { appendPromoItemsToCart, appendPromoToCart } from '../../../../store/slices/cartSlice';
+import { appendPromoItemsToCart, appendPromoToCart } from '../../../Cart/model/slice/cartSlice';
+import './PromoModal.scss';
 
 interface PromoModalProps extends IPromo {
     onClose: () => void;
 }
 
-const PromoModal = (props: PromoModalProps) => {
+const PromoModal = memo((props: PromoModalProps) => {
     const {
         onClose,
         title = '',
@@ -29,7 +29,7 @@ const PromoModal = (props: PromoModalProps) => {
     const dispatch = useAppDispatch();
 
     return modalPortal
-        ? createPortal(
+        && createPortal(
             <div
                 className="promo-modal"
                 onClick={(e) => {
@@ -102,9 +102,7 @@ const PromoModal = (props: PromoModalProps) => {
                         <button
                             type="button"
                             className="promo-modal__top-exit-btn"
-                            onClick={() => {
-                                onClose();
-                            }}
+                            onClick={onClose}
                         >
                             <img src={blackExitButton} alt="exit" />
                         </button>
@@ -116,8 +114,7 @@ const PromoModal = (props: PromoModalProps) => {
                 )}
             </div>,
             modalPortal,
-        )
-        : null;
-};
+        );
+});
 
 export default PromoModal;

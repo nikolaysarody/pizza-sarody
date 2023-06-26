@@ -1,10 +1,11 @@
+import { memo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createPortal } from 'react-dom';
 import exitButton from '../../../../shared/assets/icons/close_black.png';
-import './CheckoutModal.scss';
 import pizzaImg from '../../../../shared/assets/icons/accept_order.png';
 import { useAppDispatch } from '../../../../shared/lib/hooks/hooks';
-import { clearAllCart } from '../../../../store/slices/cartSlice';
+import { clearAllCart } from '../../../../entities/Cart/model/slice/cartSlice';
+import './CheckoutModal.scss';
 
 interface CheckoutModalProps {
     title: string;
@@ -12,13 +13,14 @@ interface CheckoutModalProps {
     isAccept: boolean;
 }
 
-const CheckoutModal = ({ title, onClose, isAccept }: CheckoutModalProps) => {
+const CheckoutModal = memo((props: CheckoutModalProps) => {
+    const { title, onClose, isAccept } = props;
     const dispatch = useAppDispatch();
     const modalPortal = document.getElementById('modal');
     const navigate = useNavigate();
 
     return modalPortal
-        ? createPortal(
+        && createPortal(
             <div
                 className="checkout-modal"
                 onClick={(e) => {
@@ -52,8 +54,7 @@ const CheckoutModal = ({ title, onClose, isAccept }: CheckoutModalProps) => {
                 </div>
             </div>,
             modalPortal,
-        )
-        : null;
-};
+        );
+});
 
 export default CheckoutModal;

@@ -1,8 +1,9 @@
+import { memo } from 'react';
 import { Link } from 'react-router-dom';
 import cartImg from '../../../../shared/assets/icons/cart_menu.svg';
 import CartList from '../CartList/CartList';
 import { useAppDispatch, useAppSelector } from '../../../../shared/lib/hooks/hooks';
-import { clearAllCart, removePromoFromCart } from '../../../../store/slices/cartSlice';
+import { clearAllCart, removePromoFromCart } from '../../model/slice/cartSlice';
 import trash from '../../../../shared/assets/icons/trash.svg';
 import './CartMenu.scss';
 
@@ -10,11 +11,14 @@ interface CartMenuProps {
     setToggle: () => void;
 }
 
-const CartMenu = ({ setToggle }: CartMenuProps) => {
+const CartMenu = memo(({ setToggle }: CartMenuProps) => {
     const dispatch = useAppDispatch();
     const pizzaInCart = useAppSelector((state) => state.cart.pizza);
     const {
-        title, items, discount, description,
+        title,
+        items,
+        discount,
+        description,
     } = useAppSelector((state) => state.cart.promo);
     const totalPrice = useAppSelector((state) => state.cart.totalPrice);
 
@@ -103,6 +107,6 @@ const CartMenu = ({ setToggle }: CartMenuProps) => {
             </div>
         </div>
     );
-};
+});
 
 export default CartMenu;

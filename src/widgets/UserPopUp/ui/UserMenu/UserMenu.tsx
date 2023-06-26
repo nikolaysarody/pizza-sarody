@@ -1,12 +1,13 @@
+import { memo } from 'react';
 import { Link } from 'react-router-dom';
-import { logout } from '../../../../store/actions/authActions';
+import { logout } from '../../model/action/authActions';
 import { useAppDispatch } from '../../../../shared/lib/hooks/hooks';
 
 interface UserMenuProps {
     popUpSwitch: () => void;
 }
 
-const UserMenu = ({ popUpSwitch }: UserMenuProps) => {
+const UserMenu = memo(({ popUpSwitch }: UserMenuProps) => {
     const dispatch = useAppDispatch();
 
     return (
@@ -60,6 +61,6 @@ const UserMenu = ({ popUpSwitch }: UserMenuProps) => {
             </div>
         </div>
     );
-};
+});
 
 export default UserMenu;

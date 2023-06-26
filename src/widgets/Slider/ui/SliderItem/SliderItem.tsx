@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 
 interface ItemType {
     title: string;
@@ -9,7 +9,7 @@ interface ItemType {
     visible: () => void;
 }
 
-const SliderItem = (props: ItemType) => {
+const SliderItem = memo((props: ItemType) => {
     const {
         title,
         description,
@@ -47,6 +47,6 @@ const SliderItem = (props: ItemType) => {
             </div>
         </button>
     );
-};
+});
 
 export default SliderItem;

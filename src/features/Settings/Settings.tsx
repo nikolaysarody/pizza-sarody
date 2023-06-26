@@ -1,9 +1,9 @@
 import { useForm } from 'react-hook-form';
 import ProfileNav from '../ProfileNav/ProfileNav';
-import './Settings.scss';
-import { type IUser, Pages } from '../../models/user';
+import { type IUser, Pages } from './model/types/user';
 import { useAppDispatch, useAppSelector } from '../../shared/lib/hooks/hooks';
-import { changeEmail, changeUsername } from '../../store/actions/userActions';
+import { changeEmail, changeUsername } from './model/action/userActions';
+import './Settings.scss';
 
 const Settings = () => {
     const dispatch = useAppDispatch();
@@ -36,19 +36,19 @@ const Settings = () => {
                         Имя
                         <input id="username" placeholder={user.username} {...register('username')} />
                     </label>
-                    {errors?.username != null ? (
+                    {errors?.username != null && (
                         <p className="settings__container-form-error">{errors.username.message}</p>
-                    ) : null}
-                    {userError.username ? <p className="settings__container-form-error">{userError.username}</p> : null}
+                    )}
+                    {userError.username && <p className="settings__container-form-error">{userError.username}</p>}
                     <label htmlFor="email">
                         Почта
                         <input id="email" type="email" placeholder={user.email} {...register('email')} />
                     </label>
-                    {errors?.email != null ? (
+                    {errors?.email != null && (
                         <p className="settings__container-form-error">{errors.email.message}</p>
-                    ) : null}
-                    {userError.email ? <p className="settings__container-form-error">{userError.email}</p> : null}
-                    {userLoad ? <p className="settings__container-form-error">Успешно</p> : null}
+                    )}
+                    {userError.email && <p className="settings__container-form-error">{userError.email}</p>}
+                    {userLoad && <p className="settings__container-form-error">Успешно</p>}
                     <input type="submit" value="Сохранить" />
                 </form>
             </div>

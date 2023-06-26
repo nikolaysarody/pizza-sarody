@@ -1,14 +1,20 @@
-import { useEffect } from 'react';
+import { memo, useEffect, useMemo } from 'react';
 import ProfileNav from '../../../../features/ProfileNav/ProfileNav';
-import { Pages } from '../../../../models/user';
-import { fetchOrders } from '../../../../store/actions/orderActions';
+import { Pages } from '../../../../features/Settings/model/types/user';
+import { fetchOrders } from '../../model/action/orderActions';
 import { useAppDispatch, useAppSelector } from '../../../../shared/lib/hooks/hooks';
 import OrderItem from '../OrderItem/OrderItem';
 import './Orders.scss';
 
-export const Orders = () => {
+export const Orders = memo(() => {
     const dispatch = useAppDispatch();
     const orders = useAppSelector((state) => state.order.items);
+
+    const orderBody = useMemo(() => (
+        orders.length !== 0
+            ? orders.map((item) => <OrderItem {...item} key={item.orderNumber} />)
+            : 'Нет заказов'
+    ), [orders]);
 
     useEffect(() => {
         dispatch(fetchOrders());
@@ -20,11 +26,9 @@ export const Orders = () => {
             <div className="orders__container">
                 <h1>Заказы</h1>
                 <ul className="orders__items">
-                    {orders.length !== 0
-                        ? orders.map((item) => <OrderItem {...item} key={item.orderNumber} />)
-                        : 'Нет заказов'}
+                    {orderBody}
                 </ul>
             </div>
         </div>
     );
-};
+});

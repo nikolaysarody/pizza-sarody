@@ -1,17 +1,13 @@
-import { useState } from 'react';
-import { login, registration } from '../../../../store/actions/authActions';
+import { memo, useState } from 'react';
+import { login, registration } from '../../model/action/authActions';
 import { useAppDispatch, useAppSelector } from '../../../../shared/lib/hooks/hooks';
 import '../UserPopUp/UserPopUp.scss';
 
-const UserAuth = () => {
+const UserAuth = memo(() => {
     const dispatch = useAppDispatch();
     const [userEmail, setUserEmail] = useState<string>('');
     const [userPassword, setUserPassword] = useState<string>('');
     const apiError = useAppSelector((state) => state.auth.error);
-
-    const error = () => {
-        return <span className="popup__error">{apiError}</span>;
-    };
 
     return (
         <form
@@ -42,7 +38,7 @@ const UserAuth = () => {
                     }}
                 />
             </div>
-            {apiError ? error() : null}
+            {apiError && <span className="popup__error">{apiError}</span>}
             <div className="popup__section">
                 <input
                     className="popup__btn-login"
@@ -63,6 +59,6 @@ const UserAuth = () => {
             </div>
         </form>
     );
-};
+});
 
 export default UserAuth;

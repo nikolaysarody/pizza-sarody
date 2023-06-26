@@ -1,14 +1,14 @@
-import { useEffect } from 'react';
+import { memo, useEffect, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import ProfileNav from '../../../../features/ProfileNav/ProfileNav';
-import { Pages } from '../../../../models/user';
+import { Pages } from '../../../../features/Settings/model/types/user';
 import { useAppDispatch, useAppSelector } from '../../../../shared/lib/hooks/hooks';
-import { addAddress, fetchAddresses } from '../../../../store/actions/addressAction';
-import { type IAddress } from '../../../../models/address';
+import { addAddress, fetchAddresses } from '../../model/action/addressAction';
+import { type IAddress } from '../../model/types/address';
 import AddressItem from '../AddressItem/AddressItem';
 import './Addresses.scss';
 
-export const Addresses = () => {
+export const Addresses = memo(() => {
     const dispatch = useAppDispatch();
     const addresses = useAppSelector((state) => state.address.items);
     const {
@@ -23,6 +23,12 @@ export const Addresses = () => {
         dispatch(addAddress(data));
         reset();
     });
+
+    const addressesBody = useMemo(() => (
+        addresses.length !== 0
+            ? addresses.map((item) => (
+                <AddressItem {...item} key={`${item.street}${item.apartment}${item.floor}`} />
+            )) : 'Нет адресов'), [addresses]);
 
     useEffect(() => {
         dispatch(fetchAddresses());
@@ -47,9 +53,9 @@ export const Addresses = () => {
                                     })}
                                 />
                             </label>
-                            {errors?.street != null ? (
+                            {errors?.street != null && (
                                 <p className="addresses__container-form-error">{errors.street.message}</p>
-                            ) : null}
+                            )}
                             <label htmlFor="house">
                                 Дом
                                 <input
@@ -61,9 +67,9 @@ export const Addresses = () => {
                                     })}
                                 />
                             </label>
-                            {errors?.house != null ? (
+                            {errors?.house != null && (
                                 <p className="addresses__container-form-error">{errors.house.message}</p>
-                            ) : null}
+                            )}
                             <label htmlFor="entrance">
                                 Подъезд
                                 <input
@@ -80,9 +86,9 @@ export const Addresses = () => {
                                     })}
                                 />
                             </label>
-                            {errors?.entrance != null ? (
+                            {errors?.entrance != null && (
                                 <p className="addresses__container-form-error">{errors.entrance.message}</p>
-                            ) : null}
+                            )}
                             <label htmlFor="apartment">
                                 Квартира
                                 <input
@@ -99,9 +105,9 @@ export const Addresses = () => {
                                     })}
                                 />
                             </label>
-                            {errors?.apartment != null ? (
+                            {errors?.apartment != null && (
                                 <p className="addresses__container-form-error">{errors.apartment.message}</p>
-                            ) : null}
+                            )}
                             <label htmlFor="floor">
                                 Этаж
                                 <input
@@ -118,24 +124,20 @@ export const Addresses = () => {
                                     })}
                                 />
                             </label>
-                            {errors?.floor != null ? (
+                            {errors?.floor != null && (
                                 <p className="addresses__container-form-error">{errors.floor.message}</p>
-                            ) : null}
+                            )}
                             <input type="submit" value="Добавить" />
                         </form>
                     </div>
                     <div className="addresses__container">
                         <h3>Адрес по умолчанию:</h3>
                         <ul className="addresses__items">
-                            {addresses.length !== 0
-                                ? addresses.map((item) => (
-                                    <AddressItem {...item} key={`${item.street}${item.apartment}${item.floor}`} />
-                                ))
-                                : 'Нет адресов'}
+                            {addressesBody}
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
     );
-};
+});

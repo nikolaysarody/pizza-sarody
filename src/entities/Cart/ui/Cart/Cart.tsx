@@ -1,4 +1,8 @@
-import { useEffect, useState } from 'react';
+import {
+    useCallback,
+    useEffect,
+    useState,
+} from 'react';
 import { useAppSelector } from '../../../../shared/lib/hooks/hooks';
 import cartImg from '../../../../shared/assets/icons/cart.svg';
 import CartMenu from '../CartMenu/CartMenu';
@@ -9,20 +13,16 @@ export const Cart = () => {
     const [count, setCount] = useState(0);
     const [cartToggle, setCartToggle] = useState(false);
 
+    const toggleHandler = useCallback(() => {
+        setCartToggle((prev) => !prev);
+    }, []);
+
     useEffect(() => {
         setCount(0);
         pizzas.forEach((item) => {
             setCount((prev) => prev + (item.count || 0));
         });
     }, [pizzas]);
-
-    const cartCounter = () => {
-        return count ? (
-            <div className="cart__counter">
-                <span>{count}</span>
-            </div>
-        ) : null;
-    };
 
     return (
         <div className="cart">
@@ -34,9 +34,13 @@ export const Cart = () => {
                 }}
             >
                 <img src={cartImg} alt="cart" width="24" height="24" />
-                {cartCounter()}
+                {count > 0 && (
+                    <div className="cart__counter">
+                        <span>{count}</span>
+                    </div>
+                )}
             </button>
-            {cartToggle ? (
+            {cartToggle && (
                 <button
                     type="button"
                     className="cart__outside-wrapper"
@@ -47,14 +51,12 @@ export const Cart = () => {
                         }
                     }}
                 />
-            ) : null}
-            {cartToggle ? (
+            )}
+            {cartToggle && (
                 <CartMenu
-                    setToggle={() => {
-                        setCartToggle((prev) => !prev);
-                    }}
+                    setToggle={toggleHandler}
                 />
-            ) : null}
+            )}
         </div>
     );
 };

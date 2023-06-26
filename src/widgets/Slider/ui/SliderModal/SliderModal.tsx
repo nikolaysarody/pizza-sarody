@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { createPortal } from 'react-dom';
 import exitButton from '../../../../shared/assets/icons/exit.svg';
 import './SliderModal.scss';
@@ -10,7 +11,7 @@ interface SliderModalProps {
     onClose: () => void;
 }
 
-const SliderModal = (props: SliderModalProps) => {
+const SliderModal = memo((props: SliderModalProps) => {
     const {
         title,
         description,
@@ -48,6 +49,6 @@ const SliderModal = (props: SliderModalProps) => {
             modalPortal,
         )
         : null;
-};
+});
 
 export default SliderModal;

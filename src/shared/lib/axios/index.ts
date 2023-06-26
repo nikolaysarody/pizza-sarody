@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { type AuthResponse } from '../../../models/auth';
+import { type AuthResponse } from '../../../widgets/UserPopUp/model/types/auth';
 
 const axiosApi = axios.create({
     baseURL: process.env.REACT_APP_BASE_URL,

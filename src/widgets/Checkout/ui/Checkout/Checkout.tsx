@@ -1,10 +1,15 @@
-import { useEffect, useState } from 'react';
+import {
+    useCallback,
+    useEffect,
+    useMemo,
+    useState,
+} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../../shared/lib/hooks/hooks';
-import { addOrder } from '../../../../store/actions/orderActions';
-import { fetchOrderError } from '../../../../store/slices/orderSlice';
-import { fetchAddresses } from '../../../../store/actions/addressAction';
-import { OrderPaymentOption, OrderPaymentStatus, OrderStatus } from '../../../../models/order';
+import { addOrder } from '../../../../entities/Orders/model/action/orderActions';
+import { fetchOrderError } from '../../../../entities/Orders/model/slice/orderSlice';
+import { fetchAddresses } from '../../../Addresses/model/action/addressAction';
+import { OrderPaymentOption, OrderPaymentStatus, OrderStatus } from '../../../../entities/Orders/model/types/order';
 import AddressItem from '../../../Addresses/ui/AddressItem/AddressItem';
 import OrderItemDetail from '../../../../entities/Orders/ui/OrderItemDetail/OrderItemDetail';
 import PaymentOption from '../../../../features/PaymentOption/PaymentOption';
@@ -17,7 +22,10 @@ export const Checkout = () => {
     const totalPrice = useAppSelector((state) => state.cart.totalPrice);
     const addresses = useAppSelector((state) => state.address.items);
     const {
-        title, items, discount, description,
+        title,
+        items,
+        discount,
+        description,
     } = useAppSelector((state) => state.cart.promo);
     const [paymentOption, setPaymentOption] = useState<OrderPaymentOption>(OrderPaymentOption.Cash);
     const [modalRegistrationVisible, setModalRegistrationVisible] = useState<boolean>(false);
@@ -36,13 +44,31 @@ export const Checkout = () => {
         return totalPrice;
     };
 
+    const orderBody = useMemo(() => (
+        pizzas.map((item) => (
+            <OrderItemDetail {...item} key={item.title} />
+        ))), [pizzas]);
+
+    const addressesBody = useMemo(() => (
+        addresses.length !== 0 ? (
+            addresses.map((item) => (
+                <AddressItem {...item} key={`${item.apartment}${item.house}${item.floor}`} />
+            ))
+        ) : (
+            <span className="ordering__addresses--no-addresses">Нет адресов</span>
+        )), [addresses]);
+
+    const changeOptionHandler = useCallback((option: OrderPaymentOption) => {
+        setPaymentOption(option);
+    }, []);
+
     useEffect(() => {
         dispatch(fetchAddresses());
     }, [dispatch]);
 
     return (
         <div className="ordering">
-            {modalAcceptVisible ? (
+            {modalAcceptVisible && (
                 <CheckoutModal
                     title={`Заказ №${orderNumber} принят!`}
                     onClose={() => {
@@ -50,8 +76,8 @@ export const Checkout = () => {
                     }}
                     isAccept
                 />
-            ) : null}
-            {modalRegistrationVisible ? (
+            )}
+            {modalRegistrationVisible && (
                 <CheckoutModal
                     title="Пожалуйста, зарегистрируйтесь"
                     onClose={() => {
@@ -59,8 +85,8 @@ export const Checkout = () => {
                     }}
                     isAccept={false}
                 />
-            ) : null}
-            {modalAddressVisible ? (
+            )}
+            {modalAddressVisible && (
                 <CheckoutModal
                     title="Пожалуйста, добавьте адрес доставки"
                     onClose={() => {
@@ -68,15 +94,13 @@ export const Checkout = () => {
                     }}
                     isAccept={false}
                 />
-            ) : null}
+            )}
             <h1>Оформление заказа</h1>
             <div className="ordering__container">
                 <div className="ordering__wrapper">
                     <h3>Состав:</h3>
                     <div className="ordering__items">
-                        {pizzas.map((item) => (
-                            <OrderItemDetail {...item} key={item.title} />
-                        ))}
+                        {orderBody}
                     </div>
                     <h3>Способ оплаты:</h3>
                     <div className="ordering__payment">
@@ -84,25 +108,19 @@ export const Checkout = () => {
                             selectedItem={paymentOption === OrderPaymentOption.Cash}
                             paymentOption={OrderPaymentOption.Cash}
                             key={OrderPaymentOption.Cash}
-                            changeOption={() => {
-                                setPaymentOption(OrderPaymentOption.Cash);
-                            }}
+                            changeOption={changeOptionHandler}
                         />
                         <PaymentOption
                             selectedItem={paymentOption === OrderPaymentOption.Courier}
                             paymentOption={OrderPaymentOption.Courier}
                             key={OrderPaymentOption.Courier}
-                            changeOption={() => {
-                                setPaymentOption(OrderPaymentOption.Courier);
-                            }}
+                            changeOption={changeOptionHandler}
                         />
                         <PaymentOption
                             selectedItem={paymentOption === OrderPaymentOption.Site}
                             paymentOption={OrderPaymentOption.Site}
                             key={OrderPaymentOption.Site}
-                            changeOption={() => {
-                                setPaymentOption(OrderPaymentOption.Site);
-                            }}
+                            changeOption={changeOptionHandler}
                         />
                     </div>
                     <div className="ordering__payment-info">
@@ -166,13 +184,7 @@ export const Checkout = () => {
                 <div className="ordering__wrapper">
                     <h3>Адрес доставки:</h3>
                     <ul className="ordering__addresses">
-                        {addresses.length !== 0 ? (
-                            addresses.map((item) => (
-                                <AddressItem {...item} key={`${item.apartment}${item.house}${item.floor}`} />
-                            ))
-                        ) : (
-                            <span className="ordering__addresses--no-addresses">Нет адресов</span>
-                        )}
+                        {addressesBody}
                         <input
                             type="button"
                             value="Добавить адрес"

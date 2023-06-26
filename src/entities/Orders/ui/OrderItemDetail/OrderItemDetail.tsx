@@ -1,7 +1,8 @@
+import { memo } from 'react';
 import './OrderItemDetail.scss';
-import { type IPizza } from '../../../../models/pizza';
+import { type IPizza } from '../../../Pizza/model/types/pizza';
 
-const OrderItemDetail = (props: IPizza) => {
+const OrderItemDetail = memo((props: IPizza) => {
     const {
         price,
         title,
@@ -20,6 +21,6 @@ const OrderItemDetail = (props: IPizza) => {
             <div className="orders__item-count">{count}</div>
         </div>
     );
-};
+});
 
 export default OrderItemDetail;

@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../../shared/lib/hooks/hooks';
 import enterImg from '../../../../shared/assets/icons/enter.svg';
-import checkPromo from '../../../../store/actions/promoActions';
+import checkPromo from '../../model/action/promoActions';
 import PromoModal from '../PromoModal/PromoModal';
 import './Promo.scss';
 
-export const Promo = () => {
+export const Promo = memo(() => {
     const dispatch = useAppDispatch();
     const promo = useAppSelector((state) => state.promo.item);
     const [promoTitle, setPromoTitle] = useState<string>('');
@@ -43,4 +43,4 @@ export const Promo = () => {
             </button>
         </div>
     );
-};
+});

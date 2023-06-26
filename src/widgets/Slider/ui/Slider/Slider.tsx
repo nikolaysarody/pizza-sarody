@@ -1,4 +1,11 @@
-import { useEffect, useRef, useState } from 'react';
+import {
+    memo,
+    useCallback,
+    useEffect,
+    useMemo,
+    useRef,
+    useState,
+} from 'react';
 import arrowLeft from '../../../../shared/assets/icons/arrow_left.svg';
 import arrowRight from '../../../../shared/assets/icons/arrow_right.svg';
 import navigationDotActive from '../../../../shared/assets/icons/active_dot.svg';
@@ -8,7 +15,7 @@ import SliderModal from '../SliderModal/SliderModal';
 import SliderItem from '../SliderItem/SliderItem';
 import './Slider.scss';
 
-export const Slider = () => {
+export const Slider = memo(() => {
     const sliderItems = useAppSelector((state) => state.action.action);
     const [modalVisible, setModalVisible] = useState<boolean>(false);
     const [slideIndex, setSlide] = useState<number>(0);
@@ -16,6 +23,56 @@ export const Slider = () => {
     const slidesField = useRef<HTMLDivElement>(null);
     const sliderWrapper = useRef<HTMLDivElement>(null);
     const [width, setWidth] = useState<number>(0);
+
+    const sliderBody = useMemo(() => (
+        sliderItems.map((item) => (
+            <SliderItem
+                {...item}
+                visible={() => {
+                    setModalVisible(true);
+                }}
+                key={item.title}
+            />
+        ))), [sliderItems]);
+
+    const navigationDotsBody = useMemo(() => (sliderItems.map((item, index) => {
+        if (slideIndex === index) {
+            return (
+                <button
+                    type="button"
+                    className="slider__dot"
+                    onClick={() => {
+                        setSlide(index);
+                        setOffset(width * index);
+                        if (slidesField.current != null) {
+                            slidesField.current.style.transform = `translateX(-${offset}px)`;
+                        }
+                    }}
+                    key={`${item.title}${item.description}`}
+                >
+                    <img src={navigationDotActive} alt="active-dot" />
+                </button>
+            );
+        }
+        return (
+            <button
+                type="button"
+                className="slider__dot"
+                onClick={() => {
+                    setSlide(index);
+                    setOffset(width * index);
+                    if (slidesField.current != null) {
+                        slidesField.current.style.transform = `translateX(-${offset}px)`;
+                    }
+                }}
+                key={`${item.title}${item.description}`}
+            >
+                <img src={navigationDotNotActive} alt="dot" />
+            </button>
+        );
+    })), [offset, slideIndex, sliderItems, width]);
+
+    const closeHandler = useCallback(() => setModalVisible(false), []);
 
     useEffect(() => {
         if (slidesField.current != null) {
@@ -37,14 +94,12 @@ export const Slider = () => {
 
     return (
         <div className="slider">
-            {modalVisible ? (
+            {modalVisible && (
                 <SliderModal
                     {...sliderItems[slideIndex]}
-                    onClose={() => {
-                        setModalVisible(false);
-                    }}
+                    onClose={closeHandler}
                 />
-            ) : null}
+            )}
             <div className="slider__navigation">
                 <button
                     type="button"
@@ -65,42 +120,7 @@ export const Slider = () => {
                     <img src={arrowLeft} alt="previous" className="slider__arrow-left" />
                 </button>
                 <div className="slider__navigation-dot">
-                    {sliderItems.map((item, index) => {
-                        if (slideIndex === index) {
-                            return (
-                                <button
-                                    type="button"
-                                    className="slider__dot"
-                                    onClick={() => {
-                                        setSlide(index);
-                                        setOffset(width * index);
-                                        if (slidesField.current != null) {
-                                            slidesField.current.style.transform = `translateX(-${offset}px)`;
-                                        }
-                                    }}
-                                    key={`${item.title}${item.description}`}
-                                >
-                                    <img src={navigationDotActive} alt="active-dot" />
-                                </button>
-                            );
-                        }
-                        return (
-                            <button
-                                type="button"
-                                className="slider__dot"
-                                onClick={() => {
-                                    setSlide(index);
-                                    setOffset(width * index);
-                                    if (slidesField.current != null) {
-                                        slidesField.current.style.transform = `translateX(-${offset}px)`;
-                                    }
-                                }}
-                                key={`${item.title}${item.description}`}
-                            >
-                                <img src={navigationDotNotActive} alt="dot" />
-                            </button>
-                        );
-                    })}
+                    {navigationDotsBody}
                 </div>
                 <button
                     type="button"
@@ -124,17 +144,9 @@ export const Slider = () => {
             </div>
             <div className="slider__wrapper" ref={sliderWrapper}>
                 <div className="slider__inner" ref={slidesField}>
-                    {sliderItems.map((item) => (
-                        <SliderItem
-                            {...item}
-                            visible={() => {
-                                setModalVisible(true);
-                            }}
-                            key={item.title}
-                        />
-                    ))}
+                    {sliderBody}
                 </div>
             </div>
         </div>
     );
-};
+});

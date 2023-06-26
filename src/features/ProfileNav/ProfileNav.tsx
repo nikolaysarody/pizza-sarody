@@ -1,12 +1,13 @@
+import { memo } from 'react';
 import { Link } from 'react-router-dom';
-import { Pages } from '../../models/user';
+import { Pages } from '../Settings/model/types/user';
 import './ProfileNav.scss';
 
 interface ProfileNavProps {
     page: Pages;
 }
 
-const ProfileNav = ({ page }: ProfileNavProps) => {
+const ProfileNav = memo(({ page }: ProfileNavProps) => {
     return (
         <div className="profile-nav__container">
             <div className="profile-nav__section">
@@ -32,6 +33,6 @@ const ProfileNav = ({ page }: ProfileNavProps) => {
             </div>
         </div>
     );
-};
+});
 
 export default ProfileNav;

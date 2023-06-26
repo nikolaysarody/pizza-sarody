@@ -4,6 +4,7 @@ import { Cart } from '../../../../entities/Cart';
 import { UserPopUp } from '../../../UserPopUp';
 import { Promo } from '../../../../entities/Promo';
 import Sidenav from '../Sidenav/Sidenav';
+import { HeaderItem } from '../HeaderItem/HeaderItem';
 import './Header.scss';
 
 export const Header = () => {
@@ -25,12 +26,8 @@ export const Header = () => {
                     </div>
                 </div>
                 <div className="header__section">
-                    <div className="header__button">
-                        <Link to="/">Пицца</Link>
-                    </div>
-                    <div className="header__button">
-                        <Link to="/about">О нас</Link>
-                    </div>
+                    <HeaderItem title="Пицца" to="/" />
+                    <HeaderItem title="О нас" to="/about" />
                     <Promo />
                     <div className="header__profile">
                         <UserPopUp />

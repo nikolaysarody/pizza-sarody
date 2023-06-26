@@ -1,13 +1,13 @@
-import { useState } from 'react';
-import { type OrderResponse, OrderStatus } from '../../../../models/order';
+import { memo, useMemo, useState } from 'react';
+import { type OrderResponse, OrderStatus } from '../../model/types/order';
 import arrowDown from '../../../../shared/assets/icons/black_arrow_down.png';
 import arrow from '../../../../shared/assets/icons/black_arrow.png';
 import { useAppDispatch } from '../../../../shared/lib/hooks/hooks';
-import { cancelOrder, deleteOrder } from '../../../../store/actions/orderActions';
-import { deleteOrderItem } from '../../../../store/slices/orderSlice';
+import { cancelOrder, deleteOrder } from '../../model/action/orderActions';
+import { deleteOrderItem } from '../../model/slice/orderSlice';
 import OrderItemDetail from '../OrderItemDetail/OrderItemDetail';
 
-const OrderItem = (props: OrderResponse) => {
+const OrderItem = memo((props: OrderResponse) => {
     const {
         orderNumber,
         orderStatus,
@@ -21,23 +21,11 @@ const OrderItem = (props: OrderResponse) => {
     const [detailSwitch, setDetailSwitch] = useState<boolean>(false);
     const [status, setStatusSwitch] = useState<OrderStatus>(orderStatus);
 
-    const cancelBtn = () => {
-        if (status !== OrderStatus.Canceled) {
-            return (
-                <input
-                    type="button"
-                    value="Отменить"
-                    onClick={() => {
-                        if (orderNumber) {
-                            dispatch(cancelOrder(orderNumber));
-                        }
-                        setStatusSwitch(OrderStatus.Canceled);
-                    }}
-                />
-            );
-        }
-        return null;
-    };
+    const orderBody = useMemo(() => (
+        pizzas.map((item) => (
+            <OrderItemDetail {...item} key={item.title} />
+        ))
+    ), [pizzas]);
 
     return (
         <li className="orders__item-container">
@@ -65,7 +53,7 @@ const OrderItem = (props: OrderResponse) => {
                     </button>
                 </span>
             </div>
-            {detailSwitch ? (
+            {detailSwitch && (
                 <div className="orders__item-detail">
                     <span className="orders__item-address">
                         ул.
@@ -84,11 +72,20 @@ const OrderItem = (props: OrderResponse) => {
                         {' '}
                         {address.floor}
                     </span>
-                    {pizzas.map((item) => (
-                        <OrderItemDetail {...item} key={item.title} />
-                    ))}
+                    {orderBody}
                     <div className="orders__item-cancel">
-                        {cancelBtn()}
+                        {status !== OrderStatus.Canceled && (
+                            <input
+                                type="button"
+                                value="Отменить"
+                                onClick={() => {
+                                    if (orderNumber) {
+                                        dispatch(cancelOrder(orderNumber));
+                                    }
+                                    setStatusSwitch(OrderStatus.Canceled);
+                                }}
+                            />
+                        )}
                         <input
                             type="button"
                             value="Удалить"
@@ -101,9 +98,9 @@ const OrderItem = (props: OrderResponse) => {
                         />
                     </div>
                 </div>
-            ) : null}
+            )}
         </li>
     );
-};
+});
 
 export default OrderItem;

@@ -64,32 +64,6 @@
 
   }
 
-  &__button {
-    margin-right: 50px;
-    cursor: pointer;
-
-    &:last-child {
-      margin-right: 0;
-    }
-
-    a {
-      text-decoration: none;
-      color: black;
-      font-size: 17px;
-      font-weight: 600;
-    }
-
-    @media (max-width: 981px) {
-      margin-bottom: 30px;
-    }
-
-    -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Chrome/Safari/Opera */
-    -moz-user-select: none; /* Firefox */
-    -ms-user-select: none; /* Internet Explorer/Edge */
-    user-select: none;
-  }
-
   &__cart {
     //cursor: pointer;
     -webkit-touch-callout: none; /* iOS Safari */
@@ -97,52 +71,7 @@
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* Internet Explorer/Edge */
     user-select: none;
-    //display: flex;
-    //align-items: center;
-    //justify-content: center;
-    //
-    //@media (max-width: 1700px) {
-    //    justify-content: end;
-    //}
   }
-
-  //&__promo {
-  //  margin-right: 40px;
-  //
-  //  input {
-  //    width: 110px;
-  //    height: 31px;
-  //    background: rgba(221, 221, 221, 0.3);
-  //    border: 1px solid rgba(183, 86, 21, 0.5);
-  //    box-sizing: border-box;
-  //    border-bottom-left-radius: 10px;
-  //    border-top-left-radius: 10px;
-  //    outline: none;
-  //    padding-left: 10px;
-  //    font-size: 17px;
-  //
-  //    &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-  //      font-family: 'Montserrat', sans-serif;
-  //      font-variant: small-caps;
-  //    }
-  //  }
-  //
-  //  button {
-  //    height: 31px;
-  //    background: rgba(221, 221, 221, 0.3);
-  //    border: 1px solid rgba(183, 86, 21, 0.5);
-  //    border-left: 0;
-  //    box-sizing: border-box;
-  //    border-bottom-right-radius: 10px;
-  //    border-top-right-radius: 10px;
-  //    cursor: pointer;
-  //    font-size: 17px;
-  //
-  //    &:hover {
-  //      background: rgba(0, 0, 0, .1);
-  //    }
-  //  }
-  //}
 
   &__profile {
     margin-right: 40px;

@@ -1,10 +1,11 @@
+import { memo } from 'react';
 import { useAppDispatch } from '../../../../shared/lib/hooks/hooks';
 import trash from '../../../../shared/assets/icons/trash.svg';
-import { type IPizza } from '../../../../models/pizza';
-import { addItemInCart, deleteItemInCart, removeItemInCart } from '../../../../store/slices/cartSlice';
+import { type IPizza } from '../../../Pizza/model/types/pizza';
+import { addItemInCart, deleteItemInCart, removeItemInCart } from '../../model/slice/cartSlice';
 import './CartItem.scss';
 
-const CartItem = (props: IPizza) => {
+const CartItem = memo((props: IPizza) => {
     const {
         title,
         description,
@@ -53,7 +54,7 @@ const CartItem = (props: IPizza) => {
                         <span className="cart-item__count">Акция</span>
                     </>
                 )}
-                {!isPromo ? (
+                {!isPromo && (
                     <button
                         type="button"
                         className="cart-item__btn-del"
@@ -63,10 +64,10 @@ const CartItem = (props: IPizza) => {
                     >
                         <img src={trash} alt="delete" />
                     </button>
-                ) : null}
+                )}
             </div>
         </li>
     );
-};
+});
 
 export default CartItem;

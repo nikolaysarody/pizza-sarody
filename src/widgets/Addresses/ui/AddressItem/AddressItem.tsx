@@ -1,12 +1,13 @@
+import { memo } from 'react';
 import selector from '../../../../shared/assets/icons/selector.png';
 import pushedSelector from '../../../../shared/assets/icons/pushed_selector.png';
-import { type IAddress } from '../../../../models/address';
+import { type IAddress } from '../../model/types/address';
 import trash from '../../../../shared/assets/icons/trash.svg';
 import { useAppDispatch } from '../../../../shared/lib/hooks/hooks';
-import { deleteAddress, setDefaultAddress } from '../../../../store/actions/addressAction';
+import { deleteAddress, setDefaultAddress } from '../../model/action/addressAction';
 import './AddressesItem.scss';
 
-const AddressItem = (props: IAddress) => {
+const AddressItem = memo((props: IAddress) => {
     const {
         _id,
         street,
@@ -69,6 +70,6 @@ const AddressItem = (props: IAddress) => {
             </button>
         </li>
     );
-};
+});
 
 export default AddressItem;
