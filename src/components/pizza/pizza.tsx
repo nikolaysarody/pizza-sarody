@@ -1,4 +1,4 @@
-import { useAppSelector } from '../../hook';
+import { useAppSelector } from '../../shared/lib/hooks/hooks';
 import PizzaItem from './pizzaItem/pizzaItem';
 import './pizza.scss';
 

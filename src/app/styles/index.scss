@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+@import "variables";
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+button {
+    padding: 0;
+    border: none;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+}
+
+.app {
+    @include fontStyle();
+
+    &__body {
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        min-height: 100vh;
+    }
+
+    &__content-center, &__content-left {
+        margin-top: 86px;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        max-width: 1320px;
+        min-width: 1320px;
+
+        > * {
+            margin-top: 60px;
+        }
+    }
+
+    &__content-center {
+        align-items: center;
+        position: relative;
+        @media (max-width: 1500px) {
+            max-width: 1320px;
+            min-width: 1320px;
+        }
+
+        @media (max-width: 1319px) {
+            max-width: 1150px;
+            min-width: 1150px;
+        }
+
+        @media (max-width: 1149px) {
+            max-width: 963px;
+            min-width: 963px;
+        }
+
+        @media (max-width: 962px) {
+            margin: 0 60px 0 60px;
+        }
+    }
+
+    &__content-left {
+        align-items: start;
+    }
+
+    input[type="number"] { // remove arrows from input type number
+        -moz-appearance: textfield;
+
+        &::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        &::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    }
+}

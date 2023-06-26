@@ -1,5 +1,5 @@
 import './orderItemDetail.scss';
-import { type IPizza } from '../../../../../models/pizza/models';
+import { type IPizza } from '../../../../../models/pizza';
 
 const OrderItemDetail = (props: IPizza) => {
     const {

@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../hook';
+import { useAppDispatch, useAppSelector } from '../../shared/lib/hooks/hooks';
 import { addOrder } from '../../store/actions/orderActions';
 import { fetchOrderError } from '../../store/slices/orderSlice';
 import { fetchAddresses } from '../../store/actions/addressAction';
-import { OrderPaymentOption, OrderPaymentStatus, OrderStatus } from '../../models/order/models';
+import { OrderPaymentOption, OrderPaymentStatus, OrderStatus } from '../../models/order';
 import AddressItem from '../profile/addresses/addressItem/addressItem';
 import OrderItemDetail from '../profile/orders/orderItem/orderItemDetail/orderItemDetail';
 import PaymentOption from './payment/payment';

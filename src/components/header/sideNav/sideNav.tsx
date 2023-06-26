@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import logoImg from '../../../icons/logo.svg';
-import menuImg from '../../../icons/menu.svg';
-import enterImg from '../../../icons/enter.svg';
+import logoImg from '../../../shared/assets/icons/logo.svg';
+import menuImg from '../../../shared/assets/icons/menu.svg';
+import enterImg from '../../../shared/assets/icons/enter.svg';
 import './sideNav.scss';
 import '../header.scss';
-import { useAppSelector } from '../../../hook';
+import { useAppSelector } from '../../../shared/lib/hooks/hooks';
 
 const SideNav = () => {
     const [sideNavSwitch, setSideNavSwitch] = useState(false);

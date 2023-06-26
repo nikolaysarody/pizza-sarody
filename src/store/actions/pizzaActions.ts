@@ -1,5 +1,5 @@
 import { isAxiosError } from 'axios';
-import axiosApi from '../../axios/index';
+import axiosApi from '../../shared/lib/axios/index';
 import { type AppDispatch } from '../index';
 import { fetchingPizza, fetchPizzaError, fetchPizzaSuccess } from '../slices/pizzaSlice';
 

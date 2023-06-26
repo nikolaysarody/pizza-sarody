@@ -1,5 +1,5 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-import { type AddressResponse, type IAddress } from '../../models/address/models';
+import { type AddressResponse, type IAddress } from '../../models/address';
 
 interface AddressState {
     loading: boolean;

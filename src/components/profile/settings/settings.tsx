@@ -1,8 +1,8 @@
 import { useForm } from 'react-hook-form';
 import ProfileNav from '../profileNav/profileNav';
 import './settings.scss';
-import { type IUser, Pages } from '../../../models/user/models';
-import { useAppDispatch, useAppSelector } from '../../../hook';
+import { type IUser, Pages } from '../../../models/user';
+import { useAppDispatch, useAppSelector } from '../../../shared/lib/hooks/hooks';
 import { changeEmail, changeUsername } from '../../../store/actions/userActions';
 
 const Settings = () => {

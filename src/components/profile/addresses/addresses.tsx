@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import ProfileNav from '../profileNav/profileNav';
-import { Pages } from '../../../models/user/models';
-import { useAppDispatch, useAppSelector } from '../../../hook';
+import { Pages } from '../../../models/user';
+import { useAppDispatch, useAppSelector } from '../../../shared/lib/hooks/hooks';
 import { addAddress, fetchAddresses } from '../../../store/actions/addressAction';
-import { type IAddress } from '../../../models/address/models';
+import { type IAddress } from '../../../models/address';
 import AddressItem from './addressItem/addressItem';
 import './addresses.scss';
 

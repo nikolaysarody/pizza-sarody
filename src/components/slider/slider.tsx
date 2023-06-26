@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
-import arrowLeft from '../../icons/arrow_left.svg';
-import arrowRight from '../../icons/arrow_right.svg';
-import navigationDotActive from '../../icons/active_dot.svg';
-import navigationDotNotActive from '../../icons/not_active_dot.svg';
-import { useAppSelector } from '../../hook';
+import arrowLeft from '../../shared/assets/icons/arrow_left.svg';
+import arrowRight from '../../shared/assets/icons/arrow_right.svg';
+import navigationDotActive from '../../shared/assets/icons/active_dot.svg';
+import navigationDotNotActive from '../../shared/assets/icons/not_active_dot.svg';
+import { useAppSelector } from '../../shared/lib/hooks/hooks';
 import SliderModal from './sliderModal/sliderModal';
 import SliderItem from './sliderItem/sliderItem';
 import './slider.scss';

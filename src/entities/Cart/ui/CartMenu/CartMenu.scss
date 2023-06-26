@@ -1,0 +1,131 @@
+@import "../../../../app/styles/variables";
+
+.cart {
+    &__menu {
+        display: flex;
+        justify-content: center;
+        position: absolute;
+        top: 68px;
+        width: 457px;
+        //height: 267px;
+        background: #FFFFFF;
+        box-shadow: 5px 5px 12px 5px rgba(0, 0, 0, 0.1);
+        border-radius: 20px;
+        cursor: auto;
+        z-index: 3;
+    }
+
+    .empty {
+        width: 368px;
+        height: 112px;
+    }
+
+    &__item-empty {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        span {
+            font-weight: 300;
+            font-size: 17px;
+            color: rgba(0, 0, 0, 0.5);
+            margin-left: 15px;
+        }
+    }
+
+    &__item {
+        width: 100%;
+        margin: 20px 20px 20px 20px;
+    }
+
+    &__top {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+
+        .btn-clear {
+            background: transparent;
+            border: none;
+            @include fontStyle();
+            font-weight: 400;
+            font-size: 17px;
+            cursor: pointer;
+        }
+
+        .label {
+            @include fontStyle();
+            font-weight: 600;
+            font-size: 17px;
+        }
+    }
+
+    &__content {
+
+    }
+
+    &__down {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+
+        .price{
+            @include fontStyle();
+            font-weight: 500;
+            font-size: 17px;
+
+            &-bold{
+                @include fontStyle();
+                font-weight: 600;
+                font-size: 17px;
+
+                margin: 0 5px 0 5px;
+            }
+        }
+
+        &--promo {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-direction: row;
+
+            &--price {
+                @include fontStyle();
+
+                &:last-child {
+                    margin-top: 3px;
+                    margin-bottom: 10px;
+                }
+            }
+        }
+
+        &--promo-column {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        &-wrapper {
+            display: flex;
+            align-items: center;
+        }
+    }
+
+    &__order {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        cursor: pointer;
+        width: 175px;
+        height: 29px;
+        background: rgba(255, 102, 0, 0.5);
+        border-radius: 20px;
+        text-decoration: none;
+        color: black;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 500;
+        font-size: 17px;
+    }
+}

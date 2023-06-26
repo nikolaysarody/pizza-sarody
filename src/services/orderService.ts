@@ -1,6 +1,6 @@
 import { type AxiosResponse } from 'axios';
-import axiosApi from '../axios';
-import { type IOrder, type OrderResponse } from '../models/order/models';
+import axiosApi from '../shared/lib/axios';
+import { type IOrder, type OrderResponse } from '../models/order';
 
 export default class OrderService {
     static async getOrders(): Promise<AxiosResponse<OrderResponse[]>> {

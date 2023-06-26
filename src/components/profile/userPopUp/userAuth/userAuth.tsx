@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { login, registration } from '../../../../store/actions/authActions';
-import { useAppDispatch, useAppSelector } from '../../../../hook';
+import { useAppDispatch, useAppSelector } from '../../../../shared/lib/hooks/hooks';
 import '../userPopUp.scss';
 
 const UserAuth = () => {

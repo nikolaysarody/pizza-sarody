@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { type OrderResponse, OrderStatus } from '../../../../models/order/models';
-import arrowDown from '../../../../icons/black_arrow_down.png';
-import arrow from '../../../../icons/black_arrow.png';
-import { useAppDispatch } from '../../../../hook';
+import { type OrderResponse, OrderStatus } from '../../../../models/order';
+import arrowDown from '../../../../shared/assets/icons/black_arrow_down.png';
+import arrow from '../../../../shared/assets/icons/black_arrow.png';
+import { useAppDispatch } from '../../../../shared/lib/hooks/hooks';
 import { cancelOrder, deleteOrder } from '../../../../store/actions/orderActions';
 import { deleteOrderItem } from '../../../../store/slices/orderSlice';
 import OrderItemDetail from './orderItemDetail/orderItemDetail';

@@ -4,7 +4,7 @@ import OrderService from '../../services/orderService';
 import {
     appendedOrder, fetchingOrder, fetchOrderError, fetchOrdersSuccess,
 } from '../slices/orderSlice';
-import { type IOrder } from '../../models/order/models';
+import { type IOrder } from '../../models/order';
 
 export const fetchOrders = () => {
     return async (dispatch: AppDispatch) => {

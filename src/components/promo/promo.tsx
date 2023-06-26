@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../../hook';
-import enterImg from '../../icons/enter.svg';
+import { useAppDispatch, useAppSelector } from '../../shared/lib/hooks/hooks';
+import enterImg from '../../shared/assets/icons/enter.svg';
 import checkPromo from '../../store/actions/promoActions';
 import PromoModal from './promoModal/promoModal';
 import './promo.scss';

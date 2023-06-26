@@ -1,6 +1,6 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-import { type IPizza } from '../../models/pizza/models';
-import { type IPromo } from '../../models/order/models';
+import { type IPizza } from '../../models/pizza';
+import { type IPromo } from '../../models/order';
 
 interface CartState {
     pizza: IPizza[];

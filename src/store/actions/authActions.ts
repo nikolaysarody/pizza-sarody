@@ -2,8 +2,8 @@ import axios, { type AxiosResponse, isAxiosError } from 'axios';
 import { type AppDispatch } from '../index';
 import AuthService from '../../services/authService';
 import { fetchAuthError, setAuth } from '../slices/authSlice';
-import { type AuthResponse } from '../../models/auth/models';
-import { type IUser } from '../../models/user/models';
+import { type AuthResponse } from '../../models/auth';
+import { type IUser } from '../../models/user';
 import { setUser } from '../slices/userSlice';
 
 const setItems = (res: AxiosResponse<AuthResponse>, dispatch: AppDispatch) => {

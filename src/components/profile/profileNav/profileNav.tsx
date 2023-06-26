@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Pages } from '../../../models/user/models';
+import { Pages } from '../../../models/user';
 import './profileNav.scss';
 
 interface ProfileNavProps {

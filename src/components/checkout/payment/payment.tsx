@@ -1,6 +1,6 @@
-import pushedSelector from '../../../icons/pushed_selector.png';
-import selector from '../../../icons/selector.png';
-import { type OrderPaymentOption } from '../../../models/order/models';
+import pushedSelector from '../../../shared/assets/icons/pushed_selector.png';
+import selector from '../../../shared/assets/icons/selector.png';
+import { type OrderPaymentOption } from '../../../models/order';
 import './payment.scss';
 
 interface IPayment {

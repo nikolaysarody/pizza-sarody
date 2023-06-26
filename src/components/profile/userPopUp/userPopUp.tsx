@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import userImg from '../../../icons/user.svg';
+import userImg from '../../../shared/assets/icons/user.svg';
 import { fetchAddresses } from '../../../store/actions/addressAction';
 import { fetchOrders } from '../../../store/actions/orderActions';
-import { useAppDispatch, useAppSelector } from '../../../hook';
+import { useAppDispatch, useAppSelector } from '../../../shared/lib/hooks/hooks';
 import UserAuth from './userAuth/userAuth';
 import UserMenu from './userMenu/userMenu';
 import './userPopUp.scss';

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { logout } from '../../../../store/actions/authActions';
-import { useAppDispatch } from '../../../../hook';
+import { useAppDispatch } from '../../../../shared/lib/hooks/hooks';
 
 interface UserMenuProps {
     popUpSwitch: () => void;

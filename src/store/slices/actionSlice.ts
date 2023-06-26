@@ -1,5 +1,5 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-import { type IAction } from '../../models/action/models';
+import { type IAction } from '../../models/action';
 
 interface ActionState {
     loading: boolean;

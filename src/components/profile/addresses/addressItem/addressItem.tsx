@@ -1,8 +1,8 @@
-import selector from '../../../../icons/selector.png';
-import pushedSelector from '../../../../icons/pushed_selector.png';
-import { type IAddress } from '../../../../models/address/models';
-import trash from '../../../../icons/trash.svg';
-import { useAppDispatch } from '../../../../hook';
+import selector from '../../../../shared/assets/icons/selector.png';
+import pushedSelector from '../../../../shared/assets/icons/pushed_selector.png';
+import { type IAddress } from '../../../../models/address';
+import trash from '../../../../shared/assets/icons/trash.svg';
+import { useAppDispatch } from '../../../../shared/lib/hooks/hooks';
 import { deleteAddress, setDefaultAddress } from '../../../../store/actions/addressAction';
 import './addressesItem.scss';
 

@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import ProfileNav from '../profileNav/profileNav';
-import { Pages } from '../../../models/user/models';
+import { Pages } from '../../../models/user';
 import { fetchOrders } from '../../../store/actions/orderActions';
-import { useAppDispatch, useAppSelector } from '../../../hook';
+import { useAppDispatch, useAppSelector } from '../../../shared/lib/hooks/hooks';
 import OrderItem from './orderItem/orderItem';
 import './orders.scss';
 

@@ -4,7 +4,7 @@ import {
     appendedAddress, fetchAddressError, fetchAddressesSuccess, fetchingAddress,
 } from '../slices/addressSlice';
 import AddressService from '../../services/addressService';
-import { type IAddress } from '../../models/address/models';
+import { type IAddress } from '../../models/address';
 
 export const fetchAddresses = () => {
     return async (dispatch: AppDispatch) => {

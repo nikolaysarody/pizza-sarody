@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
-import exitButton from '../../../icons/exit.svg';
-import blackExitButton from '../../../icons/close_black.png';
-import { useAppDispatch, useAppSelector } from '../../../hook';
-import { type IPromo } from '../../../models/order/models';
+import exitButton from '../../../shared/assets/icons/exit.svg';
+import blackExitButton from '../../../shared/assets/icons/close_black.png';
+import { useAppDispatch, useAppSelector } from '../../../shared/lib/hooks/hooks';
+import { type IPromo } from '../../../models/order';
 import './promoModal.scss';
-import pizzaImg from '../../../icons/accept_order.png';
+import pizzaImg from '../../../shared/assets/icons/accept_order.png';
 import { appendPromoItemsToCart, appendPromoToCart } from '../../../store/slices/cartSlice';
 
 interface PromoModalProps extends IPromo {

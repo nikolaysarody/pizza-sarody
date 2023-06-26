@@ -1,5 +1,5 @@
 import { createPortal } from 'react-dom';
-import exitButton from '../../../icons/exit.svg';
+import exitButton from '../../../shared/assets/icons/exit.svg';
 import './sliderModal.scss';
 
 interface SliderModalProps {

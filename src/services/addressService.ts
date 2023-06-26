@@ -1,6 +1,6 @@
 import { type AxiosResponse } from 'axios';
-import axiosApi from '../axios';
-import { type AddressResponse, type IAddress } from '../models/address/models';
+import axiosApi from '../shared/lib/axios';
+import { type AddressResponse, type IAddress } from '../models/address';
 
 export default class AddressService {
     static async getAddresses(): Promise<AxiosResponse<AddressResponse[]>> {

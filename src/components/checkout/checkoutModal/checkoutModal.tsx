@@ -1,9 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import { createPortal } from 'react-dom';
-import exitButton from '../../../icons/close_black.png';
+import exitButton from '../../../shared/assets/icons/close_black.png';
 import './checkoutModal.scss';
-import pizzaImg from '../../../icons/accept_order.png';
-import { useAppDispatch } from '../../../hook';
+import pizzaImg from '../../../shared/assets/icons/accept_order.png';
+import { useAppDispatch } from '../../../shared/lib/hooks/hooks';
 import { clearAllCart } from '../../../store/slices/cartSlice';
 
 interface CheckoutModalProps {

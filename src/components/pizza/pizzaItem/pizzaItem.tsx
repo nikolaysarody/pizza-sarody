@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../../../hook';
-import { type IPizza } from '../../../models/pizza/models';
+import { useAppDispatch, useAppSelector } from '../../../shared/lib/hooks/hooks';
+import { type IPizza } from '../../../models/pizza';
 import { addItemInCart, deleteItemInCart } from '../../../store/slices/cartSlice';
 import './pizzaItem.scss';
 

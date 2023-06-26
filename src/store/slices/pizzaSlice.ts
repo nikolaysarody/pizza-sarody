@@ -1,5 +1,5 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-import { type IPizza } from '../../models/pizza/models';
+import { type IPizza } from '../../models/pizza';
 
 interface PizzaState {
     loading: boolean;

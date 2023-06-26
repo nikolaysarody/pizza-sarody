@@ -1,6 +1,6 @@
 import { type AxiosResponse } from 'axios';
-import axiosApi from '../axios';
-import { type AuthResponse } from '../models/auth/models';
+import axiosApi from '../shared/lib/axios';
+import { type AuthResponse } from '../models/auth';
 
 export default class UserService {
     static async changeUsername(username: string): Promise<AxiosResponse<AuthResponse>> {

@@ -1,5 +1,5 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-import { type IPromo } from '../../models/order/models';
+import { type IPromo } from '../../models/order';
 
 interface PromoState {
     loading: boolean;

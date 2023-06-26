@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import logoImg from '../../icons/logo.svg';
-import Cart from '../cart/cart';
+import logoImg from '../../shared/assets/icons/logo.svg';
+import { Cart } from '../../entities/Cart';
 import UserPopUp from '../profile/userPopUp/userPopUp';
 import Promo from '../promo/promo';
 import SideNav from './sideNav/sideNav';
