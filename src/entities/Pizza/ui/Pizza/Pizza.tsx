@@ -4,7 +4,7 @@ import { PizzaItem } from '../PizzaItem/PizzaItem';
 import './Pizza.scss';
 
 export const Pizza = () => {
-    const pizzaItems = useAppSelector((state) => state.pizza.pizza);
+    const pizzaItems = useAppSelector((state) => state.data.pizza);
 
     const pizzaBody = useMemo(() => (
         pizzaItems.map((item) => (

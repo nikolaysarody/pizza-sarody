@@ -100,7 +100,7 @@ const CartMenu = memo(({ setToggle }: CartMenuProps) => {
         );
     }
     return (
-        <div className="cart__menu-empty">
+        <div className="cart__menu empty">
             <div className="cart__item-empty">
                 <img src={cartImg} alt="cart" width="42" height="42" />
                 <span>Корзина пустая</span>

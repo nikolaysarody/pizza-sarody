@@ -12,9 +12,7 @@ interface CartState {
 const initialState: CartState = {
     pizza: [],
     totalPrice: 0,
-    promo: {
-        title: '', discount: 0, items: [], img: '', description: '',
-    },
+    promo: {} as IPromo,
     error: '',
 };
 
@@ -91,7 +89,7 @@ const cartSlice = createSlice({
             localStorage.removeItem('promoError');
         },
         initCart(state) {
-            state.pizza = JSON.parse(localStorage.getItem('pizza') || '{}');
+            state.pizza = JSON.parse(localStorage.getItem('pizza') || '{[]}');
             state.promo = JSON.parse(localStorage.getItem('promo') || '{}');
             state.error = JSON.parse(localStorage.getItem('promoError') || '{}');
             const price = localStorage.getItem('price');

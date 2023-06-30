@@ -10,7 +10,7 @@ import cartSlice from '../../../../entities/Cart/model/slice/cartSlice';
 
 const rootReducer = combineReducers({
     order: orderSlice,
-    pizza: pizzaSlice,
+    data: pizzaSlice,
     action: actionSlice,
     auth: authSlice,
     address: addressSlice,
