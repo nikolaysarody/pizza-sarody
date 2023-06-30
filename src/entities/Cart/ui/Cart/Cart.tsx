@@ -19,9 +19,11 @@ export const Cart = () => {
 
     useEffect(() => {
         setCount(0);
-        pizzas.forEach((item) => {
-            setCount((prev) => prev + (item.count || 0));
-        });
+        if (Array.isArray(pizzas)) {
+            pizzas.forEach((item) => {
+                setCount((prev) => prev + (item.count || 0));
+            });
+        }
     }, [pizzas]);
 
     return (

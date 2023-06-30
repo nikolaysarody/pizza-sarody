@@ -16,16 +16,14 @@ export const Header = () => {
         );
     }
     return (
-        <div className="header">
-            <div className="header__container">
-                <div className="header__section">
-                    <div className="header__logo">
-                        <Link to="/">
-                            <img src={logoImg} alt="Pizza Sarody" width="200" height="46" />
-                        </Link>
-                    </div>
-                </div>
-                <div className="header__section">
+        <header className="header">
+            <nav className="header__container">
+                <section className="header__section">
+                    <Link className="header__logo" to="/">
+                        <img src={logoImg} alt="Pizza Sarody" width="200" height="46" />
+                    </Link>
+                </section>
+                <section className="header__section">
                     <HeaderItem title="Пицца" to="/" />
                     <HeaderItem title="О нас" to="/about" />
                     <Promo />
@@ -35,8 +33,8 @@ export const Header = () => {
                     <div className="header__cart">
                         <Cart />
                     </div>
-                </div>
-            </div>
-        </div>
+                </section>
+            </nav>
+        </header>
     );
 };

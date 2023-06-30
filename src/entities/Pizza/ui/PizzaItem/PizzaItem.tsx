@@ -18,14 +18,13 @@ export const PizzaItem = (props: Omit<IPizza, 'count'>) => {
 
     useEffect(() => {
         let index = 0;
-        if (
-            pizzaInOrder.some((item, i) => {
-                if (item.title === title) {
-                    index = i;
-                    return true;
-                }
-                return false;
-            })
+        if (Array.isArray(pizzaInOrder) && pizzaInOrder.some((item, i) => {
+            if (item.title === title) {
+                index = i;
+                return true;
+            }
+            return false;
+        })
         ) {
             if (pizzaInOrder[index].count) {
                 setPizzaCount(pizzaInOrder[index].count);
