@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from '../../../../shared/lib/hooks/hoo
 import { type IPizza } from '../../model/types/pizza';
 import { addItemInCart, deleteItemInCart } from '../../../Cart/model/slice/cartSlice';
 import './PizzaItem.scss';
+import { getPizzaInCart } from '../../../Cart/model/selectors/getPizzaInCart';
 
 export const PizzaItem = (props: Omit<IPizza, 'count'>) => {
     const {
@@ -14,11 +15,11 @@ export const PizzaItem = (props: Omit<IPizza, 'count'>) => {
     } = props;
     const dispatch = useAppDispatch();
     const [pizzaCount, setPizzaCount] = useState<number | undefined>(0);
-    const pizzaInOrder = useAppSelector((state) => state.cart.pizza);
+    const pizzaInOrder = useAppSelector(getPizzaInCart);
 
     useEffect(() => {
         let index = 0;
-        if (Array.isArray(pizzaInOrder) && pizzaInOrder.some((item, i) => {
+        if (pizzaInOrder.some((item, i) => {
             if (item.title === title) {
                 index = i;
                 return true;
