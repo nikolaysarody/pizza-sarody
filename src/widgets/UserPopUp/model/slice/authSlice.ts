@@ -2,12 +2,12 @@ import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
 interface AuthState {
     isAuth: boolean;
-    error: string;
+    error: string[];
 }
 
 const initialState: AuthState = {
     isAuth: false,
-    error: '',
+    error: [],
 };
 
 const authSlice = createSlice({
@@ -17,7 +17,7 @@ const authSlice = createSlice({
         setAuth(state, action: PayloadAction<boolean>) {
             state.isAuth = action.payload;
         },
-        fetchAuthError(state, action: PayloadAction<string>) {
+        fetchAuthError(state, action: PayloadAction<string[]>) {
             state.error = action.payload;
         },
     },

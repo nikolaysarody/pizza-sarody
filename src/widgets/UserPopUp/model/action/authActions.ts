@@ -18,10 +18,11 @@ export const login = (email: string, password: string) => {
     return async (dispatch: AppDispatch) => {
         try {
             const res = await AuthService.login(email, password);
-            dispatch(fetchAuthError(''));
+            dispatch(fetchAuthError(['']));
             setItems(res, dispatch);
         } catch (e) {
             if (isAxiosError(e) && e.response != null) {
+                console.log(e.response.data.message);
                 dispatch(fetchAuthError(e.response.data.message));
             }
         }
@@ -32,7 +33,7 @@ export const registration = (email: string, password: string) => {
     return async (dispatch: AppDispatch) => {
         try {
             const res = await AuthService.registration(email, password);
-            dispatch(fetchAuthError(''));
+            dispatch(fetchAuthError(['']));
             setItems(res, dispatch);
         } catch (e) {
             if (isAxiosError(e) && e.response != null) {
