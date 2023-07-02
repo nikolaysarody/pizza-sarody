@@ -2,9 +2,9 @@ import Settings from '../../../features/Settings/Settings';
 
 const SettingsPage = () => {
     return (
-        <div className="app__content-left">
+        <main className="app__content-left">
             <Settings />
-        </div>
+        </main>
     );
 };
 

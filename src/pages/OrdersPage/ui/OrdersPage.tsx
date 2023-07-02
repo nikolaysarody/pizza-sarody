@@ -2,9 +2,9 @@ import { Orders } from '../../../entities/Orders';
 
 const OrdersPage = () => {
     return (
-        <div className="app__content-left">
+        <main className="app__content-left">
             <Orders />
-        </div>
+        </main>
     );
 };
 
