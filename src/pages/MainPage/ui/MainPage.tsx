@@ -3,10 +3,10 @@ import { Pizza } from '../../../entities/Pizza';
 
 const MainPage = () => {
     return (
-        <div className="app__content-center">
+        <main className="app__content-center">
             <Slider />
             <Pizza />
-        </div>
+        </main>
     );
 };
 

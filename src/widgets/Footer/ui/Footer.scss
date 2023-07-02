@@ -1,3 +1,5 @@
+@import 'src/app/styles/variables';
+
 .footer {
     display: flex;
     justify-content: center;
@@ -12,50 +14,42 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        width: 1322px;
+        @include container();
 
-        @media (max-width: 1500px) {
-            max-width: 1320px;
-        }
-
-        @media (max-width: 1319px) {
-            max-width: 1150px;
-        }
-
-        @media (max-width: 1149px) {
-            max-width: 963px;
-        }
-
-        @media (max-width: 962px) {
-            margin: 0 60px 0 60px;
+        @media (max-width: 575px) {
+            flex-direction: column;
+            margin: 0;
+            padding: 15px 0;
         }
     }
 
-    &__section{
+    &__section {
         display: flex;
         flex-direction: column;
         align-items: center;
         flex-basis: 0;
+
+        @media (max-width: 575px) {
+            flex-direction: column;
+            margin-bottom: 15px;
+        }
     }
 
-    &__button{
+    &__button {
+        text-decoration: none;
+        color: black;
+        font-size: 17px;
+        font-weight: 600;
         margin-bottom: 10px;
         white-space: nowrap;
 
-        &:last-child{
+        &:last-child {
             margin-bottom: 0;
-        }
-
-        a {
-            text-decoration: none;
-            color: black;
-            font-size: 17px;
-            font-weight: 600;
         }
     }
 
-    &__copyright{
-        span{
+    &__copyright {
+        span {
             font-size: 17px;
             font-weight: 600;
         }

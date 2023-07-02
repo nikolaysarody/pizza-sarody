@@ -1,3 +1,5 @@
+@import 'src/app/styles/variables';
+
 .header {
   display: flex;
   justify-content: center;
@@ -32,24 +34,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    min-width: 1320px;
-
-    @media (max-width: 1500px) {
-      min-width: 1320px;
-    }
-
-    @media (max-width: 1319px) {
-      min-width: 1150px;
-    }
-
-    @media (max-width: 1149px) {
-      min-width: 963px;
-    }
-
-    @media (max-width: 962px) {
-      min-width: 90%;
-      margin: 0 60px 0 60px;
-    }
+    @include container();
   }
 
   &__section {

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import logoImg from '../../../../shared/assets/icons/logo.svg';
+import logoImg from '../../../../shared/assets/icons/logo-min.svg';
 import menuImg from '../../../../shared/assets/icons/menu.svg';
 import enterImg from '../../../../shared/assets/icons/enter.svg';
 import { useAppSelector } from '../../../../shared/lib/hooks/hooks';

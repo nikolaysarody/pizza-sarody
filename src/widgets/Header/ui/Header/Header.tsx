@@ -8,7 +8,7 @@ import { HeaderItem } from '../HeaderItem/HeaderItem';
 import './Header.scss';
 
 export const Header = () => {
-    if (window.innerWidth < 962) {
+    if (window.innerWidth < 767) {
         return (
             <div className="header">
                 <Sidenav />
