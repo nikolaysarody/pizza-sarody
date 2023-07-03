@@ -4,15 +4,20 @@ import enterImg from '../../../../shared/assets/icons/enter.svg';
 import checkPromo from '../../model/action/promoActions';
 import PromoModal from '../PromoModal/PromoModal';
 import './Promo.scss';
+import { classNames } from '../../../../shared/lib/classNames/classNames';
 
-export const Promo = memo(() => {
+interface PromoProps {
+    className?: string;
+}
+
+export const Promo = memo(({ className }:PromoProps) => {
     const dispatch = useAppDispatch();
     const promo = useAppSelector((state) => state.promo.item);
     const [promoTitle, setPromoTitle] = useState<string>('');
     const [modalVisible, setModalVisible] = useState<boolean>(false);
 
     return (
-        <div className="promo">
+        <div className={classNames('promo', {}, [className])}>
             {modalVisible ? (
                 <PromoModal
                     onClose={() => {

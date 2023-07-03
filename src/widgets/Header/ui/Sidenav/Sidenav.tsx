@@ -7,6 +7,7 @@ import { useAppSelector } from '../../../../shared/lib/hooks/hooks';
 import { classNames, Mods } from '../../../../shared/lib/classNames/classNames';
 import './Sidenav.scss';
 import '../Header/Header.scss';
+import { Promo } from '../../../../entities/Promo';
 
 const Sidenav = () => {
     const [sideNavSwitch, setSideNavSwitch] = useState(false);
@@ -80,16 +81,11 @@ const Sidenav = () => {
                         }}
                     >
                         Корзина
+                        {count > 0 && (
+                            <span className="counter">{count}</span>
+                        )}
                     </Link>
-                    {count > 0 && (
-                        <span className="counter">{count}</span>
-                    )}
-                    <div className="header__promo">
-                        <input type="text" placeholder="Промокод" />
-                        <button type="button">
-                            <img src={enterImg} alt="enter" width="13" height="13" />
-                        </button>
-                    </div>
+                    <Promo className="sidebar__promo" />
                 </div>
             </section>
             {sideNavSwitch && (

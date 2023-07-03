@@ -11,6 +11,7 @@
     transition: 0.4s all;
     padding-top: 40px;
     z-index: 3;
+    width: 50%;
 
     &__burger {
         cursor: pointer;
@@ -24,6 +25,8 @@
     }
 
     &__button {
+        display: flex;
+        align-items: center;
         margin-bottom: 20px;
         text-decoration: none;
         color: black;
@@ -34,6 +37,10 @@
         &:last-child {
             margin-bottom: 0;
         }
+    }
+
+    &__promo {
+        margin-right: 0;
     }
 
     &_open {
