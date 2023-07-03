@@ -5,13 +5,12 @@
     position: absolute;
     background: #FFFFFF;
     box-shadow: 5px 5px 12px 5px rgba(0, 0, 0, 0.1);
-    border-radius: 0 0 0 28px;
     top: 86px;
-    width: 200px;
     right: -80%;
     height: calc(100vh - 86px);
     transition: 0.4s all;
     padding-top: 40px;
+    z-index: 3;
 
     &__burger {
         cursor: pointer;
@@ -39,6 +38,18 @@
 
     &_open {
         right: 0;
+    }
+
+    &__outside-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 2;
+        width: 100vw;
+        height: 100vh;
     }
 }
 

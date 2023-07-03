@@ -10,6 +10,7 @@
     @include defaultFlexContainer();
     justify-content: space-between;
     width: 100%;
+    flex-wrap: wrap;
   }
 
   &__wrapper {

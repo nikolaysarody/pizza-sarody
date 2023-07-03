@@ -42,24 +42,68 @@ const Sidenav = () => {
                 >
                     <img src={menuImg} alt="menu" />
                 </button>
-                <div className={classNames('sidebar', mods, [])}>
-                    <div className="sidebar__wrapper">
-                        <Link className="sidebar__button" to="/">Пицца</Link>
-                        <Link className="sidebar__button" to="/about">О нас</Link>
-                        <Link className="sidebar__button" to="/profile">Профиль</Link>
-                        <Link className="sidebar__button" to="/order">Корзина</Link>
-                        {count > 0 && (
-                            <span className="counter">{count}</span>
-                        )}
-                        <div className="header__promo">
-                            <input type="text" placeholder="Промокод" />
-                            <button type="button">
-                                <img src={enterImg} alt="enter" width="13" height="13" />
-                            </button>
-                        </div>
+            </section>
+            <section className={classNames('sidebar', mods, [])}>
+                <div className="sidebar__wrapper">
+                    <Link
+                        className="sidebar__button"
+                        to="/"
+                        onClick={() => {
+                            setSideNavSwitch((prev) => !prev);
+                        }}
+                    >
+                        Пицца
+                    </Link>
+                    <Link
+                        className="sidebar__button"
+                        to="/about"
+                        onClick={() => {
+                            setSideNavSwitch((prev) => !prev);
+                        }}
+                    >
+                        О нас
+                    </Link>
+                    <Link
+                        className="sidebar__button"
+                        to="/settings"
+                        onClick={() => {
+                            setSideNavSwitch((prev) => !prev);
+                        }}
+                    >
+                        Профиль
+                    </Link>
+                    <Link
+                        className="sidebar__button"
+                        to="/checkout"
+                        onClick={() => {
+                            setSideNavSwitch((prev) => !prev);
+                        }}
+                    >
+                        Корзина
+                    </Link>
+                    {count > 0 && (
+                        <span className="counter">{count}</span>
+                    )}
+                    <div className="header__promo">
+                        <input type="text" placeholder="Промокод" />
+                        <button type="button">
+                            <img src={enterImg} alt="enter" width="13" height="13" />
+                        </button>
                     </div>
                 </div>
             </section>
+            {sideNavSwitch && (
+                <button
+                    type="button"
+                    aria-label="close"
+                    className="sidebar__outside-wrapper"
+                    onClick={(e) => {
+                        if (e.target === e.currentTarget) {
+                            setSideNavSwitch((prev) => !prev);
+                        }
+                    }}
+                />
+            )}
         </aside>
     );
 };

@@ -96,7 +96,7 @@ export const Checkout = () => {
                 />
             )}
             <h1>Оформление заказа</h1>
-            <div className="ordering__container">
+            <section className="ordering__container">
                 <div className="ordering__wrapper">
                     <h3>Состав:</h3>
                     <div className="ordering__items">
@@ -198,7 +198,7 @@ export const Checkout = () => {
                         />
                     </ul>
                 </div>
-            </div>
+            </section>
         </div>
     );
 };
